@@ -1,0 +1,82 @@
+<view class="header">
+  <view class="head_l" wx:if="{{orderList.status==2}}">
+    <view class="zt">支付完成</view>
+    <view class="zt_time">完成支付，等待卖家发货</view>
+  </view>
+  <view class="head_r">
+    <image src="/images/wuliu/daishouhuo-2.png" />
+  </view>
+</view>
+<view class="title_box">
+  <view class="wuliu">
+    <view class="name_box">
+      <view class="nb_left">
+        <image src="/images/wuliu/dizhi.png" />
+      </view>
+      <view class="nb_right">
+        <view class="nb_top">
+          <view class="nb_name">{{orderList.address.name}}</view>
+          <view class="nb_tel">{{orderList.address.phone}}</view>
+        </view>
+        <view class="nb_dizhi">{{orderList.address.address}}</view>
+      </view>
+    </view>
+  </view>
+  <!--商品信息-->
+  <view class="sp_box" wx:for="{{orderList.rels}}" wx:for-item="item" wx:key>
+    <view class="sp_top">
+      <view class="sp_left">
+        <image src="/images/serch/1.png" />
+      </view>
+      <view class="sp_right">
+        <view class="right_t">
+          <view class="sp_rt">{{item.goodsName}}</view>
+          <view class="sp_rtb">规格：{{item.goods.color}} / {{item.goods.sizes}}</view>
+        </view>
+        <view class="right_b">
+          <view class="sp_rb">￥{{item.discountsPrice}}</view>
+          <view class="sp_rb">x{{item.quantity}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="sp_center">
+      <view class="yunfei">运费险</view>
+      <view class="yunfei">包邮</view>
+    </view>
+  </view>
+  <view class="sp_footer">
+    <view>共{{orderList.rels.length}}件商品，合计：</view>
+    <view class="sumch">￥{{orderList.totalPrice}}</view>
+  </view>
+  <!--订单信息-->
+  <view class="dingdan">
+    <view class="dd_name">订单信息</view>
+    <view class="dd_title">
+      <view class="dd_tl">
+        <view>订单编号</view>
+        <view class="name">{{orderList.tradeNo}}</view>
+      </view>
+      <view class="fuzhi">复制</view>
+    </view>
+    <view class="dd_title">
+      <view class="dd_tl">
+        <view>创建时间</view>
+        <view class="name">{{orderList.createDate}}</view>
+      </view>
+    </view>
+    <view class="dd_title">
+      <view class="dd_tl">
+        <view>支付方式</view>
+        <view class="name">{{orderList.payTypeStr}}</view>
+      </view>
+    </view>
+    <view class="phone_box">
+      <view class="gotophone" catchtap="goTotel">
+        <view class="phone">联系客服</view>
+      </view>
+      <view class="gotophone" catchtap="goTophon">
+        <view class="phone">联系商家</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,124 @@
+.header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tab{
+  font-size: 26rpx;
+  color: #222222;
+  font-weight: bold;
+  margin: 30rpx 47rpx;
+  padding-bottom: 10rpx;
+  /* border-bottom: 2px solid transparent; */
+  position: relative;
+  /* padding-bottom : 10rpx; */
+}
+.tab .line_bottom{
+  position: absolute;
+  bottom : 0;
+  height : 4rpx;
+  width: 0;
+  background: #A5937F;
+}
+.animate_active .line_bottom{
+  width: 100%;
+  transition: 0.2s linear;
+}
+.animate_active{
+  color: #A5937F;
+  /* border-color : #A5937F; */
+  /* border-bottom: 2px solid #A5937F; */
+}
+/*优惠券*/
+.list{
+  height: 210rpx;
+  margin:0 42rpx 30rpx 44rpx;
+  position: relative;
+}
+.list image{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.list_box{
+  display: flex;
+  height: 210rpx;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.left{
+  text-align: center;
+  margin-right: 30rpx;
+  margin-left: 30rpx;
+}
+.num{
+  font-size: 80rpx;
+  color: #222222;
+  font-weight: bold;
+}
+.numb{
+  font-size: 22rpx;
+  color: #222222;
+}
+.right{
+  margin-left: 50rpx;
+  position: relative;
+}
+.top{
+  font-size: 30rpx;
+  color: #222222;
+  font-weight: bold;
+}
+.center{
+  font-size: 24rpx;
+  color: #AAAAAA;
+}
+.bottom{
+  width: 158rpx;
+  height: 44rpx;
+  margin-top: 18rpx;
+}
+.bottom image{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.bottom_img{
+  width: 118rpx;
+  height: 118rpx;
+  position: absolute;
+  z-index: 999;
+  top: -24rpx;
+  right: -18rpx;
+}
+.bottom_img image{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.guoqi{
+  color: #AAAAAA;
+}
+
+/* 切换动画*/
+.animation_box_center {
+  position: relative;
+}
+.animation_box {
+  width: 100%;
+  position: absolute;
+}
+.aleft_n1 {
+  transform: translateX(-100%);
+}
+.aleft_n2 {
+  transform: translateX(100%);
+}
+.aleft {
+  z-index : 999;
+  transform: translateX(0);
+  transition: 0.2s linear;
+}

@@ -1,0 +1,112 @@
+<view class="header">
+  <view class="dw_img">
+    <image src="/images/wuliu/dizhi.png" />
+  </view>
+  <view class="xinxi">
+    <view class="xx_top">
+      <view class="xx_name">预约人：</view>
+      <view class="xx_phone">{{name}}</view>
+    </view>
+    <!-- <view class="dizhi">213123123313213</view> -->
+  </view>
+  <!-- <view class="tianjia">添加收货地址</view> -->
+  <view class="next">
+    {{phone}}
+  </view>
+</view>
+
+
+<!--订单信息-->
+
+
+<view class="dingdan" wx:if="{{cartList.length > 0}}">
+  <view class="dd_topbox" wx:for="{{cartList}}" wx:for-item="cartItem" wx:for-index="cartIndex" wx:key="index">
+    <view class="dd_img">
+      <image src="{{cartItem.goods.mainImgPath}}" />
+    </view>
+    <view class="topbox">
+      <view class="tb_name">{{cartItem.goods.name}}</view>
+      <view class="tb_gg">
+        <text wx:if="{{cartItem.goods.color}}">{{cartItem.goods.color}}</text>
+        <text wx:if="{{cartItem.goods.size}}"> / {{ cartItem.goods.sizes}}</text>
+      </view>
+      <view class="tb_b">
+        <view class="jiage">￥{{cartItem.goods.discountPrice}}</view>
+        <view class="numb">x {{cartItem.quantity}}</view>
+      </view>
+    </view>
+  </view>
+  <!--配送方式-->
+  <view class="psfs">
+    <view class="fs" wx:if="{{doorDialog.index != ''}}">
+      <!-- <view class="fangshi label">预约店铺：</view>
+      <view class="fangshi2 label_center">{{address}}</view> -->
+      <picker mode="selector" bindchange="bindDoorChange" value="{{doorDialog.index}}" range="{{doorDialog.itemList}}" wx:if="{{doorDialog.index != ''}}">
+        <view class="picker">
+          <text>预约店铺：</text>
+          <text class='label_center'>{{doorDialog.itemList[doorDialog.index]}}</text>
+        </view>
+      </picker>
+    </view>
+
+
+    <view class="ps_next">
+      <image src="../../images/my/more.png" />
+    </view>
+  </view>
+  <view class="liuyan">
+    <view class="mjly label">店铺名：</view>
+    <!-- <textarea placeholder="选填，填写内容已和卖家协商确认" maxlength="-1" placeholder-style="font-size:26rpx;" bindblur="bindTextAreaBlur" disabled></textarea> -->
+    <view class='mjly label_center'>{{details}}</view>
+  </view>
+  <view class="psfs">
+    <view class="fs">
+      <view class="fangshi label">预约时间：</view>
+      <view class="fangshi2 label_center">
+        <pickerYMDHM bind:onPickerChange="onPickerChange3" date="{{endedTime}}"></pickerYMDHM>
+      </view>
+    </view>
+    <view class="ps_next">
+      <image src="/images/my/more.png" />
+    </view>
+  </view>
+  <view class="liuyan">
+    <view class="mjly label">留言：</view>
+    <textarea placeholder="填写留言信息" maxlength="-1" placeholder-style="font-size:26rpx;" bindinput="bindTextAreaBlur"></textarea>
+    <!-- <view class="label_center">{{message}}</view> -->
+  </view>
+  <!--合计-->
+  <!-- <view class="heji">
+    <view class="hj_left">共1件商品，合计：</view>
+    <view class="hj_right">￥128.88</view>
+  </view> -->
+</view>
+  <!-- <view class='submit' catchtap="tobookDetails">
+    <view class='tjdd'>提交订单
+    </view>
+  </view> -->
+  <!--提交订单-->
+<view class="tijiao">
+  <view class="tjhj">预约商品数量：{{cartList.length}}</view>
+  <view class="tjdd" catchtap="tobookDetails">提交订单</view>
+</view>
+<!--提交订单-->
+<!-- <view class="tijiao">
+  <view class="tjhj">合计：￥123</view>
+  <view class="tjdd" catchtap="goTozhifu">提交订单</view>
+</view> -->
+
+<!--配送方式弹窗-->
+<view class="zzc" wx:if="{{isHide}}" catchtap="goTogbtk"></view>
+<view class="peisong {{isHide ? 'is_hide' : ''}}">
+  <view class="ps_name">配送方式</view>
+  <view class="ps_class">
+    <view class="ps_clname">普通配送</view>
+    <view class="ps_gouxuan">
+      <image src="/images/my/xz.png" />
+    </view>
+  </view>
+  <view class="wancheng" catchtap="goTogbtk">完成</view>
+</view>
+
+<showModal showModalOption="{{showModalOption}}" bindoperation="operation"></showModal>

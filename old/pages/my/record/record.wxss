@@ -1,0 +1,145 @@
+page{
+  background-color: rgba(248, 246, 246, 0.671);
+}
+.header{
+  margin: 28rpx 27rpx 0 27rpx;
+  padding: 30rpx;
+  display: flex;
+  background-color: #fff;
+  border-radius: 4rpx;
+  position: relative;
+}
+.status {
+  position: absolute;
+  top:30rpx;
+  right: 25rpx;
+  font-size:24rpx;
+}
+.left{
+  width: 180rpx;
+  height: 180rpx;
+}
+.left image{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.name_address {
+  text-align: justify;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.text_box{
+  margin-left: 20rpx;
+  width: 370rpx;
+}
+.text_box text {
+  font-weight: bold;
+}
+.name{
+  font-size: 26rpx;
+  color: #222222;
+  font-weight: bold;
+}
+.name_one{
+  font-size: 24rpx;
+  color: #555555;
+  margin-top: 4rpx;
+  width: 440rpx;
+  line-height: 1.2;
+}
+
+
+
+.header_top {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  padding : 20rpx 30rpx; 
+}
+
+/* 导航底部动画*/
+.tab{
+  font-size: 26rpx;
+  color: #222222;
+  font-weight: bold;
+  /* margin: 30rpx 47rpx; */
+  padding-bottom: 10rpx;
+  position: relative;
+  border: none;
+  margin-top: 28rpx;
+}
+.tab .line_bottom{
+  position: absolute;
+  bottom : 0;
+  height : 4rpx;
+  width: 0;
+  background: #A5937F;
+}
+.tab.animate_active .line_bottom{
+  width: 100%;
+  transition: 0.2s linear;
+}
+.animate_active{
+  color: #A5937F;
+}
+.details {
+  color : #999;
+  font-size : 26rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+}
+
+
+
+.header_top {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  padding : 20rpx 50rpx; 
+}
+
+/* 导航底部动画*/
+.tab{
+  font-size: 26rpx;
+  color: #222222;
+  font-weight: bold;
+  /* margin: 30rpx 47rpx; */
+  padding-bottom: 10rpx;
+  position: relative;
+  border: none;
+  margin-top: 28rpx;
+}
+.tab .line_bottom{
+  position: absolute;
+  bottom : 0;
+  height : 4rpx;
+  width: 0;
+  background: #A5937F;
+}
+.tab.animate_active .line_bottom{
+  width: 100%;
+  transition: 0.2s linear;
+}
+.animate_active{
+  color: #A5937F;
+}
+.details {
+  color : #999;
+  font-size : 26rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+}
+
+.icon_num {
+  right:-30rpx;
+  top:-35rpx;
+}

@@ -1,0 +1,5 @@
+<!--components/data-loading/data-loading.wxml-->
+<view class="data-loading {{types === 0 ? 'not-data' : ''}}" wx:if="{{types !== ''}}">
+  <view wx:if="{{types == 0}}"><text class="iconfont icon-xiaoxihezi-kong"></text></view>
+  <text>{{types == 0 ? title[0] : (types == 1 ? title[1] : title[2])}}</text>
+</view>

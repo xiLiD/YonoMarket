@@ -1,0 +1,92 @@
+page {
+  background-color: rgba(238, 238, 238, 0.5);
+  position: relative;
+}
+
+.header {
+  background-color: #ab9a88;
+  height: 360rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.head_l {
+  display: flex;
+}
+
+.head_limg {
+  width: 103rpx;
+  height: 103rpx;
+  margin: 80rpx 25rpx 0 42rpx;
+}
+
+.head_limg image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.zt_time {
+  font-size: 26rpx;
+  color: #fff;
+  margin-top: 90rpx;
+}
+
+.jifen {
+  font-size: 50rpx;
+  color: #fefeff;
+}
+
+.jf {
+  font-size: 24rpx;
+  color: #fefeff;
+  margin-top:12rpx;
+}
+
+.head_r {
+  width: 170rpx;
+  height: 66rpx;
+  margin-top: 105rpx;
+  margin-right: 36rpx;
+}
+
+.head_r image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/*详细信息*/
+
+.title_box {
+  width: 690rpx;
+  position: absolute;
+  top: 240rpx;
+  left: 30rpx;
+  margin-bottom: 40rpx;
+  background-color: #fff;
+  padding: 10rpx 0;
+  border-radius: 4rpx;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 50rpx 44rpx;
+}
+.title{
+  font-size: 26rpx;
+  color: #222222;
+  font-weight: 501;
+}
+.time{
+  margin-top:13rpx;
+  font-size: 24rpx;
+  color: #555555;
+}
+.tb_right{
+  font-size: 26rpx;
+  color: #AB9A88;
+  font-weight: bold;
+}

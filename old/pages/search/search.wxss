@@ -1,0 +1,108 @@
+.header{
+  height: 74rpx;
+  background-color: #F4F4F4;
+  margin: 25rpx 40rpx;
+  border-radius: 4rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header input{
+  width: 85%;
+  height: 74rpx;
+  padding-left: 17rpx;
+  font-size: 26rpx;
+}
+.sousuo{
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 10rpx;
+}
+.sousuo image{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.history{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 60rpx 40rpx 20rpx 40rpx;
+}
+.history_title{
+  font-size: 28rpx;
+  color: #222222;
+  font-weight: 600;
+}
+.serch_icon{
+  width: 30rpx;
+  height: 30rpx;
+}
+.serch_icon image{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.list{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 43rpx;
+}
+.list_numb{
+  border: 2rpx solid #DED2C2;
+  padding: 10rpx 42rpx;
+  margin-right: 20rpx;
+  margin-bottom: 20rpx;
+  color: #A5937F;
+  font-size: 28rpx;
+}
+.gengduo{
+  width: 92rpx;
+  height: 22rpx;
+}
+.gengduo image{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.gg_box{
+  display: flex;
+  margin: 0 50rpx;
+  justify-content: space-between;
+}
+.guanggao{
+  width: 300rpx;
+}
+.gg_img{
+  width: 300rpx;
+  height: 300rpx;
+  border: 1px solid orange;
+}
+.gg_img image{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.gg_title{
+  width: 300rpx;
+  font-size: 24rpx;
+  color: #555555;
+   display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  margin: 8rpx 0;
+}
+.gg_jiage{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.gg_left{
+  font-size: 28rpx;
+  color: #A5937F;
+}
+.gg_right{
+  font-size: 22rpx;
+  color: #AAAAAA;
+}

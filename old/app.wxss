@@ -1,0 +1,134 @@
+/**app.wxss**/
+@import "common/css/iconfont.wxss";
+@import "common/css/iconfont2.wxss";
+@import "common/css/publics.wxss";
+@import "common/css/font-icon.wxss";
+page {
+  /* border-top: 1px solid #f5f5f5; */
+  /* box-shadow:  0 0 100rpx -50rpx #efefef; */
+}
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 
+.tab_two {
+ margin-left : 0 !important;
+}
+.tab_three {
+  margin-left : 0 !important; 
+}
+
+/* .show_modal {
+  animation: show_modal 0.5s linear;
+}
+@keyframes show_modal {
+  0% {
+    opacity: 0 !important;
+    transformY: (100rpx);
+  }
+  100% {
+    opacity: 1 !important;
+    transformY: (0rpx);
+  }
+}
+.no_modal {
+  opacity : 0;
+} */
+.tab > text {
+  position: relative;
+  z-index:99;
+}
+.icon_num {
+  position: absolute;
+  /* padding:10rpx; */
+  right: -30rpx;
+  top:-15rpx;
+  width: 45rpx;
+  height: 45rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f7612b;
+  color:#fff;
+  border-radius: 50%;
+  font-size:24rpx;
+  font-weight: initial;
+}
+
+/* 切换动画*/
+.animation_box_center {
+  position: relative;
+  /* margin-top:20rpx; */
+  background: #fff;
+  max-width:100%;
+  /* overflow-x:hidden; */
+}
+.animation_box {
+  width: 100%;
+  position: absolute;
+  /* top:0; */
+  left:0;
+  overflow-x:hidden;
+}
+.aleft_n1 {
+  left: -100%;
+  opacity: 0;
+}
+.aleft_n2 {
+  left: 100%;
+  opacity: 0;
+}
+
+.aleft {
+  z-index : 999;
+  left: 0;
+  /* transition: 0.2s linear; */
+  opacity: 1;
+  animation: left_move .2s linear;
+}
+@keyframes left_move {
+  0% {
+    transform: translate(-100%)
+  }
+  100% {
+    transform: translate(0%)
+  }
+}
+
+/* 富文本 */
+.rich-p {
+  font-size:28rpx;
+  line-height: 1.5;
+  /* font-style: initial; */
+}
+.rich-i {
+  font-style:initial;
+}
+
+/* 折扣金额 */
+.oldmoney {
+  display: inline-block;
+  transform: scale(0.8);
+  opacity: 0.8;
+  transform-origin: left bottom;
+  text-decoration: line-through;
+}
+/* 优惠券 */
+.right_code {
+  margin-top:15rpx;
+  font-size:28rpx;
+  font-weight: bold;
+  color:#aaa;
+}
+
+
+/* 富文本 */
+.html{box-sizing: border-box;}
+.html image{width:90vw !important;}
+.html view{font-size: 28rpx !important;line-height: 48rpx !important;}
+  

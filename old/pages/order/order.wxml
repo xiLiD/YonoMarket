@@ -1,0 +1,664 @@
+<view class="header">
+  <view class="header_one tab {{dj==''?'animate_active':''}} " data-id="" catchtap="goTotab">
+    <text>全部</text>
+    <view class='line_bottom'></view>
+    <!-- <view class='icon_num' wx:if="{{record.all.list.length > 0}}">{{record.all.list.length}}</view> -->
+  </view>
+  <view class="header_one tab {{dj==2?'animate_active':''}}" data-id="2" catchtap="goTotab">
+    <text>待付款</text>
+    <view class='line_bottom'></view>
+    <!-- <view class='icon_num' wx:if="{{record.progress.list.length > 0}}">{{record.progress.list.length}}</view> -->
+  </view>
+  <view class="header_one tab {{dj==3?'animate_active':''}}" data-id="3" catchtap="goTotab">
+    <text>待发货</text>
+    <view class='line_bottom'></view>
+    <!-- <view class='icon_num' wx:if="{{record.finish.list.length > 0}}">{{record.finish.list.length}}</view> -->
+  </view>
+  <view class="header_one tab {{dj==4?'animate_active':''}}" data-id="4" catchtap="goTotab">
+    <text>待收货</text>
+    <view class='line_bottom'></view>
+    <!-- <view class='icon_num' wx:if="{{record.lose.list.length > 0}}">{{record.lose.list.length}}</view> -->
+  </view>
+  <view class="header_one tab {{dj==5?'animate_active':''}}" data-id="5" catchtap="goTotab">
+    <text>已完成</text>
+    <view class='line_bottom'></view>
+    <!-- <view class='icon_num' wx:if="{{record.cancle.list.length > 0}}">{{record.cancle.list.length}}</view> -->
+  </view>
+</view>
+
+
+
+<view class='animation_box_center'>
+
+  <!--全部-->
+  <view class="animation_box {{dj == '' ? 'aleft' : ''}}" wx:if="{{dj == ''}}">
+    <view class="big_box">
+      <view class="list" wx:for="{{record.all.list}}" wx:for-item="item" wx:key>
+        <view class="list_top" catchtap="goToddxq" data-orderid="{{item.id}}" data-class="{{item.status}}" data-time="{{item.unpaid}}">
+          <view class='list_each' wx:for="{{item.rels}}" wx:for-item="relsItem" wx:for-index="relsIndex">
+            <view class="list_left">
+              <view class="list_img">
+                <image src="{{relsItem.mainPathImg}}" />
+              </view>
+            </view>
+            <view class='list_right'>
+              <view class='list_each_right_top'>
+                <view class='list_each_right_top_t'>
+                  <view class="name">{{relsItem.goodsName}}</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 2}}">等待付款</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 3}}">准备发货中</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 4}}">卖家已发货</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 5}}">交易完成</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 6}}">已关闭</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 7}}">商家审核中</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 8}}">寄货中</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 9}}">退货中</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 10}}">退货成功</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 11}}">已拒绝</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 12}}">关闭</view>
+                </view>
+                <view class='list_each_right_top_b'>
+                  <view class="guige">规格：{{relsItem.goods.color}} / {{relsItem.goods.sizes}}</view>
+                </view>
+              </view>
+              <view class='list_each_right_bottom'>
+                <view class="goods_price">￥{{relsItem.goods.discountPrice}}</view>
+                <view class="goods_num">x{{relsItem.quantity}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="list_bottom">
+          <view class="yunfeix">
+            <view class="money">运费险</view>
+            <view class="money">包邮</view>
+          </view>
+          <view class="yunfeix" wx:if="{{item.deductionPrice}}">
+            <view class="money">优惠券</view>
+            <view class="money">- ￥{{item.deductionPrice}}</view>
+          </view>
+          <view class="heji">共{{item.rels.length}}件商品，合计：
+            <view class="money">￥{{item.couponPrice || item.totalPrice}}</view>
+          </view>
+          <view class="btn" wx:if="{{item.status==2}}">
+            <view class="wuliu" catchtap="goToxgdizhi" data-id="{{item.tradeNo}}">修改地址</view>
+            <view class="wuliu" catchtap="goToquxiao" data-id="{{item.tradeNo}}">取消订单</view>
+            <!-- <view class="wuliu" catchtap="goToDelete" data-id="{{item.tradeNo}}">取消订单</view> -->
+            <view class="queren" catchtap='goToBuy' data-msg="{{item.msg}}" data-trade="{{item.tradeNo}}" data-id="{{item.id}}" data-addressid='{{item.addressId}}' data-couponcode="{{item.couponCode}}">付款</view>
+          </view>
+          <view class="btn" wx:if="{{item.status==3}}">
+            <view class="queren {{item.hasRemind ? 'no_active' : ''}}" data-remind="{{item.hasRemind}}" catchtap="goTocuidan" data-id="{{item.id}}" data-num="{{index}}">提醒发货</view>
+          </view>
+          <view class="btn" wx:if="{{item.status==4}}">
+            <view class="wuliu" catchtap="goTockwl" data-tradeid='{{item.tradeNo}}' data-orderid="{{item.id}}">查看物流</view>
+            <view class="queren" catchtap="comfirmOrder" data-tradeid="{{item.tradeNo}}" data-addressid="{{item.addressId}}">确认收货</view>
+          </view>
+          <view class="btn" wx:if="{{item.status==5}}">
+            <view class="wuliu" catchtap="goToDelete" data-id="{{item.tradeNo}}">删除订单</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <block wx:if="{{record.all.type !== ''}}">
+      <data-loading types="{{record.all.type}}" />
+    </block>
+  </view>
+  <view class="animation_box {{dj == 2 ? 'aleft' : ''}}" wx:if="{{dj == 2}}">
+    <view class="big_box">
+      <view class="list" wx:for="{{record.progress.list}}" wx:for-item="item" wx:key>
+        <view class="list_top" catchtap="goToddxq" data-orderid="{{item.id}}" data-class="{{item.status}}" data-time="{{item.unpaid}}">
+          <view class='list_each' wx:for="{{item.rels}}" wx:for-item="relsItem" wx:for-index="relsIndex">
+            <view class="list_left">
+              <view class="list_img">
+                <image src="{{relsItem.mainPathImg}}" />
+              </view>
+            </view>
+            <view class='list_right'>
+              <view class='list_each_right_top'>
+                <view class='list_each_right_top_t'>
+                  <view class="name">{{relsItem.goodsName}}</view>
+                 <view class="zhuangtai" wx:if="{{relsItem.status == 2}}">等待付款</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 3}}">准备发货中</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 4}}">卖家已发货</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 5}}">交易完成</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 6}}">已关闭</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 7}}">商家审核中</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 8}}">寄货中</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 9}}">退货中</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 10}}">退货成功</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 11}}">已拒绝</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 12}}">关闭</view>
+                </view>
+                <view class='list_each_right_top_b'>
+                  <view class="guige">规格：{{relsItem.goods.color}} / {{relsItem.goods.sizes}}</view>
+                </view>
+              </view>
+              <view class='list_each_right_bottom'>
+                <view class="goods_price">￥{{relsItem.goods.discountPrice}}</view>
+                <view class="goods_num">x{{relsItem.quantity}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="list_bottom">
+          <view class="yunfeix">
+            <view class="money">运费险</view>
+            <view class="money">包邮</view>
+          </view>
+          <view class="yunfeix" wx:if="{{item.deductionPrice}}">
+            <view class="money">优惠券</view>
+            <view class="money">- ￥{{item.deductionPrice || item.totalPrice}}</view>
+          </view>
+          <view class="heji">共{{item.rels.length}}件商品，合计：
+            <view class="money">￥{{item.couponPrice || item.totalPrice}}</view>
+          </view>
+          <view class="btn">
+            <view class="wuliu" catchtap="goToxgdizhi" data-id="{{item.tradeNo}}" data-addressid='{{item.addressId}}'>修改地址</view>
+            <view class="wuliu" catchtap="goToquxiao" data-id="{{item.tradeNo}}">取消订单</view>
+            <view class="queren" catchtap='goToBuy' data-msg="{{item.msg}}" data-trade="{{item.tradeNo}}" data-id="{{item.id}}" data-addressid='{{item.addressId}}' data-couponcode="{{item.couponCode}}">付款</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <block wx:if="{{record.progress.type !== ''}}">
+      <data-loading types="{{record.progress.type}}" />
+    </block>
+  </view>
+
+
+  <view class="animation_box {{dj == 3 ? 'aleft' : ''}}" wx:if="{{dj == 3}}">
+    <view class="big_box">
+      <view class="list" wx:for="{{record.finish.list}}" wx:for-item="item" wx:key>
+        <view class="list_top" catchtap="goToddxq" data-orderid="{{item.id}}" data-class="{{item.status}}" data-time="{{item.unpaid}}">
+          <view class='list_each' wx:for="{{item.rels}}" wx:for-item="relsItem" wx:for-index="relsIndex">
+            <view class="list_left">
+              <view class="list_img">
+                <image src="{{relsItem.mainPathImg}}" />
+              </view>
+            </view>
+            <view class='list_right'>
+              <view class='list_each_right_top'>
+                <view class='list_each_right_top_t'>
+                  <view class="name">{{relsItem.goodsName}}</view>
+                 <view class="zhuangtai" wx:if="{{relsItem.status == 2}}">等待付款</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 3}}">准备发货中</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 4}}">卖家已发货</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 5}}">交易完成</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 6}}">已关闭</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 7}}">商家审核中</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 8}}">寄货中</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 9}}">退货中</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 10}}">退货成功</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 11}}">已拒绝</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 12}}">关闭</view>
+                </view>
+                <view class='list_each_right_top_b'>
+                  <view class="guige">规格：{{relsItem.goods.color}} / {{relsItem.goods.sizes}}</view>
+                </view>
+              </view>
+              <view class='list_each_right_bottom'>
+                <view class="goods_price">￥{{relsItem.goods.discountPrice}}</view>
+                <view class="goods_num">x{{relsItem.quantity}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="list_bottom">
+          <view class="yunfeix">
+            <view class="money">运费险</view>
+            <view class="money">包邮</view>
+          </view>
+          <view class="yunfeix" wx:if="{{item.deductionPrice}}">
+            <view class="money">优惠券</view>
+            <view class="money">- ￥{{item.deductionPrice}}</view>
+          </view>
+          <view class="heji">共{{item.rels.length}}件商品，合计：
+            <view class="money">￥{{item.couponPrice || item.totalPrice}}</view>
+          </view>
+          <view class="btn">
+            <view class="queren {{item.hasRemind ? 'no_active' : ''}}" data-remind="{{item.hasRemind}}" catchtap="goTocuidan" data-num="{{index}}" data-id="{{item.id}}">提醒发货</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <block wx:if="{{record.finish.type !== ''}}">
+      <data-loading types="{{record.finish.type}}" />
+    </block>
+  </view>
+
+
+
+
+  <view class="animation_box {{dj == 4 ? 'aleft' : ''}}" wx:if="{{dj == 4}}">
+    <view class="big_box">
+      <view class="list" wx:for="{{record.lose.list}}" wx:for-item="item" wx:key>
+        <view class="list_top" catchtap="goToddxq" data-orderid="{{item.id}}" data-class="{{item.status}}" data-time="{{item.unpaid}}">
+          <view class='list_each' wx:for="{{item.rels}}" wx:for-item="relsItem" wx:for-index="relsIndex">
+            <view class="list_left">
+              <view class="list_img">
+                <image src="{{relsItem.mainPathImg}}" />
+              </view>
+            </view>
+            <view class='list_right'>
+              <view class='list_each_right_top'>
+                <view class='list_each_right_top_t'>
+                  <view class="name">{{relsItem.goodsName}}</view>
+                 <view class="zhuangtai" wx:if="{{relsItem.status == 2}}">等待付款</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 3}}">准备发货中</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 4}}">卖家已发货</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 5}}">交易完成</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 6}}">已关闭</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 7}}">商家审核中</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 8}}">寄货中</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 9}}">退货中</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 10}}">退货成功</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 11}}">已拒绝</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 12}}">关闭</view>
+                </view>
+                <view class='list_each_right_top_b'>
+                  <view class="guige">规格：{{relsItem.goods.color}} / {{relsItem.goods.sizes}}</view>
+                </view>
+              </view>
+              <view class='list_each_right_bottom'>
+                <view class="goods_price">￥{{relsItem.goods.discountPrice}}</view>
+                <view class="goods_num">x{{relsItem.quantity}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="list_bottom">
+          <view class="yunfeix">
+            <view class="money">运费险</view>
+            <view class="money">包邮</view>
+          </view>
+          <view class="yunfeix" wx:if="{{item.deductionPrice}}">
+            <view class="money">优惠券</view>
+            <view class="money">- ￥{{item.deductionPrice}}</view>
+          </view>
+          <view class="heji">共{{item.rels.length}}件商品，合计：
+            <view class="money">￥{{item.couponPrice || item.totalPrice}}</view>
+          </view>
+          <view class="btn">
+            <view class="wuliu" catchtap="goTockwl" data-tradeid='{{item.tradeNo}}' data-orderid="{{item.id}}">查看物流</view>
+            <view class="queren" catchtap="comfirmOrder" data-tradeid="{{item.tradeNo}}" data-addressid="{{item.addressId}}">确认收货</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <block wx:if="{{record.lose.type !== ''}}">
+      <data-loading types="{{record.lose.type}}" />
+    </block>
+  </view>
+
+
+  <view class="animation_box {{dj == 5 ? 'aleft' : ''}}" wx:if="{{dj == 5}}">
+    <view class="big_box">
+      <view class="list" wx:for="{{record.cancle.list}}" wx:for-item="item" wx:key>
+        <view class="list_top" catchtap="goToddxq" data-orderid="{{item.id}}" data-class="{{item.status}}" data-time="{{item.unpaid}}">
+          <view class='list_each' wx:for="{{item.rels}}" wx:for-item="relsItem" wx:for-index="relsIndex">
+            <view class="list_left">
+              <view class="list_img">
+                <image src="{{relsItem.mainPathImg}}" />
+              </view>
+            </view>
+            <view class='list_right'>
+              <view class='list_each_right_top'>
+                <view class='list_each_right_top_t'>
+                  <view class="name">{{relsItem.goodsName}}</view>
+                 <view class="zhuangtai" wx:if="{{relsItem.status == 2}}">等待付款</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 3}}">准备发货中</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 4}}">卖家已发货</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 5}}">交易完成</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 6}}">已关闭</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 7}}">商家审核中</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 8}}">寄货中</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 9}}">退货中</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 10}}">退货成功</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 11}}">已拒绝</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 12}}">关闭</view>
+                </view>
+                <view class='list_each_right_top_b'>
+                  <view class="guige">规格：{{relsItem.goods.color}} / {{relsItem.goods.sizes}}</view>
+                </view>
+              </view>
+              <view class='list_each_right_bottom'>
+                <view class="goods_price">￥{{relsItem.goods.discountPrice}}</view>
+                <view class="goods_num">x{{relsItem.quantity}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="list_bottom">
+          <view class="yunfeix">
+            <view class="money">运费险</view>
+            <view class="money">包邮</view>
+          </view>
+          <view class="yunfeix" wx:if="{{item.deductionPrice}}">
+            <view class="money">优惠券</view>
+            <view class="money">- ￥{{item.deductionPrice}}</view>
+          </view>
+          <view class="heji">共{{item.rels.length}}件商品，合计：
+            <view class="money">￥{{item.couponPrice || item.totalPrice}}</view>
+          </view>
+          <view class="btn">
+            <view class="wuliu" catchtap="goToDelete" data-id="{{item.tradeNo}}">删除订单</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <block wx:if="{{record.cancle.type !== ''}}">
+      <data-loading types="{{record.cancle.type}}" />
+    </block>
+  </view>
+
+
+
+
+
+</view>
+
+
+
+
+
+
+
+<!--全部-->
+<!-- <block wx:if="{{dj==''}}">
+  <view class="big_box">
+    <view class="list" wx:for="{{orderList}}" wx:for-item="item" wx:key>
+      <view class="list_top" catchtap="goToddxq" data-orderid="{{item.id}}" data-class="{{item.status}}" data-time="{{item.unpaid}}">
+        <view class='list_each' wx:for="{{item.rels}}" wx:for-item="relsItem" wx:for-index="relsIndex">
+          <view class="list_left">
+            <view class="list_img">
+              <image src="{{relsItem.mainPathImg}}" />
+            </view>
+          </view>
+          <view class='list_right'>
+            <view class='list_each_right_top'>
+              <view class='list_each_right_top_t'>
+                <view class="name">{{relsItem.goodsName}}</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 2}}">待付款</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 3}}">待发货</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 4}}">待收货</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 5}}">已完成</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 6}}">已关闭</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 7}}">退货中</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 8}}">买家寄货中</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 9}}">退货中</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 10}}">退货成功</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 11}}">已拒绝</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 12}}">关闭</view>
+              </view>
+              <view class='list_each_right_top_b'>
+                <view class="guige">规格：{{relsItem.goods.color}} / {{relsItem.goods.sizes}}</view>
+              </view>
+            </view>
+            <view class='list_each_right_bottom'>
+              <view class="goods_price">￥{{relsItem.discountsPrice}}</view>
+              <view class="goods_num">x{{relsItem.quantity}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="list_bottom">
+        <view class="yunfeix">
+          <view class="money">运费险</view>
+          <view class="money">包邮</view>
+        </view>
+        <view class="heji">共1件商品，合计：
+          <view class="money">￥{{item.totalPrice}}</view>
+        </view>
+        <view class="btn" wx:if="{{item.status==2}}">
+          <view class="wuliu" catchtap="goToxgdizhi" data-id="{{item.tradeNo}}">修改地址</view>
+          <view class="wuliu" catchtap="goToquxiao" data-id="{{item.tradeNo}}">取消订单</view>
+          <view class="queren" catchtap='goToBuy' data-msg="{{item.msg}}" data-trade="{{item.tradeNo}}" data-id="{{item.id}}" data-addressid='{{item.addressId}}'>付款</view>
+        </view>
+        <view class="btn" wx:if="{{item.status==3}}">
+          <view class="queren {{num[index] == 0 ? 'no_active' : ''}}" catchtap="goTocuidan" data-num="{{index}}">提醒发货</view>
+        </view>
+        <view class="btn" wx:if="{{item.status==4}}">
+          <view class="wuliu" catchtap="goTockwl" data-tradeid='{{item.tradeNo}}' data-orderid="{{item.id}}">查看物流</view>
+          <view class="queren" catchtap="comfirmOrder" data-tradeid="{{item.tradeNo}}" data-addressid="{{item.addressId}}">确认收货</view>
+        </view>
+        <view class="btn" wx:if="{{item.status==5}}">
+          <view class="wuliu" catchtap="goToDelete" data-id="{{item.tradeNo}}">删除订单</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <block wx:if="{{orderList.length<=0}}">
+    <data-loading type="0" />
+  </block>
+</block> -->
+
+<!--待付款-->
+<!-- <block wx:if="{{dj==2}}">
+  <view class="big_box">
+    <view class="list" wx:for="{{orderList}}" wx:for-item="item" wx:key>
+      <view class="list_top" catchtap="goToddxq" data-orderid="{{item.id}}" data-class="{{item.status}}" data-time="{{item.unpaid}}">
+        <view class='list_each' wx:for="{{item.rels}}" wx:for-item="relsItem" wx:for-index="relsIndex">
+          <view class="list_left">
+            <view class="list_img">
+              <image src="{{relsItem.mainPathImg}}" />
+            </view>
+          </view>
+          <view class='list_right'>
+            <view class='list_each_right_top'>
+              <view class='list_each_right_top_t'>
+                <view class="name">{{relsItem.goodsName}}</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 2}}">待付款</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 3}}">待发货</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 4}}">待收货</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 5}}">已完成</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 6}}">已关闭</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 7}}">退货中</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 8}}">买家寄货中</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 9}}">退货中</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 10}}">退货成功</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 11}}">已拒绝</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 12}}">关闭</view>
+              </view>
+              <view class='list_each_right_top_b'>
+                <view class="guige">规格：{{relsItem.goods.color}} / {{relsItem.goods.sizes}}</view>
+              </view>
+            </view>
+            <view class='list_each_right_bottom'>
+              <view class="goods_price">￥{{relsItem.discountsPrice}}</view>
+              <view class="goods_num">x{{relsItem.quantity}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="list_bottom">
+        <view class="yunfeix">
+          <view class="money">运费险</view>
+          <view class="money">包邮</view>
+        </view>
+        <view class="heji">共1件商品，合计：
+          <view class="money">￥{{item.totalPrice}}</view>
+        </view>
+        <view class="btn">
+          <view class="wuliu" catchtap="goToxgdizhi" data-id="{{item.tradeNo}}" data-addressid='{{item.addressId}}'>修改地址</view>
+          <view class="wuliu" catchtap="goToquxiao" data-id="{{item.tradeNo}}">取消订单</view>
+          <view class="queren" catchtap='goToBuy' data-msg="{{item.msg}}" data-trade="{{item.tradeNo}}" data-id="{{item.id}}" data-addressid='{{item.addressId}}'>付款</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <block wx:if="{{orderList.length<=0}}">
+    <data-loading type="0" />
+  </block>
+</block> -->
+
+<!--待发货-->
+<!-- <block wx:if="{{dj==3}}">
+  <view class="big_box">
+    <view class="list" wx:for="{{orderList}}" wx:for-item="item" wx:key>
+      <view class="list_top" catchtap="goToddxq" data-orderid="{{item.id}}" data-class="{{item.status}}" data-time="{{item.unpaid}}">
+        <view class='list_each' wx:for="{{item.rels}}" wx:for-item="relsItem" wx:for-index="relsIndex">
+          <view class="list_left">
+            <view class="list_img">
+              <image src="{{relsItem.mainPathImg}}" />
+            </view>
+          </view>
+          <view class='list_right'>
+            <view class='list_each_right_top'>
+              <view class='list_each_right_top_t'>
+                <view class="name">{{relsItem.goodsName}}</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 2}}">待付款</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 3}}">待发货</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 4}}">待收货</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 5}}">已完成</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 6}}">已关闭</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 7}}">退货中</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 8}}">买家寄货中</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 9}}">退货中</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 10}}">退货成功</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 11}}">已拒绝</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 12}}">关闭</view>
+              </view>
+              <view class='list_each_right_top_b'>
+                <view class="guige">规格：{{relsItem.goods.color}} / {{relsItem.goods.sizes}}</view>
+              </view>
+            </view>
+            <view class='list_each_right_bottom'>
+              <view class="goods_price">￥{{relsItem.discountsPrice}}</view>
+              <view class="goods_num">x{{relsItem.quantity}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="list_bottom">
+        <view class="yunfeix">
+          <view class="money">运费险</view>
+          <view class="money">包邮</view>
+        </view>
+        <view class="heji">共1件商品，合计：
+          <view class="money">￥{{item.totalPrice}}</view>
+        </view>
+        <view class="btn">
+          <view class="queren {{num[index] == 0 ? 'no_active' : ''}}" catchtap="goTocuidan" data-num="{{index}}">提醒发货</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <block wx:if="{{orderList.length<=0}}">
+    <data-loading type="0" />
+  </block>
+</block> -->
+
+<!--待收货-->
+<!-- <block wx:if="{{dj==4}}">
+  <view class="big_box">
+    <view class="list" wx:for="{{orderList}}" wx:for-item="item" wx:key>
+      <view class="list_top" catchtap="goToddxq" data-orderid="{{item.id}}" data-class="{{item.status}}" data-time="{{item.unpaid}}">
+        <view class='list_each' wx:for="{{item.rels}}" wx:for-item="relsItem" wx:for-index="relsIndex">
+          <view class="list_left">
+            <view class="list_img">
+              <image src="{{relsItem.mainPathImg}}" />
+            </view>
+          </view>
+          <view class='list_right'>
+            <view class='list_each_right_top'>
+              <view class='list_each_right_top_t'>
+                <view class="name">{{relsItem.goodsName}}</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 2}}">待付款</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 3}}">待发货</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 4}}">待收货</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 5}}">已完成</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 6}}">已关闭</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 7}}">退货中</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 8}}">买家寄货中</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 9}}">退货中</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 10}}">退货成功</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 11}}">已拒绝</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 12}}">关闭</view>
+              </view>
+              <view class='list_each_right_top_b'>
+                <view class="guige">规格：{{relsItem.goods.color}} / {{relsItem.goods.sizes}}</view>
+              </view>
+            </view>
+            <view class='list_each_right_bottom'>
+              <view class="goods_price">￥{{relsItem.discountsPrice}}</view>
+              <view class="goods_num">x{{relsItem.quantity}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="list_bottom">
+        <view class="yunfeix">
+          <view class="money">运费险</view>
+          <view class="money">包邮</view>
+        </view>
+        <view class="heji">共1件商品，合计：
+          <view class="money">￥{{item.totalPrice}}</view>
+        </view>
+        <view class="btn">
+          <view class="wuliu" catchtap="goTockwl" data-tradeid='{{item.tradeNo}}' data-orderid="{{item.id}}">查看物流</view>
+          <view class="queren" catchtap="comfirmOrder" data-tradeid="{{item.tradeNo}}" data-addressid="{{item.addressId}}">确认收货</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <block wx:if="{{orderList.length<=0}}">
+    <data-loading type="0" />
+  </block>
+</block> -->
+
+<!--待评价-->
+<!-- <block wx:if="{{dj==5}}">
+  <view class="big_box">
+    <view class="list" wx:for="{{orderList}}" wx:for-item="item" wx:key>
+      <view class="list_top" catchtap="goToddxq" data-orderid="{{item.id}}" data-class="{{item.status}}" data-time="{{item.unpaid}}">
+        <view class='list_each' wx:for="{{item.rels}}" wx:for-item="relsItem" wx:for-index="relsIndex">
+          <view class="list_left">
+            <view class="list_img">
+              <image src="{{relsItem.mainPathImg}}" />
+            </view>
+          </view>
+          <view class='list_right'>
+            <view class='list_each_right_top'>
+              <view class='list_each_right_top_t'>
+                <view class="name">{{relsItem.goodsName}}</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 2}}">待付款</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 3}}">待发货</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 4}}">待收货</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 5}}">已完成</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 6}}">已关闭</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 7}}">退货中</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 8}}">买家寄货中</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 9}}">退货中</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 10}}">退货成功</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 11}}">已拒绝</view>
+                <view class="zhuangtai" wx:if="{{relsItem.status == 12}}">关闭</view>
+              </view>
+              <view class='list_each_right_top_b'>
+                <view class="guige">规格：{{relsItem.goods.color}} / {{relsItem.goods.sizes}}</view>
+              </view>
+            </view>
+            <view class='list_each_right_bottom'>
+              <view class="goods_price">￥{{relsItem.discountsPrice}}</view>
+              <view class="goods_num">x{{relsItem.quantity}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="list_bottom">
+        <view class="yunfeix">
+          <view class="money">运费险</view>
+          <view class="money">包邮</view>
+        </view>
+        <view class="heji">共1件商品，合计：
+          <view class="money">￥{{item.totalPrice}}</view>
+        </view>
+        <view class="btn">
+          <view class="wuliu" catchtap="goToDelete" data-id="{{item.tradeNo}}">删除订单</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <block wx:if="{{orderList.length<=0}}">
+    <data-loading type="0" />
+  </block>
+</block> -->

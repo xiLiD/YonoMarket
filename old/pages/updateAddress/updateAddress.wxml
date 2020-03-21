@@ -1,0 +1,43 @@
+<view class="header">
+  <!-- <view class="head_l">
+    <view class="zt">修改地址会影响物流时效，只能原价修改。若商品已发货、换仓、库存及配送更变等原因,可能导致修改地址失败,请您谅解。</view>
+  </view>
+  <view class="head_r">
+    <image src="/images/wuliu/daishouhuo-2.png" />
+  </view> -->
+
+  <view class="wuliu title_notice">
+    <view class="name_box">
+      <view class="nb_left">
+        <image src="/images/wuliu/notice.png" />
+      </view>
+      <view class="nb_right">
+        <view class="nb_dizhi title_notice_info">修改地址会影响物流时效，只能原价修改。若商品已发货、换仓、库存及配送更变等原因,可能导致修改地址失败,请您谅解。</view>
+      </view>
+    </view>
+  </view>
+
+</view>
+<view class="title_box">
+  <view class="wuliu" catchtap="goToAddress">
+    <view class="name_box">
+      <view class="nb_left">
+        <image src="/images/wuliu/dizhi.png" />
+      </view>
+      <view class="nb_right">
+        <view class="nb_top">
+          <view class="nb_name">{{addressObj.name}}</view>
+          <view class="nb_tel">{{addressObj.phone}}</view>
+        </view>
+        <view class="nb_dizhi">{{addressObj.address}} {{address.addressDetail}}</view>
+      </view>
+                              <view class="next">   
+    <image src="/images/my/more.png" />
+  </view>
+    </view>
+  </view>
+</view>
+<view class='bottom_box'>
+  <view class='bottom_box_cancle' catchtap="cancelUpdate">取消</view>
+  <view class='bottom_box_submit' catchtap='updateAddress'>提交修改</view>
+</view>

@@ -1,0 +1,271 @@
+<!--富文本解析-->
+<import src="../../components/wxParse/wxParse.wxml"/>
+
+<!--轮播图-->
+<view class="lunb">
+  <swiper style="height:{{imgheights[swiperCurrent]}}px" autoplay="{{autoplay}}" indicator-dots="true" indicator-color="{{indicatorColor}}" indicator-active-color="{{activeColor}}" interval="{{interval}}" duration="{{duration}}" circular="true" bindchange="swiperChange"
+    current="{{swiperCurrent}}">
+    <block wx:for="{{imgUrls}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+      <swiper-item>
+        <image src="{{item}}" data-index="{{index}}" class="slide-image" mode="widthFix" bindload="imgload" data-id="{{index}}" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="numb">{{swiperCurrent+1}}/{{imgUrls.length}}</view>
+</view>
+<!--内容详情-->
+<view class="detail">
+  <view class="detail_title">
+    <view class="title_left">
+      <view class="left_title">{{goodList.name}}</view>
+      <view class="left_money">
+        <view class="price">￥{{goodList.discountPrice}}</view>
+        <view class="old_price">￥{{goodList.price}}</view>
+        <view class="xiaoliang">销量{{goodList.sales}}件</view>
+      </view>
+    </view>
+    <!-- <view class="title_right">
+      <button class="hj_one btn" open-type="share" plain="true">
+        <view class="sc_img">
+          <image src="/images/detil/fx.png" />
+        </view>
+        <view class="sc btnName">分享</view>
+      </button>
+    </view> -->
+  </view>
+  <view class="text" wx:if="{{goodList.description != null}}">{{goodList.description}}</view>
+  <view class="pinpai">
+    <image src="/images/detil/1.png" />
+  </view>
+</view>
+
+<!--商品展示-->
+<view class="goods_list" wx:if="{{goodList.remark != null}}">
+  <view class="goods_img">
+    <!--富文本解析-->
+    <view class="html">
+      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+    </view>
+  </view>
+</view>
+
+<!--底部导航栏-->
+<view class="buy">
+  <view class="buy_bottom">
+    <view class="buy_left">
+      <view class="heji">
+        <view class="hj_one {shoucang!==1 ? 'sc_cancle':''}" catchtap="goTosc">
+          <view class="sc_img">
+            <image src="/images/detil/sc.png" wx:if="{{shoucang!==1}}" />
+            <image src="/images/detil/sy.png" wx:else />
+          </view>
+          <view class="sc" wx:if="{{shoucang !==1 }}">收藏</view>
+          <view class="sc cancle_sc" wx:else>取消收藏</view>
+        </view>
+        <button class="hj_one btn" open-type="share" plain="true">
+          <view class="sc_img">
+            <image src="/images/detil/fx.png" />
+          </view>
+          <view class="sc btnName">分享</view>
+        </button>
+        <view class="hj_one" catchtap="showBook">
+          <view class="sc_img">
+            <image src="/images/detil/yuyue_bg.png" />
+          </view>
+          <view class="sc">预约</view>
+        </view>
+        <view></view>
+      </view>
+    </view>
+    <view class="buy_right">
+      <!--提交订单-->
+      <view class="liji " catchtap="goTogoumai">立即购买</view>
+      <view class="liji two active2" catchtap="goTogoumai">加入购物车</view>
+    </view>
+  </view>
+</view>
+
+
+<!--弹框-->
+<view class="zzc" wx:if="{{isHide}}"></view>
+<view class="tank {{isShow ? 'tank_active' : ''}}">
+  <view class="order tankuang">
+    <!--列表商品图片-->
+    <view class="order_img">
+      <image src="{{showImg}}" />
+    </view>
+    <view class="order_text">
+      <view class="text_top">
+        <!--列表标题-->
+        <view class="title">{{goodList.name}}</view>
+      </view>
+      <!--规格-->
+      <view class="size">库存：{{storeNum}}件</view>
+      <view class="text_bottom">
+        <!--价格-->
+        <view class="money">￥{{goodList.colo[goodsIndex].discountPrice}}</view>
+      </view>
+    </view>
+    <!--关闭按钮-->
+    <view class="guanbi" catchtap="guanbi">
+      <image src="/images/detil/guanbi.png" />
+    </view>
+  </view>
+  <view class="yanse">颜色</view>
+  <view class="color">
+    <!--  -->
+
+    <!-- <wxs src="./tools.wxs" module="tools" /> -->
+    <view class="color_one {{item.color==yanse?'active':''}} {{item.store == 0 ? 'no_store' : ''}}" wx:for="{{colorNList}}" wx:for-item="item" wx:for-index="index" wx:key="index" catchtap="goTocolor" data-colorid="{{item.id}}" data-name="{{item.color}}" data-img="{{item.colorImg}}"
+      data-store="{{item.store}}">{{item.color}}</view>
+  </view>
+  <view class="yanse chima">尺码</view>
+  <view class="color">
+    <!-- data-index="{{tools.filtration(defaultcolor,chimaList,1)}}" -->
+    <view class="color_one chima_one {{item.name==size?'active':''}} {{item.store == 0 ? 'no_store' : ''}}" wx:for="{{sizeNList}}" wx:for-item="item" wx:for-index="index" wx:key="index" catchtap="goTochima" data-chicunid="{{item.id}}" data-name="{{item.name}}" data-img="{{item.colorImg}}"
+      data-store="{{item.store}}" data-img="{{item.colorImg}}" data-index="{{index}}">{{item.name}}</view>
+  </view>
+  <!--购买数量-->
+  <view class="gm_numb">
+    <view class="gm">购买数量</view>
+    <view class="gm_right">
+      <!--商品数量加减-->
+      <view class="number">
+        <!--减按钮-->
+        <view class="reduce" catchtap="btn_minus">
+          <image src="/images/serch/jian-1.png" />
+        </view>
+        <!--数量-->
+        <view class="numb_a">{{num}}</view>
+        <!--加按钮-->
+        <view class="add" catchtap="btn_add">
+          <image src="/images/serch/add-1.png" />
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="buy_right gw_box">
+    <!--提交订单-->
+    <view class="liji " catchtap="goTodingdan">立即购买</view>
+    <view class="liji active2" catchtap="goToaddcart">加入购物车</view>
+  </view>
+</view>
+<showModal container="{{showModal}}" bindoperation="operation"></showModal>
+
+<view class="show_book_contain {{showBook ? 'show_book' : ''}}">
+  <view class='show_modal '></view>
+  <view class='show_book_box'>
+    <view class='show_box_top'>
+      <view class='show_box_title'>填写预约信息</view>
+      <view class='show_box_close' catchtap="hideBook">
+        <image src='../../images/my/guanbi.png'></image>
+      </view>
+    </view>
+    <view class="tank tank_yuyue">
+      <view class="order tankuang">
+        <!--列表商品图片-->
+        <view class="order_img">
+          <image src="{{showImg}}" />
+        </view>
+        <view class="order_text">
+          <view class="text_top">
+            <!--列表标题-->
+            <view class="title">{{goodList.name}}</view>
+          </view>
+          <!--规格-->
+          <!-- <view class="size">库存：{{storeNum}}件</view> -->
+          <view class="text_bottom">
+            <!--价格-->
+            <view class="money">￥{{goodList.discountPrice}}</view>
+          </view>
+        </view>
+        <!--关闭按钮-->
+        <!-- <view class="guanbi" catchtap="guanbi">
+          <image src="/images/detil/guanbi.png" />
+        </view> -->
+      </view>
+      <view class="yanse">颜色</view>
+      <view class="color">
+        <!--  -->
+
+        <!-- <wxs src="./tools.wxs" module="tools" /> -->
+        <view class="color_one {{item.color==yanse?'active':''}} {{item.store == 0 ? 'no_store' : ''}} {{item.status == 2 ? 'no_store' : ''}}" wx:for="{{colorNList}}" wx:for-item="item" wx:for-index="index" wx:key="index" catchtap="goTocolor" data-colorid="{{item.id}}" data-name="{{item.color}}" data-img="{{item.colorImg}}"
+          data-store="{{item.store}}" data-status="{{item.status}}">{{item.color}}</view>
+      </view>
+      <view class="yanse chima">尺码</view>
+      <view class="color">
+        <!-- data-index="{{tools.filtration(defaultcolor,chimaList,1)}}" -->
+        <view class="color_one chima_one {{item.name==size?'active':''}} {{item.store == 0 ? 'no_store' : ''}}" wx:for="{{sizeNList}}" wx:for-item="item" wx:for-index="index" wx:key="index" catchtap="goTochima" data-chicunid="{{item.id}}" data-name="{{item.name}}" data-img="{{item.colorImg}}"
+          data-store="{{item.store}}">{{item.name}}</view>
+      </view>
+      <!--购买数量-->
+      <view class="gm_numb">
+        <view class="gm">预约数量</view>
+        <view class="gm_right">
+          <!--商品数量加减-->
+          <view class="number">
+            <!--减按钮-->
+            <view class="reduce" catchtap="btn_minus">
+              <image src="/images/serch/jian-1.png" />
+            </view>
+            <!--数量-->
+            <view class="numb_a">{{num}}</view>
+            <!--加按钮-->
+            <view class="add" catchtap="btn_add">
+              <image src="/images/serch/add-1.png" />
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='show_box_center'>
+      <view class='show_box_center_header'>
+        <!--预约店铺选择-->
+        <!-- <view class="picker">
+          <text>预约人：</text>
+          <input type='text' placeholder="姓名" bindinput="changeName" value="{{personInfo.name}}" class="yuyue_input"></input>
+        </view>
+        <view class="picker">
+          <text>联系电话：</text>
+          <input type='tel' maxlength="11" placeholder="手机号" bindinput="changePhone" value="{{personInfo.phone}}" class="yuyue_input"></input>
+        </view> -->
+
+        <view class="picker">
+          <text>预约店铺：</text>
+          <picker mode="selector" bindchange="bindDoorChange" value="{{doorDialog.index}}" range="{{doorDialog.itemList}}" class="yuyue_input">
+            <text>{{doorDialog.itemList[doorDialog.index]}}</text>
+          </picker>
+        </view>
+
+        <!--店铺地址选择-->
+        <view class="picker">
+          <text>店铺地址：</text>
+          <text class="yuyue_input">{{shopList[doorDialog.index].shopAddress}}</text>
+        </view>
+
+        <view class="picker">
+          <text>预约时间：</text>
+          <pickerYMDHM bind:onPickerChange="onPickerChange3" date="{{endedTime}}" class="yuyue_input"></pickerYMDHM>
+          <!-- <text class="yuyue_input" catchtap="cancelOrder" data-num="1">{{reasonList[selectIndex]}}</text>  -->
+        </view>
+      </view>
+      <view>
+        <!-- <view class='yuyue_times'>
+          <text>预约时间：</text>
+          <pickerYMDHM bind:onPickerChange="onPickerChange3" date="{{endedTime}}" class="yuyue_input"></pickerYMDHM>
+        </view> -->
+        <view class='sure_book' catchtap="tobookOrder">
+          <text>确定</text> </view>
+      </view>
+      <view>
+      </view>
+    </view>
+  </view>
+
+</view>
+
+<showModal showModalOption="{{showAddressOption}}" bindoperation="addressOperation"></showModal>
+
+<showModal showModalOption="{{showAuthOption}}" bindoperation="authOperation"></showModal>
+
+<showModal showModalOption="{{showMobileOption}}" bindoperation="mobileOperation"></showModal>

@@ -1,0 +1,154 @@
+<view class="header" wx:if="{{info != ''}}">
+  <view class="head_l">
+    <view class="zt" wx:if="{{info.status==1}}">预约中...</view>
+    <view class="zt" wx:if="{{info.status==5}}">预约已被取消！</view>
+    <view class="zt" wx:if="{{info.status==4}}">预约已失效！</view>
+    <view class="zt" wx:if="{{info.status==2}}">预约成功！</view>
+    <view class="zt" wx:if="{{info.status==3}}">预约已拒绝!</view>
+    <view class="zt_time" wx:if="{{info.status==1 && info.residue != 0}}">预约中{{countdown.h}}:{{countdown.f}}:{{countdown.s}}</view>
+    <view class="zt_time" wx:if="{{info.residue == 0 && info.status != 2}}">预约已超时！</view>
+    <view class="zt_time" wx:if="{{info.status==2}}">请您准时到店享受服务！</view>
+    <!-- <view class="zt_time" wx:if="{{info.status==4}}">您的预约已经失效了</view> -->
+  </view>
+  <view class="head_r">
+    <image src="/images/yuyue/icon.png" wx:if="{{info.status==1}}" />
+    <image src="/images/yuyue/success.png" wx:if="{{info.status==2}}" />
+    <image src="/images/yuyue/close.png"  wx:if="{{info.status==5 || info.status==4 || info.status==3}}"/>
+  </view>
+</view>
+<view class="title_box">
+  <view class="wuliu">
+    <view class="name_box">
+      <view class="nb_left">
+        <image src="/images/wuliu/dizhi.png" />
+      </view>
+      <view class="nb_right">
+        <view class="nb_dizhi">预约人 {{info.memberName}}</view>
+        <view class="nb_dizhi_right">{{info.memberPhone}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="wuliu yuyue_box">
+    <view class="name_box">
+      <view class="nb_left yuyue_code">
+        <view>预约码:</view>
+      </view>
+      <view class="nb_right">
+        <view class="nb_dizhi yuyue_val">{{info.residue || '无'}}</view>
+      </view>
+    </view>
+  </view>
+  <!--商品信息-->
+  <view class="sp_box">
+    <view class="sp_top" catchtap="goTothxq" data-id='{{123}}'>
+      <view class="sp_left">
+        <image src="{{info.goodsImg}}" />
+      </view>
+      <view class="sp_right">
+        <view class="right_t">
+          <view class="sp_rt">{{info.goodsName}}</view>
+          <view class="sp_rtb">规格： {{info.csrName}}</view>
+        </view>
+        <view class="right_b">
+          <view class="sp_rb">￥{{info.goodsPrice}}</view>
+          <!-- <view class="sp_rb">x {{num}}</view> -->
+        </view>
+      </view>
+    </view>
+    <view class="psfs">
+      <view class="fs">
+        <view class="fangshi">预约店铺：</view>
+        <view class="fangshi2 fangshi_m">{{info.shopName}}</view>
+      </view>
+      <!-- <view class="ps_next" catchtap="isHide" data-num='1'>
+        <image src="../../images/my/more.png" />
+      </view> -->
+    </view>
+    <view class="psfs">
+      <view class="fs">
+        <view class="fangshi">店铺地址：</view>
+        <view class="fangshi2 fangshi_o">{{info.shopAddress}}</view>
+      </view>
+    </view>
+    <view class="psfs">
+      <view class="fs">
+        <view class="fangshi">预约时间：</view>
+        <view class="fangshi2 fangshi_o">{{info.makeTime}}</view>
+      </view>
+    </view>
+    <view class="psfs">
+      <view class="fs">
+        <view class="fangshi">试衣留言：</view>
+        <view class="fangshi2 fangshi_o">{{info.message}}</view>
+      </view>
+    </view>
+  </view>
+  <!--订单信息-->
+  <view class="dingdan">
+    <view class="dd_name">订单信息</view>
+    <view class="dd_title">
+      <view class="dd_tl">
+        <view>创建时间</view>
+        <view class="name">{{info.makeTime}}</view>
+      </view>
+    </view>
+    <view class="dd_title">
+      <view class="dd_tl">
+        <view>订单编号</view>
+        <view class="name">{{info.makeOrderNo}}</view>
+      </view>
+      <view class="fuzhi" data-trade="123123213" catchtap="textPaste">复制</view>
+    </view>
+
+    <view class="phone_box">
+      <view class="gotophone" catchtap="cancelOrder" data-num='1' style="opacity:{{info.status == 1 ? 1 : 0}}" data-status="{{info.status}}">
+        <view class="phone" >取消预约</view>
+      </view>
+      <view class="gotophone" catchtap="goTophon">
+        <view class="phone">联系商家</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='reason_box' wx:if="{{showReason}}">
+  <view class='dialog' catchtap="cancelOrder" data-num='0'></view>
+  <view class="reason {{showReason ? 'show_modal' : 'no_modal'}}">
+    <view class='reason_title'>取消预约原因</view>
+    <view class='reason_info'>
+      <view>
+        <view>
+          <text>临时有事情！不能及时赶过去</text>
+        </view>
+        <view class='r_select' catchtap="changeSelect" data-num='0'>
+          <image class="{{changeIndex == 0 ? 'icon_select' : 'icon_no_select'}} {{selectIndex == 0 ? 'z_index' : ''}}" src='../../images/yuyue/select.png'></image>
+          <image class="{{selectIndex == 1 ? 'z_index' : ''}}" src='../../images/yuyue/no_select.png'></image>
+        </view>
+
+      </view>
+      <view>
+        <view>
+          <text>其他原因</text>
+        </view>
+        <view class='r_select' catchtap="changeSelect" data-num='1'>
+          <image class="{{changeIndex == 1 ? 'icon_select' : 'icon_no_select'}} {{selectIndex == 1 ? 'z_index' : ''}}" src='../../images/yuyue/select.png'></image>
+          <image class="{{selectIndex == 0 ? 'z_index' : ''}}" src='../../images/yuyue/no_select.png'></image>
+        </view>
+      </view>
+    </view>
+    <view class='finish'><text catchtap="finishCancle">完成</text></view>
+  </view>
+</view>
+
+<!--配送方式弹窗-->
+<view class="zzc" wx:if="{{isHide}}" catchtap="isHide" data-num='0'></view>
+<view class="peisong {{isHide ? 'show_modal' : 'no_modal'}}" wx:if="{{isHide}}">
+  <view class="ps_name">配送方式</view>
+  <view class="ps_class">
+    <view class="ps_clname">普通配送</view>
+    <view class="ps_gouxuan">
+      <image src="/images/my/xz.png" />
+    </view>
+  </view>
+  <view class="wancheng" catchtap="goTogbtk">完成</view>
+</view>

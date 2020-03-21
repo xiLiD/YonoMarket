@@ -1,0 +1,52 @@
+<view class="header" wx:for="{{list}}" wx:for-item="item" wx:for-index="index">
+  <view class="left">
+    <image src="/images/jifen/score_bg.png" />
+    <!-- 满减券 -->
+    <view class='text_box' wx:if="{{item.couponTypeId == 1}}">
+      <view class='cut_title'>￥{{item.discountAmount}}</view>
+      <view class='cut_enough'>满{{item.fullPrice}}用</view>
+    </view>
+    <!-- 无门槛抵扣券 -->
+    <view class='text_box' wx:if="{{item.couponTypeId == 2}}">
+      <view class='cut_title'>￥{{item.subtractPrice}}</view>
+      <view class='cut_enough'>任意使用</view>
+    </view>
+    <!-- 折扣券 -->
+    <view class='text_box' wx:if="{{item.couponTypeId == 3}}">
+      <view class='cut_title'>{{item.discount}}折</view>
+      <view class='cut_enough'>任意使用</view>
+    </view>
+  </view>
+  <view class="center">
+    <!-- <view class="top">满{{item.fullPrice}}减{{item.discountAmount}} {{item.couponName}}</view> -->
+    <view class="top">{{item.couponName}}</view>
+    <view class="top_center">兑换积分 {{item.asIntegral}} {{}}</view>
+    <view class="footer">有效期至：{{item.couponEndDate}}</view>
+  </view>
+  <view class="right" catchtap="changeRewards" data-num="1" data-id="{{item.id}}" data-name="{{item.couponName}}">
+    <image src="/images/jifen/dh.png" />
+  </view>
+</view>
+
+<view class="modal_get_box" wx:if="{{rewards}}">
+  <view class="modal_get fadeShow">
+    <view class='modal_title'>提示</view>
+    <view class="modal_info">确定是否兑换？</view>
+    <view class='notice_box'>
+      <view class="notice_left btn_notice" catchtap="changeRewards" data-num="0">取消</view>
+      <view class="notice_right btn_notice" catchtap="rewardGift">确定</view>
+    </view>
+  </view>
+</view>
+
+
+<view class="modal_get_box" wx:if="{{no_score}}">
+  <view class="modal_get fadeShow">
+    <view class='modal_title'>提示</view>
+    <view class="modal_info">{{msg}}</view>
+    <view class='notice_box no_score'>
+      <!-- <view class="notice_left btn_notice">取消</view> -->
+      <view class="notice_right btn_notice" catchtap="changeScore" data-num="0">确定</view>
+    </view>
+  </view>
+</view>

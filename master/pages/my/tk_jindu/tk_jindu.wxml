@@ -1,0 +1,253 @@
+<!-- <view>
+    <view class="header">
+      <view class="head_l"><image src="/images/serch/1.png" /></view>
+      <view class="head_r">
+        <view class="right_b">{{refundAddress}}</view>
+      </view>
+    </view>
+    <view class="refundClose" wx:if="{{status == 7}}">
+        <view>等待商家审核中...</view>
+        <view>2016年9月4日 18：16</view>
+    </view>
+     <view class="refundClose" wx:if="{{status == 8}}">
+        <view>商家已同意退款，请尽快填写物流信息。</view>
+        <view>2016年9月4日 18：16</view>
+    </view>
+    <view class="refundClose" wx:if="{{status == 11}}">
+        <view>退款关闭</view>
+        <view>2016年9月4日 18：16</view>
+    </view>
+    <view class="phone"  wx:if="{{status == 8}}">
+      <text>物流单号</text>    
+      <input type="number" name="phone" value="{{wuli_card}}" bindinput="changeVal" placeholder="请填写物流单号" />
+    </view>
+    <button class="btn_box" catchtap="submit"  wx:if="{{status == 8}}">提交</button>
+    <!-- <view class="refundInfo">     
+        <view class="rTitle">退款信息</view>
+        <view class="refundItem">
+            <view class="rInfoTitle">
+                <image mode="aspectFit" src="{{options.goodsimg}}"></image>
+                <view>
+                    <view>{{options.goodsname}}</view>
+                    <view class="c9f24">颜色： {{options.guigecolor}}；尺码：{{options.guigecolor}}；</view>
+                </view>
+            </view>
+            <view class="rInfoList c9f24">
+                <view>退款原因：大小尺寸与商品描述不符</view>
+                <view>退款金额：￥{{options.totalPrice}}</view>
+                <view>申请时间：2016-8-28 12:58</view>
+                <view>退款编号：{{options.zidingdan}}</view>
+            </view>
+        </view>
+    </view>
+</view> -->
+
+
+
+<view class="header">
+  <view class="head_l">
+    <view wx:if="{{status==7}}">
+      <view class="zt">请等待商家处理</view>
+      <view class="zt_time">{{orderList.updateDate}}</view>
+    </view>
+    <view wx:if="{{status==8}}">
+      <view class="zt">商家同意退货退款</view>
+      <view class="zt_time">商家已同意你的退款申请,请尽快填写物流信息</view>
+    </view>
+    <view wx:if="{{status==9}}">
+      <view class="zt">退货中</view>
+      <view class="zt_time">{{orderList.updateDate}}</view>
+    </view>
+    <view wx:if="{{status==10}}">
+      <view class="zt">退款成功</view>
+      <view class="zt_time">{{orderList.updateDate}}</view>
+    </view>
+    <view wx:if="{{status==11 }}">
+      <view class="zt">商家拒绝退货退款</view>
+      <view class="zt_time">{{orderList.updateDate}}</view>
+    </view>
+    <view wx:if="{{status==13}}">
+      <view class="zt">换货中</view>
+      <view class="zt_time">{{orderList.updateDate}}</view>
+    </view>
+  </view>
+
+  <view class="head_r" wx:if="{{status==7}}">
+    <image src="/images/wuliu/hh_jujue.png" />
+  </view>
+    <view class="head_r" wx:if="{{status==9}}">
+    <image src="/images/wuliu/g_fukuan.png" />
+  </view>
+  <view class="head_r" wx:if="{{status==10}}">
+    <image src="/images/wuliu/hh_shouhuo.png" />
+  </view>
+  <view class="head_r" wx:if="{{status==11}}">
+    <image src="/images/wuliu/hh_jujue.png" />
+  </view>
+  <view class="head_r" wx:if="{{status==12}}">
+    <image src="/images/wuliu/daishouhuo-2.png" />
+  </view>
+    <view class="head_r" wx:if="{{status==13}}">
+    <image src="/images/wuliu/daishouhuo-2.png" />
+  </view>
+</view>
+<!-- <view class='describe_reason describe_box' wx:if="{{status==7}}">
+  <view class='describe_text'>已经过了退款的时间，所以不能退款</view>
+</view>
+<view class='describe_reason describe_box' wx:if="{{status==12}}">
+  <view class='describe_text'>理由:商品影响第二次销售</view>
+</view> -->
+
+<!--同意退款-->
+<view class="title_box">
+  <!--商家已同意退款，请尽快填写物流信息。-->
+  <view class="wuliu" wx:if="{{status==8}}">
+    <view class="name_box">
+      <!-- <view class="nb_left">
+        <image src="/images/wuliu/dizhi.png" />
+      </view> -->
+      <view class="nb_right">
+        <view class="nb_top">
+          <!-- <view class="nb_name">商家地址：</view> -->
+          <view class="nb_tel">商家地址：{{refundAddress}}
+          </view>
+        </view>
+        <!-- <view class="nb_dizhi">weg32r4</view> -->
+      </view>
+      <view class="nb_right">
+        <view class="nb_top">
+          <!-- <view class="nb_name"></view> -->
+          <view class="nb_tel">联系电话：{{refundAddressPhone}}</view>
+        </view>
+        <!-- <view class="nb_dizhi">weg32r4</view> -->
+      </view>
+    </view>
+  </view>
+
+  <view class="wuliu" wx:if="{{status==11}}">
+    <view class="name_box refuse">
+      <view class="nb_right">
+        理由:商品影响第二次销售
+      </view>
+    </view>
+  </view>
+
+  <view class="wuliu wuliu_success_box" wx:if="{{status==10}}">
+    <image class="wuliu_bg" src="/images/wuliu/hh_tk_bg.png"></image>
+    <view class="name_box wuliu_success">
+      <view class="nb_right">
+        退款总金额
+        <!-- <view class="nb_dizhi">weg32r4</view> -->
+      </view>
+      <view class="success_money">￥ {{orderInfo.realPrice}}</view>
+    </view>
+  </view>
+
+  <!--商家已同意退款，请尽快填写物流信息。-->
+  <view class="wuliu wuliu_add_box" wx:if="{{status==8}}">
+    <view class='wuliu_form'>
+      <view class="sp_top">
+        <view class="dd_tl">
+          <view>填写物流信息</view>
+        </view>
+      </view>
+      <view class="sp_top submit_box">
+        <view class="dd_tl">
+          <view>
+            <input type="number" name="phone" value="{{wuli_card}}" bindinput="changeVal" placeholder="请填写物流单号"></input>
+          </view>
+          <button class='btn_submit' catchtap="submit">提交</button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+
+  <!--商家已同意退款，请尽快填写物流信息。-->
+  <view class="wuliu wuliu_notice_box" wx:if="{{status==7}}">
+    <view class="sp_top notice_title">
+      <view class="dd_tl">
+        <view>您发已经成功的发起退款申请,请耐心等待商家处理</view>
+      </view>
+    </view>
+    <view class='wuliu_form'>
+      <view class="sp_top">
+        <view class="dd_tl">
+          <view>· 商家同意或超时未处理，系统将退款给您</view>
+        </view>
+        <view class="dd_tl">
+          <view>· 如果商家拒绝，您可以再次发起申请</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- <view class='describe_reason' wx:if="{{status==11}}">
+    <view>退款总金额</view>
+    <view>￥ 800 </view>
+  </view> -->
+
+  <!--商品信息-->
+  <view class="sp_box">
+    <view class="sp_top">
+      <view class="dd_tl">
+        <view>退款信息</view>
+      </view>
+    </view>
+    <view class="sp_top">
+      <view class="sp_left">
+        <image src="{{orderInfo.goods.colorImg}}" />
+      </view>
+      <view class="sp_right">
+        <view class="right_t">
+          <view class="sp_rt">{{orderInfo.goodsName}}</view>
+          <view class="sp_rtb">规格：{{orderInfo.goods.sizes}} / {{orderInfo.goods.color}}</view>
+        </view>
+        <view class="right_b">
+          <view class="sp_rb">￥{{orderInfo.goods.discountPrice}}</view>
+          <view class="sp_rb">x {{orderInfo.quantity}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="dd_title">
+      <view class="dd_tl">
+        <view>退款原因:</view>
+        <view class="name">{{orderList.trackingNo || ''}}</view>
+      </view>
+    </view>
+    <view class="dd_title" wx:if="{{orderList.deductionPrice}}">
+      <view class="dd_tl">
+        <view>优惠券:</view>
+        <view class="name">- ￥ {{orderInfo.deductionPrice}}</view>
+      </view>
+    </view>
+    <view class="dd_title">
+      <view class="dd_tl">
+        <view>退款金额:</view>
+        <view class="name">￥ {{orderInfo.realPrice}}</view>
+      </view>
+    </view>
+    <view class="dd_title">
+      <view class="dd_tl">
+        <view>申请时间:</view>
+        <view class="name">{{orderList.createDate}}</view>
+      </view>
+    </view>
+    <view class="dd_title">
+      <view class="dd_tl">
+        <view>退款编号:</view>
+        <view class="name">{{orderList.sign}}</view>
+      </view>
+    </view>
+    <view class="phone_box">
+      <view class="gotophone" catchtap="goTotel">
+        <view class="phone">联系客服</view>
+      </view>
+      <view class="gotophone" catchtap="goTophon">
+        <view class="phone">拨打电话</view>
+      </view>
+    </view>
+  </view>
+
+</view>

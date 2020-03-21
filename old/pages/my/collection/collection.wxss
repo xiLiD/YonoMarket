@@ -1,0 +1,125 @@
+page {
+  background-color: rgba(248, 246, 246, 0.671);
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  background-color: #fefeff;
+}
+
+.tab {
+  font-size: 26rpx;
+  padding: 20rpx 0;
+  margin: 0 90rpx;
+  font-weight: bold;
+}
+
+.active {
+  color: #a5937f;
+  border-bottom: 6rpx solid #a5937f;
+}
+
+/*列表*/
+
+.tab_list {
+  background-color: #fefeff;
+  margin: 25rpx 30rpx 0;
+  display: flex;
+  border-radius: 4rpx;
+}
+
+.list_img {
+  width: 180rpx;
+  height: 180rpx;
+  margin: 30rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+
+.list_img image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.list_text {
+  width: 410rpx;
+  margin: 36rpx 0;
+  position: relative;
+}
+
+.title {
+  font-size: 28rpx;
+  color: #4b5248;
+  font-weight: bold;
+  width: 408rpx;
+  /* margin-top: 36rpx; */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.guige {
+  font-size: 24rpx;
+  color: #aaa;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  line-height: 1.25;
+  margin-top: 10rpx;
+}
+
+.money {
+  font-size: 30rpx;
+  color: #a5937f;
+  font-weight: bold;
+  margin-top: 10rpx;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+/* 导航底部动画*/
+
+.tab {
+  font-size: 26rpx;
+  color: #222;
+  font-weight: bold;
+  margin: 30rpx 47rpx;
+  padding-bottom: 10rpx;
+  position: relative;
+  border: none;
+}
+
+.tab .line_bottom {
+  position: absolute;
+  bottom: 0;
+  height: 4rpx;
+  width: 0;
+  background: #a5937f;
+}
+
+.tab.animate_active .line_bottom {
+  width: 100%;
+  transition: 0.2s linear;
+}
+
+.animate_active {
+  color: #a5937f;
+}
+
+.details {
+  color: #999;
+  font-size: 26rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  line-height: 1.25;
+  margin-top: 10rpx;
+}

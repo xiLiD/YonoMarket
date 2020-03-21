@@ -1,0 +1,79 @@
+<view class="header">
+  <view class="tab {{dj==1?'animate_active':''}}" data-id="1" catchtap="goTotab">
+    未使用
+    <view class='line_bottom'></view>
+  </view>
+  <view class="tab {{dj==2?'animate_active':''}}" data-id="2" catchtap="goTotab">已使用
+    <view class='line_bottom'></view>
+  </view>
+  <view class="tab {{dj==3?'animate_active':''}}" data-id="3" catchtap="goTotab">已过期
+    <view class='line_bottom'></view>
+  </view>
+</view>
+
+<view class='animation_box_center'>
+  <view class="animation_box {{dj == 1 ? 'aleft' : ''}} {{dj == 2 ? 'aleft_n1' : ''}} {{dj == 3 ? 'aleft_n1' : ''}}">
+    <view class="list" wx:for="{{record.progress.list}}" wx:for-item="recordItem" wx:for-index="recordIndex" data-id="{{recordItem.id}}" wx:if="{{record.progress.list.length > 0}}" catchtap="toDetails">
+      <image src="/images/my/yhq.png" />
+      <view class="list_box">
+        <view class="left">
+          <view class="num">{{recordItem.coupon.discountAmount}}</view>
+          <view class="numb">RMB</view>
+        </view>
+        <view class="right">
+          <view class="top">满{{recordItem.coupon.fullPrice}}元可用现金券</view>
+          <view class="center">有效期{{recordItem.coupon.couponBeginDate}}-{{recordItem.coupon.couponEndDate}}</view>
+          <view class="bottom">
+            <image src="/images/my/duihuan.png" />
+          </view>
+        </view>
+      </view>
+    </view>
+    <block wx:if="{{record.progress.type !== ''}}">
+      <data-loading types="{{record.progress.type}}"></data-loading>
+    </block>
+  </view>
+  <view class="animation_box {{dj == 1 ? 'aleft_n2' : ''}} {{dj == 2 ? 'aleft' : ''}} {{dj == 3 ? 'aleft_n1' : ''}}">
+    <view class="list" wx:for="{{record.finish.list}}" wx:for-item="recordItem" wx:for-index="recordIndex" data-id="{{recordItem.id}}" wx:if="{{record.finish.list.length > 0}}" catchtap="toDetails">
+      <image src="/images/my/yhq-1.png" />
+      <view class="list_box">
+        <view class="left">
+          <view class="num">{{recordItem.coupon.discountAmount}}</view>
+          <view class="numb">RMB</view>
+        </view>
+        <view class="right">
+          <view class="top">满{{recordItem.coupon.fullPrice}}元可用现金券</view>
+          <view class="center">有效期{{recordItem.coupon.couponBeginDate}}-{{recordItem.coupon.couponEndDate}}</view>
+          <view class="bottom_img">
+            <image src="/images/my/ysy.png" />
+          </view>
+        </view>
+      </view>
+    </view>
+    <block wx:if="{{record.finish.type !== ''}}">
+      <data-loading types="{{record.finish.type}}"></data-loading>
+    </block>
+  </view>
+  <view class="animation_box {{dj == 1 ? 'aleft_n2' : ''}} {{dj == 2 ? 'aleft_n2' : ''}} {{dj == 3 ? 'aleft' : ''}}">
+    <view class="list" wx:for="{{record.lose.list}}" wx:for-item="recordItem" wx:for-index="recordIndex" data-id="{{recordItem.id}}" wx:if="{{record.lose.list.length > 0}}" catchtap="toDetails">
+      <image wx:if="{{moneyAll >= recordItem.coupon.fullPrice}}" src="/images/my/yhq.png" />
+      <image src="/images/my/yhq-2.png" wx:else/>
+      <view class="list_box">
+        <view class="left">
+          <view class="num guoqi">{{recordItem.coupon.discountAmount}}</view>
+          <view class="numb guoqi">RMB</view>
+        </view>
+        <view class="right">
+          <view class="top guoqi">满{{recordItem.coupon.fullPrice}}元可用现金券</view>
+          <view class="center">有效期{{recordItem.coupon.couponBeginDate}}-{{recordItem.coupon.couponEndDate}}</view>
+          <view class="bottom_img">
+            <image src="/images/my/ygq.png" />
+          </view>
+        </view>
+      </view>
+    </view>
+    <block wx:if="{{record.lose.type !== ''}}">
+      <data-loading types="{{record.lose.type}}"></data-loading>
+    </block>
+  </view>
+</view>

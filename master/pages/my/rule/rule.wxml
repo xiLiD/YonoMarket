@@ -1,0 +1,27 @@
+
+<view class="tab_list">
+  <view class="tab_box" catchtap="linkNav" data-link="/pages/my/ruledetails/ruledetails?rule={{title[0].num}}&title={{title[0].title}}">
+    <view class="tab_left">
+      <view class="left_name">会员规则</view>
+    </view>
+    <view class="tab_right">
+      <image src="/images/my/more.png" />
+    </view>
+  </view>
+  <view class="tab_box" catchtap="linkNav" data-link="/pages/my/ruledetails/ruledetails?rule={{title[1].num}}&title={{title[1].title}}">
+    <view class="tab_left">
+      <view class="left_name">积分兑换规则</view>
+    </view>
+    <view class="tab_right">
+      <image src="/images/my/more.png" />
+    </view>
+  </view>
+  <view class="tab_box" catchtap="linkNav" data-link="/pages/my/ruledetails/ruledetails?rule={{title[2].num}}&title={{title[2].title}}">
+    <view class="tab_left">
+      <view class="left_name">分销规则</view>
+    </view>
+    <view class="tab_right">
+      <image src="/images/my/more.png" />
+    </view>
+  </view>
+</view>

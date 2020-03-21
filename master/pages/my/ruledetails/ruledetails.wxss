@@ -1,0 +1,53 @@
+/* pages/my/ruledetails/ruledetails.wxss */
+
+page {
+  border-top: 1px solid #ddd;
+}
+
+.shuoming {
+  width: 690rpx;
+  margin: 34rpx auto;
+}
+
+.sm {
+  font-size: 28rpx;
+  color: #222;
+  font-weight: bold;
+  text-align: center;
+}
+
+.sm_text {
+  font-size: 24rpx;
+  color: #555;
+  text-align: center;
+  margin-top: 6rpx;
+  letter-spacing: 1rpx;
+}
+
+.sm_img {
+  width: 648rpx;
+  height: 363rpx;
+  margin-top: 34rpx;
+}
+
+.sm_img image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.sm_fx {
+  text-align: left;
+  line-height: 1.5;
+}
+
+rich-text {
+  font-size: 24rpx;
+  color: #555;
+  text-align: center;
+  margin-top: 6rpx;
+  letter-spacing: 1rpx;
+}
+rich-text table td:nth-child(1) {
+  min-width: 80px;
+}

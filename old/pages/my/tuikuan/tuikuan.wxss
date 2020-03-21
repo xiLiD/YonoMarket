@@ -1,0 +1,126 @@
+page {
+  background-color: rgba(238, 238, 238, 0.5);
+}
+
+.header {
+  display: flex;
+  margin: 20rpx 30rpx;
+  background-color: #fff;
+  border-radius: 4rpx;
+  align-items: center;
+}
+
+.left {
+  width: 180rpx;
+  height: 180rpx;
+  margin: 30rpx 24rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+
+.left image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.right {
+  width: 420rpx;
+  height: 180rpx;
+}
+
+.r_title {
+  font-size: 30rpx;
+  color: #555;
+  font-weight: bold;
+  width: 300rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  margin-bottom: 10rpx;
+}
+
+.r_text {
+  font-size: 24rpx;
+  color: #aaa;
+}
+
+.t_bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 58rpx;
+  align-items: center;
+}
+
+.r_bl {
+  font-size: 30rpx;
+  color: #a5937f;
+  font-weight: bold;
+}
+
+.r_br {
+  font-size: 26rpx;
+  color: #555;
+}
+
+.xinxi {
+  margin: 0 30rpx;
+  background-color: #fff;
+  border-radius: 4rpx;
+  padding: 0rpx 14rpx 28rpx 22rpx;
+}
+
+.jintui {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 130rpx;
+}
+
+.center {
+  border-top: 1rpx solid #d2d7ce;
+  border-bottom: 1rpx solid #d2d7ce;
+}
+
+.jt_box {
+  display: flex;
+  align-items: center;
+}
+
+.jt_img {
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 16rpx;
+}
+
+.jt_img image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.jt_title {
+  font-size: 28rpx;
+  color: #555;
+  font-weight: bold;
+}
+
+.jt_text {
+  font-size: 24rpx;
+  color: #aaa;
+  margin-top: 10rpx;
+}
+
+.jt_icon {
+  width: 34rpx;
+  height: 34rpx;
+}
+
+.jt_icon image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}

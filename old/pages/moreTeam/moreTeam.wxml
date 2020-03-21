@@ -1,0 +1,68 @@
+<view class="header">
+  <view class="serch">
+    <input placeholder="输入关键词来进行搜索" value="{{isText}}" bindinput="bindKeyInput" />
+    <view class="serch_img" catchtap="getsousuo" data-name="{{inputValue}}">
+      <image src="../../images/serch/serch.png" />
+    </view>
+  </view>
+  <view class='team_box'>
+    <view class='team_box_t'>
+      <view class='team_list'>
+        <view class='team_left '>
+          <image src='{{img}}'></image>
+        </view>
+        <view class='team_right '>
+          <view class='team_title '>
+            <text>{{name}}</text>
+          </view>
+          <view class='team_details '>
+            <text>{{details}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='team_box_g'>
+      <view class="goodsName">
+        <view class="goods_left">
+          <view>优秀团队</view>
+        </view>
+      </view>
+      <!--专区-->
+      <view class="goods_list">
+        <view class="list" wx:for="{{teamList}}" wx:for-item="teamItem" wx:for-index="teamIndex" catchtap="goTothxq" data-id="{{teamItem.id}}" wx:key>
+          <view class="list_img">
+            <image src="{{teamItem.imgPath1}}" />
+          </view>
+          <view class="list_title">{{teamItem.name}}</view>
+          <view class="list_money">
+            <view class="list_left">RMB {{teamItem.discountPrice}}</view>
+            <view class="list_right">￥ {{teamItem.price}}</view>
+          </view>
+        </view>
+      </view>
+      <!-- <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" wx:if="{{teamList.length > 0}}">
+        <block wx:for="{{teamList}}" wx:for-item='teamItem' wx:for-index='teamIndex'>
+          <swiper-item>
+            <view class='team_g_list_box'>
+              <view class='team_g_list' wx:for='{{teamItem.team}}' wx:for-item='goodsItem' wx:for-index='goodsIndex'>
+                <view class='team_g_top' catchtap="toGoodsDetails" data-id="{{goodsItem.id}}">
+                  <image src="{{goodsItem.mainImgPath}}" class="slide-image" width="355" height="150" />
+                </view>
+                <view class='team_g_bottom'>
+                  <view class='team_g_name'>{{goodsItem.name}}</view>
+                  <view class='team_g_price'>
+                    <text class='discount'>￥{{goodsItem.discountPrice}}</text>
+                    <text class='initial'>￥{{goodsItem.price}}</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper> -->
+      <block wx:if="{{teamList.length == 0}}">
+        <data-loading types="0"></data-loading>
+      </block>
+    </view>
+  </view>
+</view>

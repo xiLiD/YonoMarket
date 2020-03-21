@@ -1,0 +1,175 @@
+<view class="header">
+  <view class="head_l">
+    <view class="zt" wx:if="{{classval==2}}">待付款</view>
+    <view class="zt" wx:if="{{classval==3}}">待发货</view>
+    <view class="zt" wx:if="{{classval==4}}">卖家已发货</view>
+    <view class="zt" wx:if="{{classval==5}}">已完成</view>
+    <view class="zt" wx:if="{{classval==6}}">已关闭</view>
+    <view class="zt" wx:if="{{classval==7}}">退款申请中</view>
+    <view class="zt" wx:if="{{classval==8}}">退货中</view>
+    <view class="zt" wx:if="{{classval==9}}">退货成功</view>
+    <view class="zt" wx:if="{{classval==10}}">已拒绝</view>
+    <view class="zt" wx:if="{{classval==11}}">交易已关闭</view>
+    <view class="zt_time" wx:if="{{classval==2 && countdown.d != '' && orderList.status == 2}}">还剩{{countdown.d}}天{{countdown.h}}时{{countdown.m}}分自动取消订单</view>
+    <view class="zt_time" wx:if="{{classval==3}}">商家正在抓紧备货中</view>
+    <!-- <view class="zt_time" wx:if="{{classval==4}}">订单正在路上</view> -->
+    <view class="zt_time" wx:if="{{classval==4 && countdown.d != '' && orderList.status == 4}}">还剩{{countdown.d}}天{{countdown.h}}时{{countdown.m}}分自动确认订单</view>
+    <view class="zt_time" wx:if="{{classval==5}}">期待您的下次光临</view>
+    <view class="zt_time" wx:if="{{orderList.status == 6}}">订单已超时失效！</view>
+    <view class="zt_time" wx:if="{{orderList.status == 5}}">订单已完成！</view>
+    <view class="zt_time" wx:if="{{classval==7}}">{{orderList.updateDate}}</view>
+    <!-- <view class="zt_time" wx:if="{{classval==7}}">商家已审核，请尽快填写物流信息</view> -->
+    <view class="zt_time" wx:if="{{classval==8}}">已发货，等待商家确认收货</view>
+    <view class="zt_time" wx:if="{{classval==9}}">{{orderList.updateDate}}</view>
+    <view class="zt_time" wx:if="{{classval==10}}">订单已超过退货时间</view>
+    <view class="zt_time" wx:if="{{classval==11}}">订单已经完成，交易结束</view>
+  </view>
+  <view class="head_r">
+    <image src="/images/wuliu/g_fukuan.png" wx:if="{{classval==2}}" />
+    <image src="/images/wuliu/g_fahuo.png" wx:if="{{classval==3}}" />
+    <image src="/images/wuliu/g_shouhuo.png" wx:if="{{classval==4}}" />
+    <image src="/images/wuliu/hh_shouhuo.png" wx:if="{{classval==5}}" />
+    <image src="/images/wuliu/hh_shouhuo.png" wx:if="{{classval==6}}" />
+    <image src="/images/wuliu/g_fahuo.png" wx:if="{{classval==7}}" />
+    <image src="/images/wuliu/g_shouhuo.png" wx:if="{{classval==8}}" />
+    <image src="/images/wuliu/hh_shouhuo.png" wx:if="{{classval==9}}" />
+    <image src="/images/wuliu/hh_jujue.png" wx:if="{{classval==10}}" />
+    <image src="/images/wuliu/hh_shouhuo.png" wx:if="{{classval==11}}" />
+  </view>
+</view>
+<view class="title_box">
+  <view class="wuliu">
+    <view class="name_box">
+      <view class="nb_left">
+        <image src="/images/wuliu/dizhi.png" />
+      </view>
+      <view class="nb_right">
+        <view class="nb_top">
+          <view class="nb_name">{{orderList.address.name}}</view>
+          <view class="nb_tel">{{orderList.address.phone}}</view>
+        </view>
+        <view class="nb_dizhi">{{orderList.address.address}} {{orderList.address.addressDetail}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="wuliu wuliu_info" wx:if="{{classval==4 || classval==5}}" catchtap="goTockwl" data-tradeid='{{orderList.tradeNo}}' data-orderid="{{orderList.id}}">
+    <view class="name_box">
+      <view class="nb_left">
+        <image src="/images/wuliu/wuliu.png" />
+      </view>
+      <view class="nb_right">
+        <view class="nb_top">
+          <view class="nb_name">物流信息</view>
+        </view>
+        <view class="nb_dizhi wuliu_dizhi">{{wuliInfo.status}}</view>
+        <view class="next">
+          <image src="/images/my/more.png" />
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--商品信息-->
+  <view class="sp_box" wx:for="{{orderList.rels}}" wx:for-item="item" wx:key>
+    <view class="sp_top" catchtap="goTothxq" data-id='{{item.goodsId}}'>
+      <view class="sp_left">
+        <image src="{{item.goods.mainImgPath}}" />
+      </view>
+      <view class="sp_right">
+        <view class="right_t">
+          <view class="sp_rt">{{item.goodsName}}</view>
+          <view class="sp_rtb">规格：{{item.goods.color}} / {{item.goods.sizes}}</view>
+        </view>
+        <view class="right_b">
+          <view class="sp_rb">￥{{item.goods.discountPrice}}</view>
+          <view class="sp_rb">x{{item.quantity}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="sp_center">
+      <view class="yunfei"></view>
+      <view class='yunfei_z'>
+        <view class="phone" wx:if="{{item.status==3 || item.status==4}}" catchtap="goTotuikuan" data-goodsImg="{{item.goods.mainImgPath}}" data-goodsName="{{item.goodsName}}" data-guigeColor="{{item.goods.color}}" data-guigeSize="{{item.goods.sizes}}" data-goodsMoney="{{item.realPrice}}"
+          data-num="{{item.quantity}}" data-totalPrice="{{item.realPrice}}" data-zidingdan="{{item.tradeNo}}" data-dingdan="{{orderList.tradeNo}}" data-class='{{classval}}' data-id="{{item.id}}">申请售后</view>
+        <view class="phone" catchtap="goTotuikuanjindu" wx:if="{{item.status==7}}" data-orderid="{{item.orderId}}" data-zidingdan="{{item.tradeNo}}" data-dingdan="{{orderList.tradeNo}}" data-status="{{item.status}}" data-class='{{classval}}' data-id="{{item.id}}">待商家审核中</view>
+        <view class="phone" wx:if="{{item.status==8}}" catchtap="goTotuikuanjindu" data-goodsImg="{{item.goods.mainImgPath}}" data-goodsName="{{item.goodsName}}" data-guigeColor="{{item.goods.color}}" data-guigeSize="{{item.goods.sizes}}" data-goodsMoney="{{item.realPrice}}"
+          data-num="{{item.quantity}}" data-totalPrice="{{item.realPrice}}" data-zidingdan="{{item.tradeNo}}" data-dingdan="{{orderList.tradeNo}}" data-status="{{item.status}}" data-class='{{classval}}' data-id="{{item.id}}">填写物流</view>
+        <view class="phone" catchtap="goTotuikuanjindu" wx:if="{{item.status==9}}" data-orderid="{{item.orderId}}" data-zidingdan="{{item.tradeNo}}" data-dingdan="{{orderList.tradeNo}}" data-status="{{item.status}}" data-class='{{classval}}' data-id="{{item.id}}">退货中</view>
+        <view class="phone" catchtap="goTotuikuanjindu" wx:if="{{item.status==10}}" data-orderid="{{item.orderId}}" data-zidingdan="{{item.tradeNo}}" data-dingdan="{{orderList.tradeNo}}" data-status="{{item.status}}" data-class='{{classval}}' data-id="{{item.id}}">退货成功</view>
+        <view class="phone" catchtap="goTotuikuanjindu" wx:if="{{item.status==11}}" data-orderid="{{item.orderId}}" data-zidingdan="{{item.tradeNo}}" data-dingdan="{{orderList.tradeNo}}" data-status="{{item.status}}" data-class='{{classval}}' data-id="{{item.id}}">已拒绝</view>
+        <view class="phone" catchtap="goTotuikuanjindu" wx:if="{{item.status==12}}" data-orderid="{{item.orderId}}" data-zidingdan="{{item.tradeNo}}" data-dingdan="{{orderList.tradeNo}}" data-status="{{item.status}}" data-class='{{classval}}' data-id="{{item.id}}">关闭</view>
+        <!-- <view class="state_now" wx:if="{{item.status==2}}" data-goodsImg="{{item.goods.mainImgPath}}" data-goodsName="{{item.goodsName}}" data-guigeColor="{{item.goods.color}}" data-guigeSize="{{item.goods.sizes}}" data-goodsMoney="{{item.discountsPrice}}" data-num="{{item.quantity}}"
+          data-totalPrice="{{item.realPrice}}" data-zidingdan="{{item.tradeNo}}" data-dingdan="{{orderList.tradeNo}}">待付款</view>
+        <view class="state_now" wx:if="{{item.status==3}}" data-goodsImg="{{item.goods.mainImgPath}}" data-goodsName="{{item.goodsName}}" data-guigeColor="{{item.goods.color}}" data-guigeSize="{{item.goods.sizes}}" data-goodsMoney="{{item.discountsPrice}}" data-num="{{item.quantity}}"
+          data-totalPrice="{{item.realPrice}}" data-zidingdan="{{item.tradeNo}}" data-dingdan="{{orderList.tradeNo}}">待发货</view>
+        <view class="state_now" wx:if="{{item.status==4}}" data-goodsImg="{{item.goods.mainImgPath}}" data-goodsName="{{item.goodsName}}" data-guigeColor="{{item.goods.color}}" data-guigeSize="{{item.goods.sizes}}" data-goodsMoney="{{item.discountsPrice}}" data-num="{{item.quantity}}"
+          data-totalPrice="{{item.realPrice}}" data-zidingdan="{{item.tradeNo}}" data-dingdan="{{orderList.tradeNo}}">已发货</view>
+        <view class="state_now" wx:if="{{item.status==5}}" data-goodsImg="{{item.goods.mainImgPath}}" data-goodsName="{{item.goodsName}}" data-guigeColor="{{item.goods.color}}" data-guigeSize="{{item.goods.sizes}}" data-goodsMoney="{{item.discountsPrice}}" data-num="{{item.quantity}}"
+          data-totalPrice="{{item.realPrice}}" data-zidingdan="{{item.tradeNo}}" data-dingdan="{{orderList.tradeNo}}">已完成</view>
+        <view class="state_now" wx:if="{{item.status==6}}" data-goodsImg="{{item.goods.mainImgPath}}" data-goodsName="{{item.goodsName}}" data-guigeColor="{{item.goods.color}}" data-guigeSize="{{item.goods.sizes}}" data-goodsMoney="{{item.discountsPrice}}" data-num="{{item.quantity}}"
+          data-totalPrice="{{item.realPrice}}" data-zidingdan="{{item.tradeNo}}" data-dingdan="{{orderList.tradeNo}}">已关闭</view>
+        <view class="state_now" wx:if="{{item.status==7}}" data-goodsImg="{{item.goods.mainImgPath}}" data-goodsName="{{item.goodsName}}" data-guigeColor="{{item.goods.color}}" data-guigeSize="{{item.goods.sizes}}" data-goodsMoney="{{item.discountsPrice}}" data-num="{{item.quantity}}"
+          data-totalPrice="{{item.realPrice}}" data-zidingdan="{{item.tradeNo}}" data-dingdan="{{orderList.tradeNo}}">退货中</view>
+        <view class="state_now" wx:if="{{item.status==8}}" data-goodsImg="{{item.goods.mainImgPath}}" data-goodsName="{{item.goodsName}}" data-guigeColor="{{item.goods.color}}" data-guigeSize="{{item.goods.sizes}}" data-goodsMoney="{{item.discountsPrice}}" data-num="{{item.quantity}}"
+          data-totalPrice="{{item.realPrice}}" data-zidingdan="{{item.tradeNo}}" data-dingdan="{{orderList.tradeNo}}">买家寄货中</view>
+        <view class="state_now" wx:if="{{item.status==9}}" data-goodsImg="{{item.goods.mainImgPath}}" data-goodsName="{{item.goodsName}}" data-guigeColor="{{item.goods.color}}" data-guigeSize="{{item.goods.sizes}}" data-goodsMoney="{{item.discountsPrice}}" data-num="{{item.quantity}}"
+          data-totalPrice="{{item.realPrice}}" data-zidingdan="{{item.tradeNo}}" data-dingdan="{{orderList.tradeNo}}">退货中</view>
+        <view class="state_now" wx:if="{{item.status==10}}" data-goodsImg="{{item.goods.mainImgPath}}" data-goodsName="{{item.goodsName}}" data-guigeColor="{{item.goods.color}}" data-guigeSize="{{item.goods.sizes}}" data-goodsMoney="{{item.discountsPrice}}" data-num="{{item.quantity}}"
+          data-totalPrice="{{item.realPrice}}" data-zidingdan="{{item.tradeNo}}" data-dingdan="{{orderList.tradeNo}}">退货成功</view>
+        <view class="state_now" wx:if="{{item.status==11}}" data-goodsImg="{{item.goods.mainImgPath}}" data-goodsName="{{item.goodsName}}" data-guigeColor="{{item.goods.color}}" data-guigeSize="{{item.goods.sizes}}" data-goodsMoney="{{item.discountsPrice}}" data-num="{{item.quantity}}"
+          data-totalPrice="{{item.realPrice}}" data-zidingdan="{{item.tradeNo}}" data-dingdan="{{orderList.tradeNo}}">已拒绝</view>
+        <view class="state_now" wx:if="{{item.status==12}}" data-goodsImg="{{item.goods.mainImgPath}}" data-goodsName="{{item.goodsName}}" data-guigeColor="{{item.goods.color}}" data-guigeSize="{{item.goods.sizes}}" data-goodsMoney="{{item.discountsPrice}}" data-num="{{item.quantity}}"
+          data-totalPrice="{{item.realPrice}}" data-zidingdan="{{item.tradeNo}}" data-dingdan="{{orderList.tradeNo}}">关闭</view> -->
+      </view>
+    </view>
+    <view class="sp_center">
+      <view class="yunfei">运费险</view>
+      <view class="yunfei">
+        <view>包邮</view>
+      </view>
+    </view>
+    <view class="sp_center" wx:if="{{orderList.deductionPrice}}">
+      <view class="yunfei">优惠券</view>
+      <view class="yunfei">
+        <view>- ￥{{item.discountsPrice}}</view>
+      </view>
+    </view>
+    <view class="sp_footer">
+      <!-- <view>共{{orderList.rels.length}}件商品，合计：</view> -->
+      <view>合计：</view>
+      <view class="sumch">￥{{item.realPrice}}</view>
+    </view>
+  </view>
+
+
+  <!--订单信息-->
+  <view class="dingdan">
+    <view class="dd_name">订单信息</view>
+    <view class="dd_title">
+      <view class="dd_tl">
+        <view>订单编号</view>
+        <view class="name">{{orderList.tradeNo}}</view>
+      </view>
+      <view class="fuzhi" data-trade="{{orderList.tradeNo}}" catchtap="textPaste">复制</view>
+    </view>
+    <view class="dd_title">
+      <view class="dd_tl">
+        <view>创建时间</view>
+        <view class="name">{{orderList.createDate}}</view>
+      </view>
+    </view>
+    <view class="dd_title">
+      <view class="dd_tl">
+        <view>支付方式</view>
+        <view class="name">{{orderList.payTypeStr}}</view>
+      </view>
+    </view>
+    <view class="phone_box">
+      <view class="gotophone" catchtap="goTotel">
+        <view class="phone">联系客服</view>
+      </view>
+      <view class="gotophone" catchtap="goTophon">
+        <view class="phone">拨打电话</view>
+      </view>
+    </view>
+  </view>
+</view>

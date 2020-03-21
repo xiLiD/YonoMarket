@@ -1,0 +1,96 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/classification/classification",
+    "pages/class/class",
+    "pages/found/found",
+    "pages/fitting/fitting",
+    "pages/my/my",
+    "pages/my/coupons/coupons",
+    "pages/my/record/record",
+    "pages/my/collection/collection",
+    "pages/my/address/address",
+    "pages/my/addnew/addnew",
+    "pages/my/vip/vip",
+    "pages/my/myVip/myVip",
+    "pages/my/integral/integral",
+    "pages/my/myjifen/myjifen",
+    "pages/search/search",
+    "pages/details/details",
+    "pages/order/order",
+    "pages/orderDetails/orderDetails",
+    "pages/newOrder/newOrder",
+    "pages/information/information",
+    "pages/qrdd/qrdd",
+    "pages/my/tuikuan/tuikuan",
+    "pages/my/jintuikuan/jintuikuan",
+    "pages/my/kefu/kefu",
+    "pages/my/rule/rule",
+    "pages/my/ruledetails/ruledetails",
+    "pages/thArea/thArea",
+    "pages/my/tk_jindu/tk_jindu",
+    "pages/mainClass/mainClass",
+    "pages/seckill/seckill",
+    "pages/updateAddress/updateAddress",
+    "pages/addressDetails/addressDetails",
+    "pages/moreTeam/moreTeam",
+    "pages/foundDetails/foundDetails",
+    "pages/bookOrder/bookOrder",
+    "pages/bookorderDetails/bookorderDetails",
+    "pages/daohang/daohang",
+    "components/pickerYMDHM/pickerYMDHM",
+    "pages/teamMore/teamMore",
+    "pages/sold/sold",
+    "pages/beforeCoupons/beforeCoupons",
+    "pages/seckillDetails/seckillDetails"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/images/index/index.png",
+        "selectedIconPath": "/images/index/index-1.png"
+      },
+      {
+        "pagePath": "pages/classification/classification",
+        "text": "分类",
+        "iconPath": "/images/index/class.png",
+        "selectedIconPath": "/images/index/class-1.png"
+      },
+      {
+        "pagePath": "pages/found/found",
+        "text": "发现",
+        "iconPath": "/images/index/see.png",
+        "selectedIconPath": "/images/index/see-1.png"
+      },
+      {
+        "pagePath": "pages/fitting/fitting",
+        "text": "购物",
+        "iconPath": "/images/index/try.png",
+        "selectedIconPath": "/images/index/try-1.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "/images/index/my.png",
+        "selectedIconPath": "/images/index/my-1.png"
+      }
+    ],
+    "backgroundColor": "#ffffff",
+    "color": "#333333",
+    "selectedColor": "#333333"
+  },
+  "sitemapLocation": "sitemap.json",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "我们将为您筛选最近的店铺"
+    }
+  }
+}

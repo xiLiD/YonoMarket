@@ -1,0 +1,18 @@
+
+<view class="header" wx:for="{{addressList}}" wx:for-item="item"  wx:key catchtap="goorder"  data-index="{{index}}" >
+  <view class="tab">
+    <view class="left">
+      <view class="name">{{item.name}}</view>
+      <view class="tel">{{item.phone}}</view>
+    </view>
+    <view class="right" catchtap="goTobianji" data-index="{{index}}" data-zhuangtai="{{item.isDefault}}" data-name="{{item.name}}" data-phone="{{item.phone}}" data-dizhi="{{item.address}}" data-details="{{item.addressDetail}}" data-sex="{{item.sex}}" data-addressid="{{item.id}}">编辑</view>
+  </view>
+  <view class="dizhi">{{item.address}} {{item.addressDetail}}</view>
+  <view class="xuanze">
+      <view class="xz_img" wx:if="{{item.isDefault==1}}" catchtap="goToxuanze" data-zhuangtai="{{item.isDefault}}" data-index="{{index}}"><image src="/images/my/xz.png" /></view>
+      <view class="xz_img" catchtap="goToxuanze" data-zhuangtai="{{item.isDefault}}" data-index="{{index}}" wx:else><image src="/images/my/wxz.png" /></view>
+    <view class="moren" >默认地址</view>
+  </view>
+</view>
+
+<view class="btn" catchtap="goToadd">+ 新增收货地址</view>

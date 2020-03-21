@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "店铺导航",
+  "usingComponents": {
+    "data-loading": "/components/data-loading/data-loading",
+    "showModal": "/components/showModal/showModal"
+  }
+}

@@ -1,0 +1,84 @@
+<view class="serch">
+  <view class="serch_input" catchtap="linkNav" data-link="/pages/search/search">输入关键词来进行搜索</view>
+  <view class="secIcon" catchtap="linkNav" data-link="/pages/daohang/daohang">
+    <image src="/images/dingwei.png" />
+  </view>
+</view>
+
+<!-- 轮播图-->
+<swiper style="height:{{imgheights[current]}}px" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{activeColor}}" class='lunbo_swipper'
+  bindchange="bindchange">
+  <block wx:for="{{lunImg}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+    <swiper-item catchtap="linkNav" data-link="/pages/details/details?goodid={{item.carouselUrl}}">
+      <image src="{{item.carouselImg1}}" class="slide-image" mode="widthFix" bindload="imgload" data-id="{{index}}" />
+    </swiper-item>
+  </block>
+</swiper>
+
+
+<view class="tabList">
+  <view class="tab" wx:for="{{oneList}}" wx:for-item="item" wx:for-index="index" catchtap="goTofenlei" data-id="{{item.firstCategoryId}}" wx:key="index">
+    <view class="tabImg">
+      <image hidden="{{!item.lazy}}" data-index="{{index}}" src="{{item.firstIcon}}" mode="widthFix" />
+    </view>
+    <view class="tabText">{{item.firstCategoryName}}</view>
+  </view>
+</view>
+
+<!--专区-->
+<view class="goods" wx:for="{{th_List}}" wx:for-item="thItem" wx:for-index="thIndex" wx:key="thIndex">
+  <view class="goodsName">
+    <view class="goods_left">
+      <view>{{thItem.name}}</view>
+    </view>
+    <view class="goods_right" catchtap="linkNav" data-link="/pages/thArea/thArea?goodType={{thItem.name}}&divisionid=1">
+      <image src="/images/more-1.png" />
+    </view>
+  </view>
+  <view class="goods_list">
+    <view class="list" wx:for="{{thItem.result}}" wx:for-item="goodItem" wx:for-index="goodIndex" catchtap="linkNav" data-link="/pages/details/details?goodid={{goodItem.id}}" wx:key="goodIndex">
+      <view class="list_img">
+        <image src="{{goodItem.imgPath1}}" />
+      </view>
+      <view class="list_title">{{goodItem.name}}</view>
+      <view class="list_money">
+        <view class="list_left">RMB {{goodItem.discountPrice}}</view>
+        <view class="list_right">￥ {{goodItem.price}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!--商品列表-->
+<view class="goods">
+  <view class="goodsName">
+    <view class="goods_left">
+      <view>优秀团队</view>
+    </view>
+    <view class="goods_right" catchtap="linkNav" data-link="/pages/teamMore/teamMore">
+      <image src="/images/more-1.png" />
+    </view>
+  </view>
+  <view class="team_box" wx:for="{{teamList}}" wx:for-item="teamItem" wx:for-index="teamIndex" catchtap="linkNav" data-link="/pages/moreTeam/moreTeam?id={{teamItem.id}}&details={{teamItem.introduce}}&img={{teamItem.img}}&name={{teamItem.name}}" wx:key="teamIndex">
+    <view class="team_userimg">
+      <image src="{{teamItem.img}}" />
+    </view>
+    <view class="team_right">
+      <view class="team_title">{{teamItem.name}}</view>
+      <view class="team_imgbox">
+        <scroll-view scroll-x style="width: 431rpx; white-space: nowrap;" bindscrolltolower="lower" scroll-left="{{teamItem.scrollLeft}}" scroll-with-animation="{{true}}" wx:if="{{teamItem.goods_list.length > 0}}">
+          <view class="imgbox" wx:for="{{teamItem.goods_list}}" wx:for-item="listItem" wx:for-index="listIndex" wx:key="listIndex">
+            <image src="{{listItem.mainImgPath}}" />
+          </view>
+        </scroll-view>
+        <view class="next" catchtap="goTonext" data-index='{{teamIndex}}' wx:if="{{teamItem.goods_list.length > 0}}">
+          <image src="/images/next.png" />
+        </view>
+        <view class='no_goods' wx:else>暂无商品</view>
+      </view>
+    </view>
+  </view>
+  <!-- <block>
+    <data-loading types="2"></data-loading>
+  </block> -->
+</view>

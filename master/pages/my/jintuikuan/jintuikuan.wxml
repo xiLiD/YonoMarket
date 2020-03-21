@@ -1,0 +1,115 @@
+<view class="header">
+  <view class="left">
+    <image src="{{goods.goodsimg}}" />
+  </view>
+  <view class="right">
+    <view class="r_top">
+      <view class="r_title">{{goods.goodsname}}</view>
+      <view class="r_text">规格：{{goods.guigecolor}} / {{goods.guigesize}}</view>
+    </view>
+    <view class="t_bottom">
+      <view class="r_bl">￥{{goods.goodsmoney}}</view>
+      <view class="r_br">x{{goods.num}}</view>
+    </view>
+  </view>
+</view>
+<form bindsubmit="formSubmit">
+  <view class="big_box">
+    <view class="header">
+      <view class="xingbie">收货状态
+        <picker name="zhuantai" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+          <view class="picker {{dj?'active':''}}">
+            {{array[index]}}
+            <view class="next">
+              <image src="/images/my/next.png" />
+            </view>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="header" wx:if="{{ goods.titlename == '换货' }}">
+      <view class="xingbie">选择尺码
+            <view class="picker {{dj?'active':''}}" catchtap="changeTank" data-num="1">
+              <text wx:if="{{sizeObject.yanse && sizeObject.size}}">已选择 {{ sizeObject.yanse }} / {{ sizeObject.size }}</text>
+              <text wx:else>选择尺码</text>
+              <view class="next">
+                <image src="/images/my/next.png" />
+              </view>
+          </view>
+      </view>
+    </view>
+    <view class="header">
+      <view class="xingbie">
+        <text>原因</text>  
+        <picker name="yuanyin" bindchange="bindPickerChange2" value="{{index2}}" range="{{array2}}">
+          <view class="picker {{dj?'active':''}}">
+            {{array2[index2]}}
+            <view class="next">
+              <image src="/images/my/next.png" />
+            </view>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="tkjine">
+      <view class="jine_left">金额</view>
+      <view class="jine_right">￥{{goods.totalprice}}</view>
+    </view>
+    <view class="shuoming">
+      <view class="jine_left">说明</view>
+      <input placeholder="方便商品退换的信息说明" name="shuoming" value="{{shuoming}}" />
+    </view>
+    <view class="upLown">
+      <view class="sc_name">上传凭证</view>
+      <image wx:if="{{isShow}}" src="/images/my/upLonw.png" catchtap="goToupImg" />
+      <image wx:else src="{{img}}" />
+    </view>
+    <button class="btn" hover-class='detail-hover' form-type="submit">提交申请</button>
+  </view>
+</form>
+
+
+<!--弹框-->
+<view class="zzc" wx:if="{{isHide}}"></view>
+<view class="tank {{showTank ? 'tank_active' : ''}}">
+  <view class="order tankuang">
+    <!--列表商品图片-->
+    <view class="order_img">
+      <image src="{{showImg}}" />
+    </view>
+    <view class="order_text">
+      <view class="text_top">
+        <!--列表标题-->
+        <view class="title">{{goodList.name}}</view>
+      </view>
+      <!--规格-->
+      <!-- <view class="size">库存：{{storeNum}}件</view> -->
+              <!--价格-->
+      <!-- <view class="text_bottom">
+
+        <view class="money">￥{{goodList.colo[goodsIndex].discountPrice}}</view>
+      </view> -->
+    </view>
+    <!--关闭按钮-->
+    <view class="guanbi" catchtap="changeTank" data-num="0">
+      <image src="/images/detil/guanbi.png" />
+    </view>
+  </view>
+  <view class="yanse">颜色</view>
+  <view class="color">
+    <!-- <wxs src="./tools.wxs" module="tools" /> -->
+    <view class="color_one {{item.color==yanse?'active':''}} {{item.store == 0 ? 'no_store' : ''}}" wx:for="{{colorNList}}" wx:for-item="item" wx:for-index="index" wx:key="index" catchtap="goTocolor" data-colorid="{{item.id}}" data-name="{{item.color}}" data-img="{{item.colorImg}}"
+      data-store="{{item.store}}">{{item.color}}</view>
+  </view>
+  <view class="yanse chima">尺码</view>
+  <view class="color">
+    <!-- data-index="{{tools.filtration(defaultcolor,chimaList,1)}}" -->
+    <view class="color_one chima_one {{item.name==size?'active':''}} {{item.store == 0 ? 'no_store' : ''}}" wx:for="{{sizeNList}}" wx:for-item="item" wx:for-index="index" wx:key="index" catchtap="goTochima" data-chicunid="{{item.id}}" data-name="{{item.name}}" data-img="{{item.colorImg}}"
+      data-store="{{item.store}}" data-img="{{item.colorImg}}" data-index="{{index}}">{{item.name}}</view>
+  </view>
+  <!--购买数量-->
+  <view class="buy_right gw_box">
+    <!--提交订单-->
+    <view class="liji " catchtap="sureSize">选择</view>
+  </view>
+</view>

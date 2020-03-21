@@ -1,0 +1,57 @@
+<form bindsubmit="formSubmit">
+  <view class="header">
+    <view class="name">姓名
+      <input type="text" name="name" value="{{name}}" placeholder="请填写收货人姓名" />
+    </view>
+    <!-- <view class="xingbie">性别
+      <picker name="xingbie" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view class="picker {{dj?'active':''}}">
+          {{array[index]}}
+          <view class="next">
+            <image src="/images/my/next.png" />
+          </view>
+        </view>
+      </picker>
+    </view> -->
+    <view class="phone diqu">手机号
+      <input type="number" name="phone" value="{{phone}}" placeholder="请填写收货手机号码" maxlength='11' />
+    </view>
+    <view class="diqu">所在地区
+      <picker name="diqu" mode="region" bindchange="bindPickerChangeone" value="{{region}}">
+        <view class="picker1">
+          <block wx:if="{{djone==1}}"> {{region[0]}}</block>
+          <block wx:if="{{djone==2}}"> {{region[0]}} {{region[1]}} {{region[2]}}</block>
+          <view class="next">
+            <image src="/images/my/next.png" />
+          </view>
+        </view>
+      </picker>
+    </view>
+    <view class="diqu">地址详情
+      <input type="text" class="addressdetails" name="addressdetails" value="{{addressdetails}}" placeholder="请填写地址详情" />
+    </view>
+    <view class="moren" wx:if="{{!rels}}">设为默认
+      <!-- <view class="kai" wx:if="{{isShow}}">
+        <image src="/images/my/open.png" />
+      </view>
+      <view class="kai" wx:else>
+        <image src="/images/my/close.png" />
+      </view> -->
+      <switch style="zoom:0.6;" name="xuanze" checked="{{switch1Checked}}" bindchange="switch1Change" color="{{switchColor}}" />
+    </view>
+  </view>
+  <view class="btn_box">
+    <button class="btn detel" catchtap="goTotk" wx:if="{{!shanchu}}">删除</button>
+    <button class="btn" hover-class='detail-hover' form-type="submit">保存</button>
+  </view>
+</form>
+<!--弹窗提示-->
+<view class="zzc" wx:if="{{isHiden}}"></view>
+<view class="tankuang" wx:if="{{isHiden}}">
+  <view class="biaoti">提示</view>
+  <view class="wen">确定要删除该地址吗？</view>
+  <view class="btnBox">
+    <view class="quxiao" catchtap="quxiao">取消</view>
+    <view class="shanchu" catchtap="goTodetel">删除</view>
+  </view>
+</view>

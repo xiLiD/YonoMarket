@@ -1,0 +1,3 @@
+<view class="shuoming">
+  <rich-text nodes="{{details}}"></rich-text>
+</view>

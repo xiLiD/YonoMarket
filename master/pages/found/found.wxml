@@ -1,0 +1,135 @@
+<view class='found_top'>
+
+  <swiper style="height:{{imgheights[current]}}px" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{activeColor}}" bindchange="bindchange"
+    class='lunbo_swipper'>
+    <block wx:for="{{cast.brand.list}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+      <swiper-item catchtap="goToxq" data-lubImgid="{{item.carouselId}}">
+        <image src="{{item.carouselImg1}}" class="slide-image" bindload="imgload" mode="widthFix" data-id="{{index}}" />
+      </swiper-item>
+    </block>
+  </swiper>
+
+
+
+
+
+  <!--轮播图-->
+  <!-- <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{activeColor}}" class='lunbo_swipper'>
+  <block wx:for="{{cast.brand}}" wx:for-item="item" wx:key>
+    <swiper-item catchtap="goToxq" data-lubImgid="{{item.carouselUrl}}">
+      <image src="{{item.url}}" class="slide-image" width="355" height="200" />
+    </swiper-item>
+  </block>
+</swiper> -->
+
+
+  <view class="header" wx:if="{{showPage}}">
+    <view class="tab {{id==1?'active':''}} {{activeId==1?'changesize':''}}" catchtap="goTotab" data-id="1">
+      <view class="tab_name">品牌介绍</view>
+      <view class="tab_eng">brand</view>
+      <view class='line_bottom'></view>
+    </view>
+    <view class="tab {{id==2?'active':''}} {{activeId==2?'changesize':''}}" catchtap="goTotab" data-id="2">
+      <view class="tab_name">视频介绍</view>
+      <view class="tab_eng">video</view>
+      <view class='line_bottom'></view>
+    </view>
+    <view class="tab {{id==3?'active':''}} {{activeId==3?'changesize':''}}" catchtap="goTotab" data-id="3">
+      <view class="tab_name">潮流文化</view>
+      <view class="tab_eng ">tide culture</view>
+      <view class='line_bottom'></view>
+    </view>
+  </view>
+</view>
+
+<view class='animation_box_center'>
+  <!-- 视频介绍 -->
+  <view class="animation_box {{id == 1 ? 'aleft' : ''}}" wx:if="{{id == 1}}">
+
+    <view class="list" catchtap="linkNav" data-link="/pages/foundDetails/foundDetails?detailsid={{item.id}}" wx:for="{{list[0].itemList}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+      <view class='list_info'>
+        <view class="list_info_img">
+          <image src='{{item.img}}'></image>
+        </view>
+        <view class="list_user">
+          <view class="user_left">
+            <view class="user_name">{{item.name}}</view>
+          </view>
+          <view class="user_right">
+            <view class="user_numb">{{item.publishTime}}</view>
+          </view>
+        </view>
+        <view class="list_user">
+          <view class="user_left found_info">
+            <text>{{item.intro}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <block wx:if='{{list[0].hasData}}'>
+      <data-loading types="{{list[0].type}}"></data-loading>
+    </block>
+  </view>
+
+
+  <view class="animation_box {{id == 2 ? 'aleft' : ''}}" wx:if="{{id == 2}}">
+    <view class="list" wx:for="{{list[1].itemList}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+      <view class='list_info'>
+        <view class="list_video">
+          <video id="video_{{index}}" src="{{item.video}}" controls bindplay="videoPlay" object-fit="cover">
+            ></video>
+          <!-- <video id="video_{{index}}" src="blob:https://v.qq.com/a7f80f86-b521-4ce0-a086-49b75d0bc5b3" controls bindplay="videoPlay" object-fit="cover">
+            ></video> -->
+
+        </view>
+        <view class="list_user">
+          <view class="user_left">
+            <view class="user_name">{{item.name}} </view>
+          </view>
+          <view class="user_right">
+            <view class="user_numb">{{item.publishTime}}</view>
+          </view>
+        </view>
+        <view class="list_user video_info">
+          <text>{{item.intro}}</text>
+        </view>
+      </view>
+    </view>
+    <block wx:if='{{list[1].hasData}}'>
+      <data-loading types="{{list[1].type}}"></data-loading>
+    </block>
+  </view>
+
+
+  <view class="animation_box {{id == 3 ? 'aleft' : ''}}" wx:if="{{id == 3}}">
+    <view class="list" catchtap="linkNav" data-link="/pages/foundDetails/foundDetails?detailsid={{item.id}}" wx:for="{{list[2].itemList}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+      <view class='list_info'>
+        <view class="list_info_img">
+          <image src='{{item.img}}'></image>
+        </view>
+        <view class="list_user">
+          <view class="user_left">
+            <view class="user_name">{{item.name}}</view>
+          </view>
+          <view class="user_right">
+            <view class="user_numb">{{item.publishTime}}</view>
+          </view>
+        </view>
+        <view class="list_user">
+          <view class="user_left found_info">
+            <text>{{item.intro}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <block wx:if='{{list[2].hasData}}'>
+      <data-loading types="{{list[2].type}}"></data-loading>
+    </block>
+  </view>
+</view>
+
+
+
+<view class='no_kaifa' wx:if="{{!showPage}}">
+  敬请期待！
+</view>

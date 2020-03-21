@@ -1,0 +1,157 @@
+page {
+  background-color: rgba(238, 238, 238, 0.5);
+}
+
+.header {
+  display: flex;
+  margin: 20rpx 30rpx;
+  background-color: #fff;
+  border-radius: 4rpx;
+  align-items: center;
+}
+
+.left {
+  width: 180rpx;
+  height: 180rpx;
+  margin: 30rpx 24rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+
+.left image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.right {
+  width: 420rpx;
+  height: 180rpx;
+}
+
+.r_title {
+  font-size: 30rpx;
+  color: #555;
+  font-weight: bold;
+  width: 300rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  margin-bottom: 10rpx;
+}
+
+.r_text {
+  font-size: 24rpx;
+  color: #aaa;
+}
+
+.t_bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 58rpx;
+  align-items: center;
+}
+
+.r_bl {
+  font-size: 30rpx;
+  color: #a5937f;
+  font-weight: bold;
+}
+
+.r_br {
+  font-size: 26rpx;
+  color: #555;
+}
+
+.xinxi {
+  margin: 0 30rpx;
+  background-color: #fff;
+  border-radius: 4rpx;
+  padding: 0rpx 14rpx 28rpx 22rpx;
+}
+
+/*货物状态*/
+.big_box{
+  background-color: #fff;
+  padding: 18rpx 0rpx;
+  margin: 0 23rpx;
+}
+.xingbie {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 26rpx;
+  width: 100%;
+  margin: 18rpx 0;
+}
+
+.picker {
+  color: #aaa;
+  display: flex;
+  /* width: 300rpx; */
+  justify-content: space-between;
+  align-items: center;
+}
+
+.active {
+  color: black;
+}
+
+.next {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.next image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/*退款金额*/
+.tkjine{
+  font-size: 26rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+   margin: 36rpx 30rpx;
+}
+.jine_right{
+  font-weight: bold;
+}
+/*退款说明*/
+.shuoming{
+  font-size: 26rpx;
+  display: flex;
+  align-items: center;
+  margin: 40rpx 30rpx;
+}
+.shuoming input{
+  margin-left: 40rpx;
+  width: 490rpx;
+}
+
+/*上传凭证*/
+.sc_name{
+  font-size: 26rpx;
+  margin: 30rpx;
+}
+.upLown image{
+  margin: 0 30rpx;
+  width: 140rpx;
+  height: 140rpx;
+}
+.btn{
+  width: 200rpx;
+  height: 70rpx;
+  font-size: 26rpx;
+  color: #FEFEFF;
+  background-color: #A5937F;
+  line-height: 70rpx;
+  border: none;
+  border-radius: 4rpx;
+  margin: 120rpx auto 60rpx;
+}

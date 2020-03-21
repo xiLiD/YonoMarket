@@ -1,0 +1,63 @@
+<view class="header">
+  <view class="serch">
+    <input placeholder="输入关键词来进行搜索" value="{{isText}}" bindinput="bindKeyInput" />
+    <view class="serch_img" catchtap="getsousuo">
+      <image src="/images/serch/serch.png" />
+    </view>
+  </view>
+  <view class='team_box'>
+    <view class='team_box_t'>
+      <view class='team_list'>
+        <view class='team_left '>
+          <image src='../../images/serch/1.png '></image>
+        </view>
+        <view class='team_right '>
+          <view class='team_title '>
+            <text>光宗耀祖团队柏菲核心的设计及管理团队</text>
+          </view>
+          <view class='team_details '>
+            <text>柏菲核心的设计及管理团队成员毕业于美国西敏大学、法国巴黎CREAPOLE高等艺术设计及管理学院、东华大学。在品牌设计，工业设计及 设计管理等领域有着良好的教育背景。柏菲核心的设计及管理团队</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='team_box_g'>
+      <view class='team_box_title'>优秀作品</view>
+      <view class='team_g_list_box'>
+        <view class='team_g_list'>
+          <view class='team_g_top'>
+            <image src='../../images/serch/1.png '></image>
+          </view>
+          <view class='team_g_bottom'>
+            <view class='team_g_name'>翡翠挂饰</view>
+            <view class='team_g_price'>
+              <text class='discount'>￥536</text>
+              <text class='initial'>￥536</text>
+            </view>
+          </view>
+        </view>
+        <view class='team_g_list'>
+          <view class='team_g_top'>
+            <image src='../../images/serch/1.png '></image>
+          </view>
+          <view class='team_g_bottom'>
+            <view class='team_g_name'>翡翠挂饰</view>
+            <view class='team_g_price'>
+              <text class='discount'>￥536</text>
+              <text class='initial'>￥536</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+
+
+
+
+
+
+
+</view>

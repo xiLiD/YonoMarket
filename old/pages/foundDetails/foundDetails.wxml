@@ -1,0 +1,34 @@
+<!--富文本解析-->
+<import src="../../utils/wxParse/wxParse.wxml" />
+
+<view class='article_box'>
+  <!-- <rich-text nodes="{{details.content}}"></rich-text> -->
+  <view class="html">
+    <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+  </view>
+</view>
+<view class='details_bottom' wx:if="{{details != ''}}">
+  <view class="details_bottom_left">
+    <view class='details_left' wx:if="{{shoucang !== ''}}">
+      <view class="hj_one {{shoucang!==1 ? 'sc_cancle':''}}" catchtap="goTosc">
+        <view class="sc_img">
+          <image src="/images/detil/sc.png" wx:if="{{shoucang == 0}}" />
+          <image src="/images/detil/sy.png" wx:if="{{shoucang == 1}}" />
+        </view>
+        <view class="sc" wx:if="{{shoucang == 0}}">收藏</view>
+        <view class="sc cancle_sc" wx:if="{{shoucang == 1}}">取消收藏</view>
+      </view>
+    </view>
+    <view>
+      <button class="hj_one btn" open-type="share" plain="true">
+        <view class="sc_img">
+          <image src="/images/detil/fx.png" />
+        </view>
+        <view class="sc btnName">分享</view>
+      </button>
+    </view>
+  </view>
+  <view class='details_bottom_right'>
+    <text>{{details.publishTime}}</text>
+  </view>
+</view>

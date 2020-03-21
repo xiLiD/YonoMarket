@@ -1,0 +1,41 @@
+<view class="header">
+  <view class="serch">
+    <input placeholder="输入关键词来进行搜索" value="{{isText}}" bindinput="bindKeyInput" />
+    <view class="serch_img" catchtap="getsousuo">
+      <image src="/images/serch/serch.png" />
+    </view>
+  </view>
+  <view class="tab">
+    <!-- <view class="tab_one" catchtap="goToqh" data-class="1">
+      <view class="all {{dj==1?'active':''}}">全部</view>
+      <view class="all_img">
+        <image src="/images/serch/xz-3.png" wx:if="{{dj==1}}" />
+        <image src="/images/serch/xz-2.png" wx:else />
+      </view>
+    </view> -->
+    <!-- <view class="tab_two">综合</view> -->
+    <view class="tab_three" catchtap="goToqh" data-class="2">
+      <view class="much {{dj==2?'active':''}}">价格</view>
+      <view class="much_img">
+        <image src="/images/serch/xz-1.png" wx:if="{{dj==2}}" />
+        <image src="/images/serch/xz.png" wx:else />
+      </view>
+    </view>
+    <view class="tab_four {{dj==3?'active':''}}" catchtap="goTozx" data-class="3">最新</view>
+  </view>
+</view>
+<view class="list">
+  <view class="list_box" wx:for="{{goodList}}" wx:for-item="item" wx:for-index="index" wx:key catchtap="goToxq" data-id="{{item.id}}">
+    <view class="list_top">
+      <image src="{{item.mainImgPath}}" />
+    </view>
+    <view class="list_center">{{item.name}}</view>
+    <view class="list_footer">
+      <view class="footer_left">￥{{item.discountPrice}}</view>
+      <view class="footer_right">￥{{item.price}}</view>
+    </view>
+  </view>
+</view>
+<block wx:if='{{list.hasData}}'>
+  <data-loading types="{{list.type}}"></data-loading>
+</block>

@@ -1,0 +1,70 @@
+<!--index.wxml-->
+<mytabbar title="悦嘉丽商城"></mytabbar>
+<view class="">
+  <view class="shop_info">
+    <!--店铺基本信息-->
+    <view class="flex-ali">
+      <!--头像-->
+      <view class="user_head" style="background-image: url('{{imgurl}}/shopimg.png');"></view>
+      <!--店铺介绍-->
+      <view class="flex-col">
+        <text class="shop_name">SHUPPA STORE</text>
+        <text class="shop_desc">冰心集美</text>
+      </view>
+      <!--关注微信-->
+      <view class="flex1 flex-end">
+        <button class="focuson"></button>
+      </view>
+    </view>
+    <!--最新资讯-->
+    <view class="information">
+      <text class="title">最新资讯</text>
+      <text class="desc">美容彩妆晶彩爽肤水系列低至五折</text>
+    </view>
+  </view>
+  <!-- 图 -->
+  <swiper class="slide" easing-function="{{easeInCubic}}" circular="{{true}}" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{background}}" wx:key="*this">
+      <swiper-item>
+        <view class="swiper-item">
+          <image src="{{imgurl}}{{item}}.png" mode='widthFix' lazy-load="{{true}}"></image>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+  <!--菜单-->
+  <view class="meun">
+    <view class="flex-cend ">
+      <view class="flex1 flex-cen"  catchtap="upcalss">
+        <image src="{{imgurl}}menu.png" style="width:94rpx;height:109rpx;"></image>
+      </view>
+      <view class="flex1 flex-cen"  catchtap="upcalss">
+        <image src="{{imgurl}}menu1.png" style="width:96.42rpx;height:123.58rpx;"></image>
+      </view>
+      <view class="flex1 flex-cen"  catchtap="upcalss">
+        <image src="{{imgurl}}menu2.png" style="width:94rpx;height:110.56rpx;"></image>
+      </view>
+      <view class="flex1 flex-cen"  catchtap="upcalss">
+        <image src="{{imgurl}}menu3.png" style="width:94rpx;height:94rpx;"></image>
+      </view>
+    </view>
+    <view class="flex-ali">
+      <text class="meun_name flex1 text_center" catchtap="upcalss">当季热销</text>
+      <text class="meun_name meun_this flex1 text_center" catchtap="upcalss">当季热销</text>
+      <text class="meun_name meun_this flex1 text_center" catchtap="upcalss">当季热销</text>
+      <text class="meun_name meun_this flex1 text_center" catchtap="upcalss">当季热销</text>
+    </view>
+  </view>
+  <!--商品列表-->
+  <view class="goods_list">
+    <navigator url="/pages/goods/goodsdetails/goodsdetails" hover-class="none" wx:for="{{3}}" wx:for-index="index" wx:for-item="itemName" style="{{index%2==0 ? 'float: left;' : 'float: right;'}}" >
+      <view class="goods" >
+        <image class="goods_img" mode='widthFix' lazy-load="{{true}}" src="{{imgurl}}goodsimg{{index}}.png"></image>
+        <view class="goods_info">
+          <text class="">醇美芳香系列</text>
+          <text class="">数种精油的肆意结合辅以标志性的宁神香气，令肌肤倍...</text>
+        </view>
+      </view>
+    </navigator>
+  </view>
+</view>

@@ -1,0 +1,185 @@
+.header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.user_left{
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  justify-content: space-between;
+}
+.user {
+  position: absolute;
+  left:203rpx;
+  /* top:82rpx; */
+  width: 320rpx;
+  margin-top:5rpx;
+}
+.user_img{
+  width: 130rpx;
+  height: 130rpx;
+  margin: 63rpx 33rpx 49rpx 40rpx;
+}
+.user_img image{
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 50%;
+}
+/*授权按钮*/
+.getUserInfo{
+  font-size: 30rpx;
+  padding: 0;
+  margin: 0;
+  height: 60rpx;
+  line-height: 60rpx;
+  width: 135rpx;
+}
+
+button[plain] {
+  border: none;
+  border-color: transparent;
+}
+.user_name{
+  font-size: 30rpx;
+  color: #333333;
+}
+.user_vip_one{
+  width: 150rpx;
+  height: 40rpx;
+  margin-top: 10rpx;
+}
+.user_vip_one image{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.user_vip{
+  display: flex;
+  align-items: center;
+  margin-top: 30rpx;
+}
+.vip_img{
+  width: 30rpx;
+  height: 30rpx;
+}
+.vip_img image{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.vip_name{
+  font-size: 22rpx;
+  color: #A5937F;
+  margin-left: 10rpx;
+}
+/*积分*/
+.jifen{
+  display: flex;
+  align-items: center;
+  margin-right: 30rpx;
+  margin-top: -50rpx;
+}
+.jf{
+  font-size: 26rpx;
+  color: #555555;
+}
+.jfImg{
+  width: 30rpx;
+  height: 30rpx;
+  margin-left: 20rpx;
+}
+.jfImg image{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+
+.order{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 30rpx 0 38rpx;
+}
+.order_all{
+  font-size: 26rpx;
+  color: #333333;
+  line-height: 38rpx;
+}
+.order_img{
+  width: 30rpx;
+  height: 30rpx;
+}
+.order_img image{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.list{
+  display: flex;
+  justify-content: space-around;
+  margin: 40rpx 0 38rpx;
+}
+.list_box{
+  text-align: center;
+}
+.box {
+  width: 50rpx;
+  height: 50rpx;
+  margin: 0 auto;
+}
+.box image{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.text{
+  font-size: 24rpx;
+  color: #555555;
+  margin-top: 18rpx;
+}
+.tab_list{
+  border-top: 20rpx solid rgba(243, 243, 243, 0.603); 
+}
+.tab_list > view {
+  /* border-bottom : 1rpx solid #eee; */
+}
+.tab_box{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30rpx 36rpx;
+}
+.tab_left{
+  display: flex;
+  align-items: center;
+}
+.left_img{
+  width: 40rpx;
+  height: 40rpx;
+}
+.left_img image{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.left_name{
+  font-size: 26rpx;
+  color: #333333;
+  margin-left: 13rpx;
+}
+.tab_right{
+  width: 30rpx;
+  height: 30rpx;
+}
+.tab_right image{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.vip_top {
+  color : #f13f0f;
+}

@@ -1,0 +1,39 @@
+<view class="box">
+  <scroll-view style='height:100vh;width:100%;background-color: #f8f9fa;' scroll-y>
+    <view class="tab_list">
+      <view class="tab {{item.firstCategoryId == 1 ? 'tab_active' : ''}} {{id==item.firstCategoryId?'active':''}} {{activeId==item.firstCategoryId?'changesize':''}} " bindtap="goTotab" data-id="{{item.firstCategoryId}}" wx:for="{{oneList}}" wx:for-item="item" wx:key>
+        <view class="tab_name">{{item.firstCategoryName}}</view>
+        <view class="tab_name2">{{item.firstCategoryNameEng}}</view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class="header">
+    <scroll-view scroll-y style="height: 100vh;background-color: #fff;">
+      <!-- <view class="miaosha">
+        <image src="{{item.topImg}}" />
+      </view> -->
+      <view class="class_tab" wx:if="{{twoList[0].secondCategoryId == 99}}">
+        <view class='class_box class_seckill' catchtap="toSeckill" wx:if="{{twoList[0].secondCategoryId == 99}}">
+          <view class="class_img">
+            <image src="{{twoList[0].topImg}}" mode='widthFix' />
+          </view>
+          <view class="class_title" wx:if="{{twoList[0].secondCategoryId == 99}}">{{twoList[0].description}}</view>
+        </view>
+      </view>
+      <view class="class_tab" wx:if="{{twoList.length >0}}">
+        <view class="class_box" catchtap="goToshangpin" data-id="{{item.id}}" wx:for="{{twoList}}" wx:for-item="item" wx:key>
+          <view class="class_img">
+            <image src="{{item.secondIcon}}" />
+          </view>
+          <view class="class_title">{{item.secondCategoryName}}</view>
+        </view>
+      </view>
+
+      <!-- <view class="header" wx:else style=" text-align: center;padding-top:150rpx;">暂无内容</view> -->
+      <block wx:else>
+        <data-loading type="0" />
+      </block>
+    </scroll-view>
+  </view>
+
+</view>

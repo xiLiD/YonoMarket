@@ -1,0 +1,74 @@
+<!--pages/seckill/seckill.wxml-->
+<view wx:if="{{showPage}}">
+  <view class="center" wx:if="{{killGoods.length > 0}}">
+    <view class="top">
+      <view class="top_image">
+        <image src="../../images/my/buy_bg.png" mode="widthFix"></image>
+      </view>
+      <view class="top1">
+        <view class="txt_t t-left">
+          距离活动结束
+        </view>
+        <view class="txt_t t-right">
+          <view class="cen" wx:if="{{isShow}}">
+            <!-- <view class="t1"> -->
+            {{countdown.d}} : {{countdown.h}} : {{countdown.m}} : {{countdown.s}}
+            <!-- </view> -->
+            <!-- <view class="yinhao"></view>
+          <view class="t1">
+            
+          </view>
+          <view class="yinhao">:</view>
+          <view class="t1">
+            
+          </view>
+          <view class="yinhao">:</view>
+          <view class="t1">
+            
+          </view> -->
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="all">
+      <view class="k-list" wx:for="{{killGoods}}">
+        <view class="k-left">
+          <image src="{{item.goods.mainImgPath}}"></image>
+        </view>
+        <view class="k-right">
+          <view class="r-top">{{item.goods.name}}</view>
+          <!-- <view class="r-mid">
+          <view>
+            <view class="m-txt">已抢购{{bfb[index]}}%</view>
+            <progress percent="{{bfb[index]}}" color="#169bD5" stroke-width="16" border-radius="16" style="width:240rpx;" />
+          </view>
+          <view class="m-gray" wx:if="{{no}}">已抢光</view>
+        </view> -->
+          <view class='btn_qbox'>
+            <view class="btn_q">
+              <view wx:if="{{storeNum[index]>0}}" class="btn_q_title">
+                <!-- <view class="m-txt">已抢购{{bfb[index]}}%</view> -->
+                <text class='qg_val'>已抢购{{bfb[index]}}%</text>
+                <!-- <progress percent="{{bfb[index]}}" color="#169bD5" stroke-width="16" border-radius="16" style="width:240rpx;" /> -->
+              </view>
+              <view class="b-btn" bindtap="buy" data-index="{{index}}" wx:if="{{storeNum[index]>0}}" data-time="{{}}">马上抢</view>
+              <view class="b-btn gray" wx:if="{{storeNum[index]<=0}}">已抢光</view>
+            </view>
+          </view>
+
+          <view class="r-bom">
+            <view class="b-txt">
+              <text>￥{{item.goods.discountPrice}}</text>
+              <text class='oldmoney'>￥{{item.goods.price}}</text>
+            </view>
+            <!-- <view class="b-btn" bindtap="buy" data-index="{{index}}" wx:if="{{storeNum[index]>0}}">马上抢</view>
+          <view class="b-btn gray" wx:if="{{storeNum[index]<=0}}">抢光了</view> -->
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='tishi' wx:else>
+    活动暂未开始，敬请期待！
+  </view>
+</view>

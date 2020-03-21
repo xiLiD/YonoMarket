@@ -1,0 +1,145 @@
+<view class="header" catchtap="goTodizhi">
+  <view class="dw_img">
+    <image src="/images/wuliu/dizhi.png" />
+  </view>
+  <view class="xinxi" wx:if="{{addressList.length>0||dizhi.name!=undefined}}">
+    <view class="xx_top">
+      <view class="xx_name">{{dizhi.name}}</view>
+      <view class="xx_phone">{{dizhi.phone}}</view>
+    </view>
+    <view class="dizhi">{{dizhi.address}} {{dizhi.addressDetail}}</view>
+  </view>
+  <view class="tianjia" wx:else>添加收货地址</view>
+  <view class="next">
+    <image src="/images/my/more.png" />
+  </view>
+</view>
+
+
+<!--订单信息-->
+<view class="dingdan">
+  <view class="dd_topbox" wx:for="{{goodsList}}" wx:for-item="item" wx:key>
+    <view class="dd_img">
+      <image src="{{item.mainImgPath}}" />
+    </view>
+    <view class="topbox">
+      <view class="tb_name">{{item.name}}</view>
+      <view class="tb_gg">{{item.color}} / {{item.sizes}}</view>
+      <view class="tb_b">
+        <view class="jiage">￥{{item.discountPrice}}</view>
+        <view class="numb">x{{item.quantity}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!--配送方式-->
+  <view class="psfs" catchtap="goTotk">
+    <view class="fs">
+      <view class="fangshi">配送方式：</view>
+      <view class="fangshi2">普通配送</view>
+    </view>
+    <view class="ps_next">
+      <image src="/images/my/more.png" />
+    </view>
+  </view>
+  <view class="psfs" catchtap="showCoupon" data-num='1'>
+    <view class="fs">
+      <view class="fangshi">优惠券：</view>
+      <view wx:if="{{couponId}}">
+        <view  wx:if="{{typeId == 3}}">
+          <view class="fangshi2">{{record.progress.list[couponIndex].coupon.discount}}折</view>
+        </view>
+        <view wx:if="{{typeId == 2}}">
+          <view class="fangshi2">- ￥{{record.progress.list[couponIndex].coupon.subtractPrice}}</view>
+        </view>
+        <view wx:if="{{typeId == 1}}">
+          <view class="fangshi2">- ￥{{record.progress.list[couponIndex].coupon.discountAmount}}</view>
+        </view>
+      </view>
+      <view wx:else>
+        <view class="fangshi2" wx:if="{{num == 0}}">无可用券</view>
+        <view class="fangshi2" wx:else>{{num}}张可用券</view>
+      </view>
+    </view>
+    <view class="ps_next">
+      <image src="/images/my/more.png" />
+    </view>
+  </view>
+  <view class="yunfei">
+    <view class="ysf">运送费：</view>
+    <view class="ysf_next">包邮</view>
+  </view>
+  <!--合计-->
+  <!-- <view class="heji">
+    <view class="hj_left">共1件商品，合计：</view>
+    <view class="hj_right">￥128.88</view>
+  </view> -->
+</view>
+<view class="liuyan">
+  <view class="mjly">买家留言：</view>
+  <textarea placeholder="选填，填写内容已和卖家协商确认" maxlength="-1" placeholder-style="font-size:26rpx;" bindinput="bindTextAreaBlur"></textarea>
+</view>
+
+<!--提交订单-->
+<view class="tijiao">
+  <view class="tjhj">合计：￥{{moneyAll}}
+    <text class='oldmoney' wx:if="{{couponId}}">￥{{totalPrice}} </text>
+  </view>
+  <view class="tjdd" catchtap="goTozhifu">提交订单</view>
+</view>
+
+<!--配送方式弹窗-->
+<view class="zzc" wx:if="{{isHide}}"></view>
+<view class="peisong {{isHide ? 'show_modal' : 'no_modal'}}" wx:if="{{isHide}}">
+  <view class="ps_name">配送方式</view>
+  <view class="ps_class">
+    <view class="ps_clname">普通配送</view>
+    <view class="ps_gouxuan">
+      <image src="/images/my/xz.png" />
+    </view>
+  </view>
+  <view class="wancheng" catchtap="goTogbtk">完成</view>
+</view>
+
+<view class="coupon_modal" wx:if="{{showCoupon}}">
+  <view class="coupon_modal_bg" catchtap="showCoupon" data-num='0'></view>
+  <view class='animation_box_center'>
+    <view class="animation_box aleft">
+      <view class="list" wx:for="{{record.progress.list}}" wx:for-item="recordItem" wx:for-index="recordIndex"wx:if="{{record.progress.list.length > 0}}" catchtap="changeCoupon" data-index="{{recordIndex}}" wx:key>
+        <!-- <image src="/images/my/yhq.png" /> -->
+        <image wx:if="{{totalPrice >= recordItem.coupon.fullPrice}}" src="/images/my/yhq.png" />
+        <image src="/images/my/yhq-1.png" wx:else/>
+        <view class="list_box {{totalPrice >= recordItem.coupon.fullPrice ? '' : 'guoqi'}}">
+          <view class="left" wx:if="{{recordItem.coupon.couponTypeId == 1}}">
+            <view class="num">￥{{recordItem.coupon.discountAmount}}</view>
+            <view class="numb">满￥{{recordItem.coupon.fullPrice}}</view>
+          </view>
+          <view class="left" wx:if="{{recordItem.coupon.couponTypeId == 2}}">
+            <view class="num">￥{{recordItem.coupon.subtractPrice}}</view>
+            <view class="numb">任意使用</view>
+          </view>
+          <view class="left" wx:if="{{recordItem.coupon.couponTypeId == 3}}">
+            <view class="num">{{recordItem.coupon.discount}}折</view>
+            <view class="numb">任意使用</view>
+          </view>
+          <view class="right">
+            <view class="top">{{recordItem.coupon.couponName}}</view>
+            <view class="center">有效期至{{recordItem.coupon.couponEndDate}}</view>
+            <view class='right_code'>券码：{{recordItem.couponCode}}</view>
+            <!-- <view class="" wx:if="{{recordItem.coupon.couponTypeId != 1}}">
+              <view class="bottom" wx:if="{{totalPrice >= recordItem.coupon.fullPrice}}">
+                <view>使用</view>
+              </view>
+              <view class="bottom" wx:else>
+                <view>不可用</view>
+              </view>
+            </view> -->
+          </view>
+        </view>
+      </view>
+      <block wx:if="{{record.progress.list.length == 0}}">
+        <data-loading types="0"></data-loading>
+      </block>
+    </view>
+  </view>
+</view>

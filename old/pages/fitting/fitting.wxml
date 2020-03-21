@@ -1,0 +1,199 @@
+<view wx:if="{{cartList}}" class='cartlist'>
+  <view class="header" wx:if="{{newCartList.length>0}}">
+    <view class="head_left">共{{goodsNum}}件</view>
+    <view class="head_right" catchtap="goToshanchu">{{moren}}</view>
+  </view>
+  <view class="order_list">
+    <view class="order" wx:for="{{newCartList}}" wx:for-item="item" wx:key="{{index}}" catchtap="goTothxq" data-id="{{item.goodsId}}">
+      <view class="xuanze" wx:if="{{item.selected}}" catchtap="selectList" data-index="{{index}}">
+        <image src="/images/serch/xuanze.png" />
+      </view>
+      <view class="xuanze" catchtap="selectList" data-index="{{index}}" wx:else>
+        <image src="/images/serch/gouxuan.png" />
+      </view>
+      <!--列表商品图片-->
+      <view class="order_img">
+        <image src="{{item.goods.colorImg}}" />
+      </view>
+      <view class="order_text">
+        <view class="text_top">
+          <!--列表标题-->
+          <view class="title">{{item.goods.name}}</view>
+          <!-- <view class="detel" catchtap="deletes" data-cartid="{{item.id}}" data-index="{{index}}">
+            <image src="/images/serch/detel.png" />
+          </view> -->
+
+          <view class='goods_book' catchtap="changeType" data-goodsId="{{item.goods.id}}" data-csrId="{{item.csrId}}" data-num="{{item.quantity}}" data-num="2" wx:if="{{type == 1}}">线下预约</view>
+          <view class='goods_book' catchtap="changeType" data-goodsId="{{item.goods.id}}" data-csrId="{{item.csrId}}" data-num="{{item.quantity}}" data-num="1" wx:else>立即购买</view>
+        </view>
+        <!--规格-->
+        <view class="size">规格：{{item.goods.color}} / {{item.goods.sizes}}</view>
+        <view class="text_bottom">
+          <!--价格-->
+          <view class="money">￥{{item.goods.discountPrice}}</view>
+          <!--商品数量加减-->
+          <view class="number">
+            <!--减按钮-->
+            <view class="reduce" catchtap="btn_minus" data-goodsid="{{item.goodsId}}" data-csrid="{{item.csrId}}" data-id="{{item.id}}" data-index="{{index}}">
+              <image src="/images/serch/jian-1.png" />
+            </view>
+            <!--数量-->
+            <view class="numb">{{item.quantity}}</view>
+            <!--加按钮-->
+            <view class="add" catchtap="btn_add" data-index="{{index}}" data-goodsid="{{item.goodsId}}" data-csrid="{{item.csrId}}" data-id="{{item.id}}">
+              <image src="/images/serch/add-1.png" />
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="{{newCartList.length <= 0 ? 'no_length' : ''}}" >
+      <block wx:if="{{list.type !== ''}}">
+        <data-loading types="{{list.type}}"></data-loading>
+      </block>
+    </view>
+
+  </view>
+
+  <!--固定底部-->
+  <view class="buy" wx:if="{{newCartList.length>0}}">
+    <view class="buy_top">
+      <view class="top_left">
+        <view class="left_img" catchtap="selectAll" wx:if="{{selectAllStatus}}">
+          <image src="/images/serch/xuanze.png" />
+        </view>
+        <view class="left_img" catchtap="selectAll" wx:else>
+          <image src="/images/serch/gouxuan.png" />
+        </view>
+        <view class="left_name">全选</view>
+      </view>
+      <view class="buy_bottom" wx:if="{{isShow}}">
+        <view class="buy_left">
+          <view class="heji" wx:if="{{type ==  1}}">合计：￥{{totalPrice}}</view>
+        </view>
+        <view class="buy_right">
+
+          <view class="liji two active" catchtap="btn_submit_order" wx:if="{{type ==  1}}">去结算（{{goodsNum}}）</view>
+          <view class="liji two active" catchtap="showBook"  wx:else>立即预约</view>
+        </view>
+      </view>
+
+      <view class="liji active shanchu" wx:else catchtap="deletes" data-cartid="{{item.id}}" data-index="{{index}}">删除</view>
+    </view>
+  </view>
+</view>
+<!-- 购物车没订单
+<view wx:if="{{newCartList.length==0}}">
+  <view class="list_none">购物车是空的哦~</view>
+</view> -->
+
+
+<view class="show_book_contain {{showBook ? 'show_book' : ''}}">
+  <view class='show_modal '></view>
+  <view class='show_book_box'>
+    <view class='show_box_top'>
+      <view class='show_box_title'>填写预约信息</view>
+      <view class='show_box_close' catchtap="hideBook">
+        <image src='../../images/my/guanbi.png'></image>
+      </view>
+    </view>
+
+    <view class='show_box_center'>
+      <view class='show_box_center_header'>
+        <!--预约店铺选择-->
+        <!-- <view class="picker">
+          <text>预约人：</text>
+          <input type='text' placeholder="姓名" bindinput="changeName" value="{{personInfo.name}}" class="yuyue_input"></input>
+        </view>
+        <view class="picker">
+          <text>联系电话：</text>
+          <input type='tel' maxlength="11" placeholder="手机号" bindinput="changePhone" value="{{personInfo.phone}}" class="yuyue_input"></input>
+        </view> -->
+        
+          <view class="picker">
+            <text>预约店铺：</text>
+            <picker mode="selector" bindchange="bindDoorChange" value="{{doorDialog.index}}" range="{{doorDialog.itemList}}" class="yuyue_input">
+              <text>{{doorDialog.itemList[doorDialog.index]}}</text>
+            </picker>
+          </view>
+       
+        <!--店铺地址选择-->
+        <view class="picker">
+          <text>店铺地址：</text>
+          <text class="yuyue_input">{{shopList[doorDialog.index].shopAddress}}</text>
+        </view>
+
+        <view class="picker">
+          <text>预约时间：</text>
+          <pickerYMDHM bind:onPickerChange="onPickerChange3" date="{{endedTime}}" class="yuyue_input"></pickerYMDHM>
+           <!-- <text class="yuyue_input" catchtap="cancelOrder" data-num="1">{{reasonList[selectIndex]}}</text>  -->
+        </view>
+      </view>
+      <view>
+        <!-- <view class='yuyue_times'>
+          <text>预约时间：</text>
+          <pickerYMDHM bind:onPickerChange="onPickerChange3" date="{{endedTime}}" class="yuyue_input"></pickerYMDHM>
+        </view> -->
+        <view class='sure_book' catchtap="tobookOrder">
+          <text>确定</text> </view>
+      </view>
+      <view>
+      </view>
+    </view>
+  </view>
+
+</view>
+
+
+<view class='reason_box' wx:if="{{showReason}}">
+  <view class='dialog' catchtap="cancelOrder" data-num='0'></view>
+  <view class="reason ShowFade {{showReason ? 'show_modal' : 'no_modal'}}">
+    <view class='reason_title'>
+      <view class='reason_btn'>
+        <view class='cancle' catchtap="cancelOrder" data-num='0'>取消</view>
+        <view class='sure' catchtap="finishCancle">确定</view>   
+      </view> 
+    </view>
+    <view class='reason_info'>
+      <view>
+        <view>
+          <text>10—15点</text>
+        </view>
+        <view class='r_select' catchtap="changeSelect" data-num='0'>
+          <image class="{{changeIndex == 0 ? 'icon_select' : 'icon_no_select'}} {{selectIndex == 0 ? 'z_index' : ''}}" src='../../images/yuyue/select.png'></image>
+          <image class="{{selectIndex == 1 ? 'z_index' : ''}}" src='../../images/yuyue/no_select.png'></image>
+        </view>
+
+      </view>
+      <view>
+        <view>
+          <text>15—9点</text>
+        </view>
+        <view class='r_select' catchtap="changeSelect" data-num='1'>
+          <image class="{{changeIndex == 1 ? 'icon_select' : 'icon_no_select'}} {{selectIndex == 1 ? 'z_index' : ''}}" src='../../images/yuyue/select.png'></image>
+          <image class="{{selectIndex == 0 ? 'z_index' : ''}}" src='../../images/yuyue/no_select.png'></image>
+        </view>
+      </view>
+    </view>
+    <!-- <view class='finish'><text catchtap="finishCancle">完成</text></view> -->
+  </view>
+</view>
+<!--预约店铺选择-->
+<!-- <view class='door_select' wx:if="{{doorDialog.show}}" catchtap="doorDialog" data-num='1'>
+  <view class='select_options'>
+    <view catchtap="doorDialog" data-num='0'>取消</view>
+    <view catchtap="doorDialog" data-num='2'>确认</view>
+  </view>
+  <picker mode="selector" bindchange="bindDoorChange" value="{{doorDialog.index}}" range="{{doorDialog.array}}">
+    <view class="picker">
+      当前选择：{{doorDialog.itemList[doorDialog.index].name}}
+    </view>
+  </picker>
+</view> -->
+
+<showModal showModalOption="{{showAddressOption}}" bindoperation="addressOperation"></showModal>
+
+<showModal showModalOption="{{showAuthOption}}" bindoperation="authOperation"></showModal>
+
+<showModal showModalOption="{{showMobileOption}}" bindoperation="mobileOperation"></showModal>

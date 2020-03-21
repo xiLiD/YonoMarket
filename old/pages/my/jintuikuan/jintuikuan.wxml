@@ -1,0 +1,57 @@
+<view class="header">
+  <view class="left">
+    <image src="{{goods.goodsimg}}" />
+  </view>
+  <view class="right">
+    <view class="r_top">
+      <view class="r_title">{{goods.goodsname}}</view>
+      <view class="r_text">规格：{{goods.guigecolor}} / {{goods.guigesize}}</view>
+    </view>
+    <view class="t_bottom">
+      <view class="r_bl">￥{{goods.goodsmoney}}</view>
+      <view class="r_br">x{{goods.num}}</view>
+    </view>
+  </view>
+</view>
+<form bindsubmit="formSubmit">
+  <view class="big_box">
+    <view class="header">
+      <view class="xingbie">收货状态
+        <picker name="zhuantai" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+          <view class="picker {{dj?'active':''}}">
+            {{array[index]}}
+            <view class="next">
+              <image src="/images/my/next.png" />
+            </view>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="header">
+      <view class="xingbie">退款原因
+        <picker name="yuanyin" bindchange="bindPickerChange2" value="{{index2}}" range="{{array2}}">
+          <view class="picker {{dj?'active':''}}">
+            {{array2[index2]}}
+            <view class="next">
+              <image src="/images/my/next.png" />
+            </view>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="tkjine">
+      <view class="jine_left">退款金额</view>
+      <view class="jine_right">￥{{goods.totalprice}}</view>
+    </view>
+    <view class="shuoming">
+      <view class="jine_left">退款说明</view>
+      <input placeholder="选填" name="shuoming" value="{{shuoming}}" />
+    </view>
+    <view class="upLown">
+      <view class="sc_name">上传凭证</view>
+      <image wx:if="{{isShow}}" src="/images/my/upLonw.png" catchtap="goToupImg" />
+      <image wx:else src="{{img}}" />
+    </view>
+    <button class="btn" hover-class='detail-hover' form-type="submit">提交申请</button>
+  </view>
+</form>

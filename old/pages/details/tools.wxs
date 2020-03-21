@@ -1,0 +1,8 @@
+var filtration = function (old,news,index) {
+  var sold = JSON.stringify(old);
+  var snews = JSON.stringify(news);
+ 
+}
+module.exports = {
+  filtration: filtration
+};

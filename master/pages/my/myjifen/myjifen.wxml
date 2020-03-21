@@ -1,0 +1,24 @@
+<view class="header">
+  <view class="head_l">
+    <view class="head_limg">
+      <image src="/images/jifen/icon.png" />
+    </view>
+    <view class="zt_time">
+      <view class="jifen">{{num}}</view>
+      <view class="jf">我的积分</view>
+    </view>
+  </view>
+  <view class="head_r" catchtap="linkNav" data-link="/pages/my/integral/integral">
+    <image src="/images/jifen/get_score.png" />
+  </view>
+</view>
+<!--列表信息-->
+<view class="title_box" wx:if="{{integralList.length > 0}}">
+  <view class="list" wx:for="{{integralList}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+    <view class="tb_left">
+      <view class="title">{{item.channel}}</view>
+      <view class="time">{{item.createDate}}</view>
+    </view>
+    <view class="tb_right">{{item.changeIntegral}} 积分</view>
+  </view>
+</view>

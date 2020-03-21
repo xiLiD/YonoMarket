@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "分类",
+   "usingComponents": {
+    "data-loading": "/components/data-loading/data-loading"
+  }   
+}

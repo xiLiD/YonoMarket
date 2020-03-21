@@ -1,0 +1,69 @@
+<view class='animation_box_center'>
+  <!--全部-->
+  <view class="animation_box">
+    <view class="big_box">
+      <view class="list" wx:for="{{record.all.list}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+        <view class="list_top" catchtap="linkNav" data-link="/pages/my/tk_jindu/tk_jindu?dingdan={{item.firstTradeNo}}&zidingdan={{item.tradeNo}}&status={{item.status}}&class={{classval}}&orderid={{item.orderId}}&id={{item.id}}">
+          <view class='list_each'>
+            <view class="list_left">
+              <view class="list_img">
+                <image src="{{item.goods.colorImg}}" />
+              </view>
+            </view>
+            <view class='list_right'>
+              <view class='list_each_right_top'>
+                <view class='list_each_right_top_t'>
+                  <view class="name">{{item.goodsName}}</view>
+                  <!-- <view class="zhuangtai" wx:if="{{relsItem.status == 2}}">待付款</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 3}}">待发货</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 4}}">待收货</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 5}}">已完成</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 6}}">已关闭</view>
+                  <view class="zhuangtai" wx:if="{{relsItem.status == 7}}">退货中</view> -->
+                  <view class="zhuangtai" style="color:#A5937F" wx:if="{{item.status == 7}}">待退货</view>
+                  <view class="zhuangtai" style="color:#A5937F" wx:if="{{item.status == 8}}">退货寄货中</view>
+                  <view class="zhuangtai" style="color:#A5937F" wx:if="{{item.status == 9}}">
+                    <view>退货中</view>
+                    <!-- <view>退货退款</view> -->
+                  </view>
+                  <view class="zhuangtai" style="color:#43A880" wx:if="{{item.status == 10}}">退货成功</view>
+                  <view class="zhuangtai" style="color:#C83D3D" wx:if="{{item.status == 11}}">   
+                    <view>商家拒绝</view>
+                    <!-- <view>退货退款</view> -->
+                  </view>
+                  <view class="zhuangtai" style="color:#555" wx:if="{{item.status == 12}}">关闭</view>
+                </view>
+                <view class='list_each_right_top_b'>
+                  <view class="guige">规格：{{item.goods.color}} / {{item.goods.sizes}}</view>
+                </view>
+              </view>
+              <view class='list_each_right_bottom'>
+                <view class="goods_price">￥{{item.goods.discountPrice}}</view>
+                <view class="goods_num">x{{item.quantity}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="list_bottom">
+          <view class="yunfeix">
+            <view class="money">运费险</view>
+            <view class="money">包邮</view>
+          </view>
+          <view class="yunfeix" wx:if="{{item.deductionPrice}}">
+            <view class="money">优惠券</view>
+            <view class="money">- ￥{{item.deductionPrice}}</view>
+          </view>
+          <view class="heji">共{{item.rels.length}}件商品，合计：
+            <view class="money">￥{{item.couponPrice || item.realPrice}}</view>
+          </view>
+          <view class="btn" wx:if="{{item.status==5}}">
+            <view class="wuliu" catchtap="goToDelete" data-id="{{item.tradeNo}}">删除订单</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <block wx:if="{{record.all.type !== ''}}">
+      <data-loading types="{{record.all.type}}" />
+    </block>
+  </view>
+</view>

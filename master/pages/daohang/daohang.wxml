@@ -1,0 +1,15 @@
+<view class="header" wx:for="{{shopList}}" wx:for-item="shopItem" wx:for-index="shopIndex" wx:key="index">
+  <view class='shopImg'>
+    <image src="{{shopItem.shopImageUrl}}" />
+  </view>
+  <view class="left">
+    <view class="name">{{shopItem.shopName}}</view>
+    <view class="tel">电话：{{shopItem.mobile}}</view>
+    <view class="dizhi">门店地址：{{shopItem.shopAddress}}</view>
+  </view>
+  <view class="right">{{shopItem.distance}}</view>
+  <!-- <view class="right" wx:else>{{parseInt(shopItem.distance)}} 米</view> -->
+</view>
+<block>
+  <data-loading types="{{list.type}}" />
+</block>

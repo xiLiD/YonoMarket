@@ -1,0 +1,173 @@
+<view class="order">
+  <view class="xuanze" wx:if="{{item.selected}}" catchtap="selectList" data-index="{{index}}">
+    <image src="/images/serch/xuanze.png" />
+  </view>
+  <view class="xuanze" catchtap="selectList" data-index="{{index}}" wx:else>
+    <image src="/images/serch/gouxuan.png" />
+  </view>
+  <!--列表商品图片-->
+  <view class="order_img">
+    <image src="/images/serch/2.png" />
+  </view>
+  <view class="order_text">
+    <view class="text_top">
+      <!--列表标题-->
+      <view class="title">伊芙琳玫瑰护手霜</view>
+      <view class="detel" catchtap="deletes" data-index="{{index}}">
+        <image src="/images/serch/detel.png" />
+      </view>
+    </view>
+    <!--规格-->
+    <view class="size">选择规格：
+      <image src="/images/detil/next.png" catchtap="goTotk" />
+    </view>
+    <view class="text_bottom">
+      <!--价格-->
+      <view class="money">￥128.88</view>
+      <!--商品数量加减-->
+      <view class="number">
+        <!--减按钮-->
+        <view class="reduce" catchtap="btn_minus" data-obj="{{obj}}" data-index="{{index}}">
+          <image src="/images/serch/jian-1.png" />
+        </view>
+        <!--数量-->
+        <view class="numb">6</view>
+        <!--加按钮-->
+        <view class="add" catchtap="btn_add" data-index="{{index}}">
+          <image src="/images/serch/add-1.png" />
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="text_title">推荐搭配</view>
+<view class="order_list">
+  <view class="order" wx:for="{{list}}" wx:key="{{index}}">
+    <view class="xuanze" wx:if="{{item.selected}}" catchtap="selectList" data-index="{{index}}">
+      <image src="/images/serch/xuanze.png" />
+    </view>
+    <view class="xuanze" catchtap="selectList" data-index="{{index}}" wx:else>
+      <image src="/images/serch/gouxuan.png" />
+    </view>
+    <!--列表商品图片-->
+    <view class="order_img">
+      <image src="{{item.image}}" />
+    </view>
+    <view class="order_text">
+      <view class="text_top">
+        <!--列表标题-->
+        <view class="title">{{item.title}}</view>
+        <view class="detel" catchtap="deletes" data-index="{{index}}">
+          <image src="/images/serch/detel.png" />
+        </view>
+      </view>
+      <!--规格-->
+      <view class="size">规格：{{item.pro_name}}</view>
+      <view class="text_bottom">
+        <!--价格-->
+        <view class="money">￥{{item.price}}</view>
+        <!--商品数量加减-->
+        <view class="number">
+          <!--减按钮-->
+          <view class="reduce" catchtap="btn_minus" data-obj="{{obj}}" data-index="{{index}}">
+            <image src="/images/serch/jian-1.png" />
+          </view>
+          <!--数量-->
+          <view class="numb">{{item.num}}</view>
+          <!--加按钮-->
+          <view class="add" catchtap="btn_add" data-index="{{index}}">
+            <image src="/images/serch/add-1.png" />
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!--弹框-->
+<view class="zzc" wx:if="{{isHide}}"></view>
+<view class="tank" wx:if="{{isShow}}">
+  <view class="order tankuang">
+    <!--列表商品图片-->
+    <view class="order_img">
+      <image src="/images/serch/2.png" />
+    </view>
+    <view class="order_text">
+      <view class="text_top">
+        <!--列表标题-->
+        <view class="title">伊芙琳玫瑰护手霜</view>
+      </view>
+      <!--规格-->
+      <view class="size">规格：680件</view>
+      <view class="text_bottom">
+        <!--价格-->
+        <view class="money">￥128.88</view>
+      </view>
+    </view>
+    <!--关闭按钮-->
+    <view class="guanbi">
+      <image src="/images/detil/guanbi.png" />
+    </view>
+  </view>
+  <view class="yanse">颜色</view>
+  <view class="color">
+    <view class="color_one {{item.id==dj?'active':''}}" wx:for="{{colorList}}" wx:for-item="item" wx:key="{{index}}" catchtap="goTocolor" data-id="{{item.id}}" data-name="{{item.text}}">{{item.text}}</view>
+  </view>
+  <view class="yanse chima">尺码</view>
+  <view class="color">
+    <view class="color_one chima_one {{item.id==chicun?'active':''}}" wx:for="{{chimaList}}" wx:for-item="item" wx:key="{{index}}" catchtap="goTochima" data-id="{{item.id}}" data-name="{{item.text}}">{{item.text}}</view>
+  </view>
+  <!--购买数量-->
+  <view class="gm_numb">
+    <view class="gm">购买数量</view>
+    <view class="gm_right">
+      <!--商品数量加减-->
+      <view class="number">
+        <!--减按钮-->
+        <view class="reduce" catchtap="btn_minus" data-obj="{{obj}}" data-index="{{index}}">
+          <image src="/images/serch/jian-1.png" />
+        </view>
+        <!--数量-->
+        <view class="numb">3</view>
+        <!--加按钮-->
+        <view class="add" catchtap="btn_add" data-index="{{index}}">
+          <image src="/images/serch/add-1.png" />
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="next">下一步</view>
+</view>
+
+<!--点击下一步 出来的第二个弹框-->
+<view class="tank" wx:if="{{isSee}}">
+  <view class="order tankuang">
+    <!--列表商品图片-->
+    <view class="order_img">
+      <image src="/images/serch/2.png" />
+    </view>
+    <view class="order_text">
+      <view class="text_top">
+        <!--列表标题-->
+        <view class="title">伊芙琳玫瑰护手霜</view>
+      </view>
+      <!--规格-->
+      <view class="size">规格：680件</view>
+      <view class="text_bottom">
+        <!--价格-->
+        <view class="money">￥128.88</view>
+      </view>
+    </view>
+    <!--关闭按钮-->
+    <view class="guanbi">
+      <image src="/images/detil/guanbi.png" />
+    </view>
+  </view>
+  <view class="juli">距离您最近的店铺：<view class="zuijin">德玛西亚店铺</view></view>
+  
+  <view class="two_next">
+    <view class="next twoIcon">上一步</view>
+    <view class="next">确认</view>
+  </view>
+</view>

@@ -1,0 +1,166 @@
+<view class="header_top">
+  <view class="tab {{status==''?'animate_active':''}}" catchtap="goTotab" data-id="">
+    <text>全部</text>
+    <view class='line_bottom'></view>
+    <!-- <view class='icon_num' wx:if="{{record.all.list.length > 0}}">{{record.all.list.length}}</view> -->
+  </view>
+  <view class="tab {{status==1?'animate_active':''}}" catchtap="goTotab" data-id="1">
+    <text>申请中</text>
+    <view class='line_bottom'></view>
+    <!-- <view class='icon_num' wx:if="{{record.progress.list.length > 0}}">{{record.progress.list.length}}</view> -->
+  </view>
+  <view class="tab {{status==2?'animate_active':''}}" catchtap="goTotab" data-id="2">
+    <text>已成功</text>
+    <view class='line_bottom'></view>
+    <!-- <view class='icon_num' wx:if="{{record.finish.list.length > 0}}">{{record.finish.list.length}}</view> -->
+  </view>
+  <view class="tab {{status==4?'animate_active':''}}" catchtap="goTotab" data-id="4">
+    <text>已失效</text>
+    <view class='line_bottom'></view>
+    <!-- <view class='icon_num' wx:if="{{record.lose.list.length > 0}}">{{record.lose.list.length}}</view> -->
+  </view>
+  <view class="tab {{status==5?'animate_active':''}}" catchtap="goTotab" data-id="5">
+    <text>已取消</text>
+    <view class='line_bottom'></view>
+    <!-- <view class='icon_num' wx:if="{{record.cancle.list.length > 0}}">{{record.cancle.list.length}}</view> -->
+  </view>
+</view>
+
+<view class='animation_box_center'>
+  <view class="animation_box {{status == '' ? 'aleft' : ''}}" wx:if="{{status == ''}}">
+    <view class="header" wx:for="{{record.all.list}}" wx:for-item="recordItem" wx:for-index="recordIndex" data-id="{{recordItem.id}}" wx:if="{{record.all.list.length > 0}}" catchtap="toDetails" data-id="{{recordItem.id}}">
+      <view class="left">
+        <image src="{{recordItem.shopImg}}" />
+      </view>
+      <view class="text_box">
+        <view class="name">预约门店：{{recordItem.shopName}}</view>
+        <view class="name_one">
+          <text>预约时间：</text> {{recordItem.makeTime}}</view>
+        <view class="name_one name_address">
+          <text>门店地址：</text>{{recordItem.shopAddress}}</view>
+        <view class="name_one">
+          <text>衣服名称：</text>{{recordItem.goodsName}}</view>
+        <view class="name_one">
+          <text>颜色/规格：</text>{{recordItem.csrName}}</view>
+      </view>
+      <view class='status' style="color:orange" wx:if="{{recordItem.status == 1}}">申请中</view>
+      <view class='status' style="color:#ae9d8c" wx:if="{{recordItem.status == 2}}">已完成</view>
+      <view class='status' style="color:#F56C6C" wx:if="{{recordItem.status == 3}}">已拒绝</view>
+      <view class='status' style="color:#b2b2b2" wx:if="{{recordItem.status == 4}}">已失效</view>
+      <view class='status' style="color:#c98d8d" wx:if="{{recordItem.status == 5}}">已取消</view>
+    </view>
+    <block wx:if="{{record.all.type !== ''}}">
+      <data-loading types="{{record.all.type}}"></data-loading>
+    </block>
+  </view>
+
+
+  <view class="animation_box {{status == 1 ? 'aleft' : ''}}" wx:if="{{status == 1}}">
+    <view class="header" wx:for="{{record.progress.list}}" wx:for-item="recordItem" wx:for-index="recordIndex" data-id="{{recordItem.id}}" wx:if="{{record.progress.list.length > 0}}" catchtap="toDetails">
+      <view class="left">
+        <image src="{{recordItem.shopImg}}" />
+      </view>
+      <view class="text_box">
+        <view class="name">预约门店：{{recordItem.shopName}}</view>
+        <view class="name_one">
+          <text>预约时间：</text> {{recordItem.makeTime}}</view>
+        <view class="name_one name_address">
+          <text>门店地址：</text>{{recordItem.shopAddress}}</view>
+        <view class="name_one">
+          <text>衣服名称：</text>{{recordItem.goodsName}}</view>
+        <view class="name_one">
+          <text>颜色/规格：</text>{{recordItem.csrName}}</view>
+      </view>
+      <view class='status' style="color:orange" wx:if="{{recordItem.status == 1}}">申请中</view>
+      <view class='status' style="color:#ae9d8c" wx:if="{{recordItem.status == 2}}">已完成</view>
+      <view class='status' style="color:#F56C6C" wx:if="{{recordItem.status == 3}}">已拒绝</view>
+      <view class='status' style="color:#b2b2b2" wx:if="{{recordItem.status == 4}}">已失效</view>
+      <view class='status' style="color:#c98d8d" wx:if="{{recordItem.status == 5}}">已取消</view>
+    </view>
+    <block wx:if="{{record.progress.type !== ''}}">
+      <data-loading types="{{record.progress.type}}"></data-loading>
+    </block>
+  </view>
+
+  <view class="animation_box {{status == 2 ? 'aleft' : ''}}" wx:if="{{status == 2}}">
+    <view class="header" wx:for="{{record.finish.list}}" wx:for-item="recordItem" wx:for-index="recordIndex" data-id="{{recordItem.id}}" wx:if="{{record.finish.list.length > 0}}" catchtap="toDetails" data-id="{{recordItem.id}}">
+      <view class="left">
+        <image src="{{recordItem.shopImg}}" />
+      </view>
+      <view class="text_box">
+        <view class="name">预约门店：{{recordItem.shopName}}</view>
+        <view class="name_one">
+          <text>预约时间：</text> {{recordItem.makeTime}}</view>
+        <view class="name_one name_address">
+          <text>门店地址：</text>{{recordItem.shopAddress}}</view>
+        <view class="name_one">
+          <text>衣服名称：</text>{{recordItem.goodsName}}</view>
+        <view class="name_one">
+          <text>颜色/规格：</text>{{recordItem.csrName}}</view>
+      </view>
+      <view class='status' style="color:orange" wx:if="{{recordItem.status == 1}}">申请中</view>
+      <view class='status' style="color:#ae9d8c" wx:if="{{recordItem.status == 2}}">已完成</view>
+      <view class='status' style="color:#F56C6C" wx:if="{{recordItem.status == 3}}">已拒绝</view>
+      <view class='status' style="color:#b2b2b2" wx:if="{{recordItem.status == 4}}">已失效</view>
+      <view class='status' style="color:#c98d8d" wx:if="{{recordItem.status == 5}}">已取消</view>
+    </view>
+    <block>
+      <data-loading types="{{record.finish.type}}"></data-loading>
+    </block>
+  </view>
+
+  <view class="animation_box {{status == 4 ? 'aleft' : ''}}" wx:if="{{status == 4}}">
+    <view class="header" wx:for="{{record.lose.list}}" wx:for-item="recordItem" wx:for-index="recordIndex" data-id="{{recordItem.id}}" wx:if="{{record.lose.list.length > 0}}" catchtap="toDetails" data-id="{{recordItem.id}}">
+      <view class="left">
+        <image src="{{recordItem.shopImg}}" />
+      </view>
+      <view class="text_box">
+        <view class="name">预约门店：{{recordItem.shopName}}</view>
+        <view class="name_one">
+          <text>预约时间：</text> {{recordItem.makeTime}}</view>
+        <view class="name_one name_address">
+          <text>门店地址：</text>{{recordItem.shopAddress}}</view>
+        <view class="name_one">
+          <text>衣服名称：</text>{{recordItem.goodsName}}</view>
+        <view class="name_one">
+          <text>颜色/规格：</text>{{recordItem.csrName}}</view>
+      </view>
+      <view class='status' style="color:orange" wx:if="{{recordItem.status == 1}}">申请中</view>
+      <view class='status' style="color:#ae9d8c" wx:if="{{recordItem.status == 2}}">已完成</view>
+      <view class='status' style="color:#F56C6C" wx:if="{{recordItem.status == 3}}">已拒绝</view>
+      <view class='status' style="color:#b2b2b2" wx:if="{{recordItem.status == 4}}">已失效</view>
+      <view class='status' style="color:#c98d8d" wx:if="{{recordItem.status == 5}}">已取消</view>
+    </view>
+    <block wx:if="{{record.lose.type !== ''}}">
+      <data-loading types="{{record.lose.type}}"></data-loading>
+    </block>
+  </view>
+
+
+  <view class="animation_box {{status == 5 ? 'aleft' : ''}}" wx:if="{{status == 5}}">
+    <view class="header" wx:for="{{record.cancle.list}}" wx:for-item="recordItem" wx:for-index="recordIndex" data-id="{{recordItem.id}}" wx:if="{{record.cancle.list.length > 0}}" catchtap="toDetails" data-id="{{recordItem.id}}">
+      <view class="left">
+        <image src="{{recordItem.shopImg}}" />
+      </view>
+      <view class="text_box">
+        <view class="name">预约门店：{{recordItem.shopName}}</view>
+        <view class="name_one">
+          <text>预约时间：</text> {{recordItem.makeTime}}</view>
+        <view class="name_one name_address">
+          <text>门店地址：</text>{{recordItem.shopAddress}}</view>
+        <view class="name_one">
+          <text>衣服名称：</text>{{recordItem.goodsName}}</view>
+        <view class="name_one">
+          <text>颜色/规格：</text>{{recordItem.csrName}}</view>
+      </view>
+      <view class='status' style="color:orange" wx:if="{{recordItem.status == 1}}">申请中</view>
+      <view class='status' style="color:#ae9d8c" wx:if="{{recordItem.status == 2}}">已完成</view>
+      <view class='status' style="color:#F56C6C" wx:if="{{recordItem.status == 3}}">已拒绝</view>
+      <view class='status' style="color:#b2b2b2" wx:if="{{recordItem.status == 4}}">已失效</view>
+      <view class='status' style="color:#c98d8d" wx:if="{{recordItem.status == 5}}">已取消</view>
+    </view>
+    <block wx:if="{{record.cancle.type !== ''}}">
+      <data-loading types="{{record.cancle.type}}"></data-loading>
+    </block>
+  </view>
+</view>

@@ -1,0 +1,4 @@
+/* components/data-loading/data-loading.wxss */
+.data-loading{padding:30rpx;text-align: center;background: #fff;border-radius: 10rpx;width:90%;margin:20rpx auto;font-size: 28rpx;box-sizing: border-box;}
+.data-loading.not-data{padding:200rpx 0;}
+.iconfont{font-size: 150rpx;}

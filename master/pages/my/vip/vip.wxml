@@ -1,0 +1,50 @@
+<form bindsubmit="formSubmit">
+  <view class="header">
+    <!-- <view class="name">会员卡号
+      <input type="number" name="phone" placeholder="请填写会员卡号"></input>
+    </view>
+    <view class="xingbie">会员级别
+      <picker name="xingbie" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view class="picker {{dj?'active':''}}">
+          {{array[index]}}
+          <view class="sm">
+            <view class="shuoming" catchtap="goTosm">
+              <image src="/images/my/sm.png" />
+            </view>
+            <view class="next">
+              <image src="/images/my/next.png" />
+            </view>
+          </view>
+        </view>
+      </picker>
+    </view> -->
+    <view class="tishi_img"><image src="/images/jifen/tishi.png" /></view>
+    <view class="phone">会员姓名
+      <input type="text" name="name" placeholder="请填写会员姓名"></input>
+    </view>
+    <view class="diqu">生日信息
+      <picker name="diqu" mode="date" bindchange="bindDateChange" value="{{date}}">
+        <view class="picker1">
+          {{date}}
+          <view class="next">
+            <image src="/images/my/next.png" />
+          </view>
+        </view>
+      </picker>
+    </view>
+  </view>
+  <view class="btn_box">
+    <button class="btn" hover-class='detail-hover' form-type="submit">确定</button>
+  </view>
+</form>
+<!--弹窗提示-->
+<view class="zzc" wx:if="{{isHiden}}"></view>
+<view class="tankuang" wx:if="{{isHiden}}">
+  <view class="biaoti">会员卡说明</view>
+  <view class="wen">1元=1积分，会员卡升级后永久有效，积分不清零</view>
+  <view class="sm_img"><image src="/images/my/sm-1.png" /></view>
+  <view class="btnBox">
+    <view class="shanchu" catchtap="quxiao">确定</view>
+  </view>
+  <view class="quxiao" catchtap="quxiao"><image src="/images/my/guanbi.png" /></view>
+</view>

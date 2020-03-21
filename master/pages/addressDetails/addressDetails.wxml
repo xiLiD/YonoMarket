@@ -1,0 +1,67 @@
+<view class="header" wx:for="{{addressList}}" wx:for-item="item" wx:key catchtap="goorder" data-index="{{index}}" wx:if="{{!showAdd}}"
+data-id="{{item.id}}" data-address="{{item.address}}" data-addressdetails="{{item.addressDetail}}"
+>
+  <view class="tab">
+    <view class="left">
+      <view class="name">{{item.name}}</view>
+      <view class="tel">{{item.phone}}</view>
+    </view>
+  </view>
+  <view class="dizhi">{{item.address}} {{item.addressDetail}}</view>
+  <view class="xuanze" wx:if="{{showId == item.id}}">
+    <view class="xz_img" catchtap="goToxuanze"  data-zhuangtai="{{item.isDefault}}" data-index="{{index}}">
+      <image src="/images/my/xz.png" />
+    </view>
+    <!-- <view class="xz_img" catchtap="goToxuanze" data-zhuangtai="{{item.isDefault}}" data-index="{{index}}" wx:else>
+      <image src="/images/my/wxz.png" />
+    </view>
+    <view class="moren">默认地址</view> -->
+  </view>
+</view>
+
+<view class="btn" catchtap="showAdd" wx:if="{{!showAdd}}">+ 新增收货地址</view>
+
+
+
+<form bindsubmit="formSubmit" wx:if="{{showAdd}}">
+  <view class="header">
+    <view class="name">姓名
+      <input type="text" name="name" value="{{name}}" placeholder="请填写收货人姓名" />
+    </view>
+    <view class="xingbie">性别
+      <picker name="xingbie" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view class="picker {{dj?'active':''}}">
+          {{array[index]}}
+          <view class="next">
+            <image src="/images/my/next.png" />
+          </view>
+        </view>
+      </picker>
+    </view>
+    <view class="phone">手机号
+      <input type="number" name="phone" value="{{phone}}" placeholder="请填写收货手机号码" />
+    </view>
+    <view class="diqu">所在地区
+      <picker name="diqu" mode="region" bindchange="bindPickerChangeone" value="{{region}}">
+        <view class="picker1">
+          <block wx:if="{{djone==1}}"> {{region[0]}}</block>
+          <block wx:if="{{djone==2}}"> {{region[0]}} {{region[1]}} {{region[2]}}</block>
+          <view class="next">
+            <image src="/images/my/next.png" />
+          </view>
+        </view>
+      </picker>
+    </view>
+    <view class="diqu">地址详情
+      <input type="text" class="addressdetails" name="addressdetails" value="{{addressdetails}}" placeholder="请填写地址详情" />
+    </view>
+
+    <!-- <view class="moren">设为默认
+      <switch style="zoom:0.6;" name="xuanze" checked="{{switch1Checked}}" bindchange="switch1Change" color="{{switchColor}}" />
+    </view> -->
+
+  </view>
+  <view class="btn_box">
+    <button class="btn" hover-class='detail-hover' form-type="submit">保存</button>
+  </view>
+</form>

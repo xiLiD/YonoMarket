@@ -1,0 +1,327 @@
+.serch {
+  height: 74rpx;
+  margin: 25rpx 40rpx 0;
+  background-color: #f4f4f4;
+  border-radius: 4rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.serch_input {
+  height: 74rpx;
+  width: 80%;
+  line-height: 74rpx;
+  font-size: 26rpx;
+  color: #AAAAAA;
+  padding-left: 20rpx;
+}
+
+.secIcon {
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 17rpx;
+}
+
+.secIcon image{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/*tab栏*/
+
+.tabList {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20rpx 28rpx;
+}
+
+.tab {
+  width: 130rpx;
+  text-align: center;
+  margin: 21rpx;
+}
+
+.tabImg {
+  width: 130rpx;
+  height: 130rpx;
+  position: relative;
+  border-radius: 10rpx;
+  box-shadow: 0 0 20rpx -5rpx #A5937F;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.tabImg image{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  /* position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -65rpx;
+  margin-top: -65rpx; */
+}
+
+.tabImg view{
+  text-align: center;
+  line-height: 130rpx;
+  width: 100%;
+  height: 100%;
+  display: block;
+  font-size: 40rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -65rpx;
+  margin-top: -65rpx;}
+
+.tabText {
+  font-size: 22rpx;
+  color: #555;
+  margin-top: 20rpx;
+}
+
+.banner {
+  /* margin-bottom: 50rpx; */
+  /* height: 720rpx; */
+  width: 100%;
+  height : auto;
+  overflow: hidden;
+  border-radius: 10rpx;
+  /* box-shadow:  0 0 20rpx -5rpx #ddd; */
+  margin : 0 auto 50rpx;
+}
+
+.banner image {
+  width: 100%;
+  height : 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.banner image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.two {
+  margin-top: 46rpx;
+  
+}
+
+/*商品列表*/
+
+/* .goods {
+  border: 1px solid red;
+} */
+
+.goodsName {
+  padding: 0rpx 0;
+  margin: 0 40rpx;
+  /* border-bottom: 2rpx solid #222; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.goods_left {
+  width: 404rpx;
+  /* height: 34rpx; */
+  font-size:24rpx;
+  padding : 0rpx 20rpx;
+  border-left : 4rpx solid #222222;
+  font-weight: bold;
+}
+
+.goods_left image {
+  width: 100%;
+  height: 100%;
+  
+  display: block;
+}
+
+.goods_right {
+  width: 92rpx;
+  height: 22rpx;
+}
+
+.goods_right image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/*商品列表*/
+
+.goods_list {
+  margin: 40rpx 60rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.list {
+  width: 300rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+  box-shadow: 0 0 20rpx -5rpx #ddd;
+  margin-bottom : 30rpx;
+  box-sizing: border-box;
+  break-inside: avoid;
+  padding : 10px;
+}
+/* .list:first-of-type{
+  margin-bottom: 40rpx;
+} */
+
+.list_img {
+  /* width: 100%; */
+  /* width: 325rpx; */
+  height: 325rpx;
+
+}
+
+.list_img image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.list_title {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 24rpx;
+  color: #555;
+  margin: 20rpx 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+.list_money {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list_left {
+  font-size: 28rpx;
+  color: #a5937f;
+}
+
+.list_right {
+  font-size: 22rpx;
+  color: #aaa;
+  text-decoration: line-through;
+}
+.goods_baner{
+  font-size: 22rpx;
+  color: #AAAAAA;
+  margin: 0 60rpx 20rpx 60rpx;
+  line-height: 40rpx;
+}
+.team_box{
+  margin: 40rpx 60rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.goods .team_box:last-of-type{
+  margin-bottom: 170rpx;
+}
+.team_userimg{
+  margin-right: 22rpx;
+  flex-shrink: 0;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+.team_userimg image{
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 50%;
+}
+.team_right{
+  padding-top: 24rpx;
+}
+.team_title{
+  font-size: 26rpx;
+  color: #222222;
+}
+.team_imgbox{
+  width: 496rpx;
+  height: 160rpx;
+  background-color: #EEEEEE;
+  border-radius: 10rpx;
+  margin-top: 22rpx;
+  display: flex;
+  align-items: center;
+  padding: 15rpx;
+  position: relative;
+}
+
+.imgbox{
+  width: 130rpx;
+  height: 130rpx;
+  display: inline-block;
+  background-color: #fff;
+  border-radius: 10rpx;
+  margin-right:15rpx; 
+}
+.imgbox image{
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 10rpx;
+}
+.next{
+  width: 30rpx;
+  height: 30rpx;
+  margin-left: 18rpx;
+}
+.next image{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.no_goods {
+  font-size : 26rpx;
+  color : #999;
+  position: absolute;
+  left : 50%;
+  transform: translateX(-50%);
+}
+/* .lunbo_swipper {
+  height : 400rpx;
+}
+.lunbo_swipper .slide-image{
+  width: 100%;
+  height : 100%;
+} */
+.lunbo_swipper {
+  /* height : 500rpx; */
+  width: 100%;
+  margin:40rpx 0;
+}
+.lunbo_swipper image {
+  width: 100%;
+  /* height : 500rpx; */
+  margin: 0 auto;
+}
+.lunbo_swipper swiper-item {
+  display: flex;
+}

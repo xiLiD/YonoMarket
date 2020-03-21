@@ -1,0 +1,84 @@
+<view class="header">
+  <view class="tab {{dj==1?'animate_active':''}}" catchtap="goTotab" data-id="1">
+    <text>商品</text>
+    <view class='line_bottom'></view>
+    <!-- <view class='icon_num' wx:if="{{goods.list.length > 0}}">{{goods.list.length}}</view> -->
+  </view>
+  <view class="tab {{dj==2?'animate_active':''}}" catchtap="goTotab" data-id="2">
+    <text>文章</text>
+    <view class='line_bottom'></view>
+    <!-- <view class='icon_num' wx:if="{{article.list.length > 0}}">{{article.list.length}}</view> -->
+  </view>
+</view>
+
+<view class='animation_box_center'>
+  <view class="animation_box {{dj == 1 ? 'aleft' : ''}}" wx:if="{{dj == 1}}">
+    <view class="tab_list" wx:for="{{goods.list}}" wx:for-item="item" wx:for-index="index" wx:key catchtap="goTothxq" data-id="{{item.id}}">
+      <view class="list_img">
+        <image src="{{item.imgPath1}}" />
+      </view>
+      <view class="list_text">
+        <view class="title">{{item.name}}</view>
+        <view class="guige">{{item.description}}</view>
+        <view class="money">￥{{item.discountPrice}}</view>
+      </view>
+    </view>
+    <block wx:if="{{goods.type !== ''}}">
+      <data-loading types="{{goods.type}}" />
+    </block>
+  </view>
+
+  <view class="animation_box {{dj == 2 ? 'aleft' : ''}}" wx:if="{{dj == 2}}">
+    <view class="tab_list" wx:for="{{article.list}}" wx:for-item="item" wx:for-index="index" wx:key catchtap="goToArticlexq" data-id="{{item.id}}">
+      <view class="list_img">
+        <image src="{{item.img}}" />
+      </view>
+      <view class="list_text">
+        <view class="title">{{item.name}}</view>
+        <!-- <view class="guige">规格：175     颜色：米色</view> -->
+        <view class="details">{{item.intro}}</view>
+      </view>
+    </view>
+    <block wx:if="{{article.type !== ''}}">
+      <data-loading types="{{article.type}}" />
+    </block>
+  </view>
+</view>
+<!-- <view wx:if="{{dj==1}} {{dj == 1 ? 'aleft' : ''}} {{dj == 2 ? 'aleft_n1' : ''}}">
+  <view class="tab_list" wx:for="{{th_List}}" wx:for-item="item" wx:for-index="index" wx:key catchtap="goTothxq" data-id="{{item.id}}">
+    <view class="list_img">
+      <image src="{{item.imgPath1}}" />
+    </view>
+    <view class="list_text">
+      <view class="title">{{item.name}}</view>
+      <view class="money">￥{{item.discountPrice}}</view>
+    </view>
+  </view>
+  <block wx:if="{{th_List.length<=0}}">
+    <data-loading types="0" />
+  </block>
+</view>
+
+<view wx:if="{{dj==2}}">
+  <view class="tab_list" wx:for="{{articleList}}" wx:for-item="item" wx:for-index="index" wx:key catchtap="goTothxq" data-id="{{item.id}}">
+    <view class="list_img">
+      <image src="{{item.imgPath1}}" />
+    </view>
+    <view class="list_text">
+      <view class="title">{{item.name}}</view>
+      <view class="money">￥{{item.discountPrice}}</view>
+    </view>
+  </view>
+  <block wx:if="{{articleList.length<=0}}">
+    <data-loading types="0" />
+  </block>
+</view> -->
+
+<!-- <view class="tab_list">
+  <view class="list_img"><image src="/images/serch/1.png" /></view>
+  <view class="list_text">
+    <view class="title">橙妆艾草蒸汽眼罩/秋装港风chic日系宽松简直是帅炸</view>
+    <view class="guige">规格：175     颜色：米色</view>
+    <view class="money">￥128.88</view>
+  </view>
+</view> -->

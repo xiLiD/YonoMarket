@@ -1,0 +1,61 @@
+<view class="header">
+  <view class="left">
+    <image src="{{goods.goodsimg}}" />
+  </view>
+  <view class="right">
+    <view class="r_top">
+      <view class="r_title">{{goods.goodsname}}</view>
+      <view class="r_text">规格：{{goods.guigecolor}} / {{goods.guigesize}}</view>
+    </view>
+    <view class="t_bottom">
+      <view class="r_bl">￥{{goods.goodsmoney}}</view>
+      <view class="r_br">x{{goods.num}}</view>
+    </view>
+  </view>
+</view>
+<view class="xinxi">
+  <view class="jintui" catchtap="goTojintuikuan" data-goodsImg="{{goods.goodsimg}}" data-goodsName="{{goods.goodsname}}" data-guigeColor="{{goods.guigecolor}}" data-guigeSize="{{goods.guigesize}}" data-goodsMoney="{{goods.goodsmoney}}" data-num="{{goods.num}}"
+        data-totalPrice="{{goods.totalPrice}}" data-dingdan="{{goods.dingdan}}" data-zidingdan="{{goods.zidingdan}}" data-title="仅退款">
+    <view class="jt_box">
+      <view class="jt_img">
+        <image src="/images/my/jtk.png" />
+      </view>
+      <view class="jt_center">
+        <view class="jt_title">仅退款</view>
+        <view class="jt_text">未收到货（包含未签收），或卖家协商同意前提下</view>
+      </view>
+    </view>
+    <view class="jt_icon">
+      <image src="/images/my/next.png" />
+    </view>
+  </view>
+  <view class="jintui center" catchtap="goTothtk" data-goodsImg="{{goods.goodsimg}}" data-goodsName="{{goods.goodsname}}" data-guigeColor="{{goods.guigecolor}}" data-guigeSize="{{goods.guigesize}}" data-goodsMoney="{{goods.goodsmoney}}" data-num="{{goods.num}}"
+    data-totalPrice="{{goods.totalPrice}}" data-dingdan="{{goods.dingdan}}" data-zidingdan="{{goods.zidingdan}}" data-title="退货退款">
+    <view class="jt_box">
+      <view class="jt_img">
+        <image src="/images/my/thtk.png" />
+      </view>
+      <view class="jt_center">
+        <view class="jt_title">退货退款</view>
+        <view class="jt_text">已收到货，需要退换已收到的货物</view>
+      </view>
+    </view>
+    <view class="jt_icon">
+      <image src="/images/my/next.png" />
+    </view>
+  </view>
+  <!-- <view class="jintui" catchtap="goTohuanhuo"  data-goodsImg="{{goods.goodsimg}}" data-goodsName="{{goods.goodsname}}" data-guigeColor="{{goods.guigecolor}}" data-guigeSize="{{goods.guigesize}}" data-goodsMoney="{{goods.goodsmoney}}" data-num="{{goods.num}}" data-totalPrice="{{goods.totalPrice}}" data-dingdan="{{goods.dingdan}}" data-zidingdan="{{goods.zidingdan}}" data-title="换货">
+    <view class="jt_box">
+      <view class="jt_img">
+        <image src="/images/my/hh.png" />
+      </view>
+      <view class="jt_center">
+        <view class="jt_title">换货</view>
+        <view class="jt_text">已收到货，需要更换已收到的货</view>
+      </view>
+    </view>
+    <view class="jt_icon">
+      <image src="/images/my/next.png" />
+    </view>
+  </view> -->
+</view>

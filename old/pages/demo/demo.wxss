@@ -1,0 +1,33 @@
+/**index.wxss**/
+.body{font-size: 28rpx;}
+scroll-view{height:90%}
+.li{width:250rpx;height:50rpx;line-height: 50rpx;text-align: center;border:1rpx solid #ddd;border-radius: 10rpx;margin:20rpx auto;background: #fff;}
+/* .li button{width:99%;height:46rpx;line-height: 50rpx;border-radius: 10rpx;margin-left:1%;} */
+page{
+font-family:PingFang SC;}
+
+.shop_info{padding: 31rpx 39rpx 28rpx 30rpx;background-color: #F5F5F5;}
+.user_head{width:90rpx;height:90rpx;border:1px solid rgba(112,112,112,1);border-radius:50%;margin-right: 31rpx;background-size: 100% 100%;}
+.shop_name{font-size:32rpx;font-weight:bold;color:rgba(34,34,34,1);}
+.shop_desc{font-size:24rpx;font-weight:500;color:rgba(153,153,153,1);padding-top: 8rpx;}
+.focuson{background-image: url('https://game.flyh5.cn/resources/game/wechat/ly/YueCarrie/WeChat_bt.png');width: 240rpx;height: 80rpx;background-size: 100% 100%;}
+.information{padding-top: 51rpx;}
+.information>.title{font-size:32rpx;font-weight:bold;color:rgba(34,34,34,1);padding: 0rpx 0rpx 10rpx 0rpx;display: block;}
+.information>.desc{font-size:24rpx;font-weight:500;color:rgba(153,153,153,1);}
+
+.slide{height: 1000rpx;}
+.meun{margin: 10rpx 0rpx;}
+.meun_name{font-weight:500;font-size:24rpx;color:rgba(34,34,34,1);display: block;padding-top: 8rpx;}
+.meun_name .this{color:rgba(153,153,153,1);}
+
+.goods_list{padding: 19rpx;overflow: hidden;}
+.goods{width:337rpx;background:rgba(255,255,255,1);box-shadow:0px 2rpx 8rpx rgba(103,103,103,0.09);border-radius:8rpx;margin: 10rpx 10rpx;display: block;}
+.goods>.goods_img{width: 100%;}
+.goods_info{padding: 20rpx;}
+.goods_info text:first-child{font-size:28rpx;font-weight:500;color:rgba(34,34,34,1);}
+.goods_info text:last-child{font-size:20rpx;font-weight:500;color:rgba(153,153,153,1);padding-top: 10rpx;display: block;}
+image{width: 100%;height: auto;}
+
+.swiper-item{background-size: 100% 100%;height: 100%;}
+navigator{overflow: hidden;}
+.meun_this{color:#999999}

@@ -1,0 +1,17 @@
+<view class="header">
+  <view class="user_img">
+    <image src="{{vipCard.member.avatarUrl}}" />
+  </view>
+  <view class="user_name">{{vipCard.member.nickName}}</view>
+</view>
+<view class="card">
+  <image src="/images/jifen/hyk.png" />
+  <view class="ka_hao">{{vipCard.memberCard.cardNumber}}</view>
+  <view class="ka_name">{{vipCard.memberCard.cardGradeName}}</view>
+  <view class="ka_time">生日: {{vipCard.memberCard.birthday}}</view>
+</view>
+<!-- <view class="shuoming">
+  <view class="sm">会员卡说明</view>
+  <view class="sm_text">1元=1积分，会员卡升级后永久有效，积分不清零</view>
+  <view class="sm_img"><image src="/images/my/sm-1.png" /></view>
+</view> -->

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "优秀团队列表",
+  "usingComponents": {
+    "data-loading": "/components/data-loading/data-loading"
+  }
+}

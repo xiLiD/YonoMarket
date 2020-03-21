@@ -1,0 +1,45 @@
+<view class="header">
+  <view class="serch">
+    <input placeholder="输入关键词来进行搜索" value="{{isText}}" bindinput="bindKeyInput" />
+    <view class="serch_img" catchtap="getsousuo" data-name="{{inputValue}}">
+      <image src="../../images/serch/serch.png" />
+    </view>
+  </view>
+  <view class='team_box' wx:for="{{teamList}}" wx:for-item="teamItem" wx:for-index="teamIndex" wx:key="teamIndex">
+    <view class='team_box_t'>
+      <view class='team_list'>
+        <view class='team_left '>
+          <image src='{{teamItem.img}}'></image>
+        </view>
+        <view class='team_right '>
+          <view class='team_title '>
+            <text>{{teamItem.name}}</text>
+          </view>
+          <view class='team_details '>
+            <text>{{teamItem.introduce}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='team_box_g'>
+      <view class="team_imgbox" data-id="{{teamItem.id}}">
+        <view class="prev" catchtap="goToprev" data-index='{{teamIndex}}' wx:if="{{teamItem.goods_list.length > 0}}" > 
+          <image src="/images/next.png" />
+        </view>
+        <scroll-view scroll-x style="width: 540rpx; white-space: nowrap;position:relative" bindscrolltolower="lower" scroll-left="{{teamItem.scrollLeft}}" scroll-with-animation="{{true}}" wx:if="{{teamItem.goods_list.length > 0}}">
+          <view class="imgbox" wx:for="{{teamItem.goods_list}}" wx:for-item="listItem" wx:for-index="listIndex" catchtap="linkNav" data-link="/pages/details/details?goodid={{listItem.id}}" wx:key="listIndex">
+            <image src="{{listItem.mainImgPath}}" />
+            <view class='price_bottom' style='text-align:center'>￥{{listItem.discountPrice}}</view>
+          </view>
+        </scroll-view>
+        <view class="next" catchtap="goTonext" data-index='{{teamIndex}}' wx:if="{{teamItem.goods_list.length > 0}}" > 
+          <image src="/images/next.png" />
+        </view>
+        <view class='no_goods' wx:else>暂无商品</view>
+      </view>  
+      <block wx:if="{{teamList.length == 0}}">
+        <data-loading types="0"></data-loading>
+      </block>
+    </view>
+  </view>
+</view>

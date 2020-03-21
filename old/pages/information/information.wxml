@@ -1,0 +1,129 @@
+<view class="header" wx:for="{{orderList.rels}}" wx:for-item="orderItem" wx:for-index="orderIndex">
+  <view class="head_l"><image src="{{orderItem.mainPathImg}}" /></view>
+  <view class="head_r">
+    <view class="right_t" wx:if="{{orderItem.status == 4}}">配送中</view>
+    <view class="right_t" wx:if="{{orderItem.status == 5}}">已签收</view>
+    <view class="right_t" wx:if="{{orderItem.status == 7}}">待退货</view>
+    <view class="right_t" wx:if="{{orderItem.status == 8}}">买家寄货中</view>
+    <view class="right_t" wx:if="{{orderItem.status == 9}}">退货中</view>
+    <view class="right_t" wx:if="{{orderItem.status == 10}}">退货成功</view>
+    <view class="right_t" wx:if="{{orderItem.status == 11}}">已拒绝</view>
+    <view class='right_b'>{{orderItem.goodsName}}</view>
+  </view>
+</view>
+<view class="dingdan">
+  <view class="zhuizong">订单追踪</view>
+  <view class="dd_box" wx:for="{{wuliList.contents}}" wx:for-item="wuliItem" wx:for-index="wuliIndex">
+    <view class="dd_time">
+      <view class="time_t {{wuliIndex != 0 ? 'shixiao' : ''}}">{{wuliItem.day}}</view>
+      <view class="time_b {{wuliIndex != 0 ? 'shixiao' : ''}}">{{wuliItem.time_details}}</view>
+    </view>
+    <view class="zhuangtai">
+      <view class="zt_img"><image src="/images/wuliu/yiqianshou.png" /></view>
+      <view class="shuxian"></view>
+    </view>
+    <view class="title">
+      <!-- <view class="tt_name"></view> -->
+      <view class="tt_text {{wuliIndex != 0 ? 'shixiao' : ''}}">{{wuliItem.status}}</view>
+    </view>
+  </view>
+  
+  <!-- <view class="dd_box shixiao">
+    <view class="dd_time">
+      <view class="time_t shixiao">04-28</view>
+      <view class="time_b shixiao">21:22</view>
+    </view>
+    <view class="zhuangtai">
+      <view class="zt_img"><image src="/images/wuliu/daiqujian.png" /></view>
+      <view class="shuxian"></view>
+    </view>
+    <view class="title">
+      <view class="tt_name shixiao">待取件</view>
+      <view class="tt_text shixiao">[自提柜] 您的快件已存放至碧涛苑，请及时取件。有问题联系派件员13360500627</view>
+    </view>
+  </view>
+  <view class="dd_box">
+    <view class="dd_time">
+      <view class="time_t shixiao">04-28</view>
+      <view class="time_b shixiao">21:22</view>
+    </view>
+    <view class="zhuangtai">
+      <view class="zt_img"><image src="/images/wuliu/paisongzhong.png" /></view>
+      <view class="shuxian"></view>
+    </view>
+    <view class="title">
+      <view class="tt_name shixiao">派送中</view>
+      <view class="tt_text shixiao">【深圳市】广东宝安上合营业厅派件员徐佳佳18367099101正在为您派件</view>
+    </view>
+  </view>
+  <view class="dd_box">
+    <view class="dd_time">
+      <view class="time_t shixiao">04-28</view>
+      <view class="time_b shixiao">21:22</view>
+    </view>
+    <view class="zhuangtai">
+      <view class="zt_img"><image src="/images/wuliu/yunshuzhong.png" /></view>
+      <view class="shuxian"></view>
+    </view>
+    <view class="title">
+      <view class="tt_name shixiao">运输中</view>
+      <view class="tt_text shixiao">【广东宝安上合营业厅】已收入</view>
+    </view>
+  </view>
+  <view class="dd_box">
+    <view class="dd_time">
+      <view class="time_t shixiao">04-28</view>
+      <view class="time_b shixiao">21:22</view>
+    </view>
+    <view class="zhuangtai">
+
+      <view class="zt_img dangqian"></view>
+      <view class="shuxian"></view>
+    </view>
+    <view class="title">
+      <view class="tt_name"></view>
+      <view class="tt_text shixiao">快件已到达【深圳宝安集散中心】扫描员是【张俊阳】</view>
+    </view>
+  </view>
+  <view class="dd_box">
+    <view class="dd_time">
+      <view class="time_t shixiao">04-28</view>
+      <view class="time_b shixiao">21:22</view>
+    </view>
+    <view class="zhuangtai">
+      <view class="zt_img"><image src="/images/wuliu/yilanjian.png" /></view>
+      <view class="shuxian"></view>
+    </view>
+    <view class="title">
+      <view class="tt_name shixiao">已揽件</view>
+      <view class="tt_text shixiao">【浙江义务转运中心】已收件员【自作孽的鬼】已收件</view>
+    </view>
+  </view>
+  <view class="dd_box">
+    <view class="dd_time">
+      <view class="time_t shixiao">04-28</view>
+      <view class="time_b shixiao">21:22</view>
+    </view>
+    <view class="zhuangtai">
+      <view class="zt_img"><image src="/images/wuliu/yifahuo.png" /></view>
+      <view class="shuxian"></view>
+    </view>
+    <view class="title">
+      <view class="tt_name shixiao">已发货</view>
+      <view class="tt_text shixiao">包裹打包完成已发出</view>
+    </view>
+  </view>
+  <view class="dd_box">
+    <view class="dd_time">
+      <view class="time_t shixiao">04-28</view>
+      <view class="time_b shixiao">21:22</view>
+    </view>
+    <view class="zhuangtai">
+      <view class="zt_img"><image src="/images/wuliu/yifahuo.png" /></view>
+    </view>
+    <view class="title">
+      <view class="tt_name shixiao">已下单</view>
+      <view class="tt_text shixiao">您的订单等待配货</view>
+    </view>
+  </view> -->
+</view>

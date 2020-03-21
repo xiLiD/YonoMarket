@@ -1,0 +1,39 @@
+<view class="header" wx:for="{{shopList}}" wx:for-item="shopItem" wx:ofr-index="shopIndex">
+  <view class='shopImg'>
+    <image src="{{shopItem.shopImageUrl}}" />
+  </view>
+  <view class="left">
+    <view class="name">{{shopItem.shopName}}</view>
+    <view class="tel">电话：{{shopItem.mobile}}</view>
+    <view class="dizhi">门店地址：{{shopItem.shopAddress}}</view>
+  </view>
+  <view class="right">{{shopItem.distance}}</view>
+  <!-- <view class="right" wx:else>{{parseInt(shopItem.distance)}} 米</view> -->
+</view>
+<!-- <view class="header">
+  <view class="left">
+    <view class="name">马丁赖我奥地利老天地旗舰店</view>
+    <view class="tel">电话：5332530</view>
+    <view class="dizhi">门店地址：深圳市宝安区万物复苏路</view>
+  </view>
+  <view class="right"><image src="../../images/navigation.png" /></view>
+</view>
+<view class="header">
+  <view class="left">
+    <view class="name">马丁赖我奥地利老天地旗舰店</view>
+    <view class="tel">电话：5332530</view>
+    <view class="dizhi">门店地址：深圳市宝安区万物复苏路</view>
+  </view>
+  <view class="right"><image src="../../images/navigation.png" /></view>
+</view>
+<view class="header">
+  <view class="left">
+    <view class="name">马丁赖我奥地利老天地旗舰店</view>
+    <view class="tel">电话：5332530</view>
+    <view class="dizhi">门店地址：深圳市宝安区万物复苏路</view>
+  </view>
+  <view class="right"><image src="../../images/navigation.png" /></view>
+</view> -->
+<block>
+  <data-loading types="{{list.type}}" />
+</block>

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "更多团队",
+  "usingComponents": {
+    "data-loading": "/components/data-loading/data-loading"
+  }
+}

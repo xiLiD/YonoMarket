@@ -1,0 +1,56 @@
+<view class="header">
+  <input placeholder="输入关键词来进行搜索" bindinput="bindKeyInput"  />
+  <view class="sousuo" catchtap="goToshangpin" data-name="{{inputVal}}">
+    <image src="/images/serch/serch.png" />
+  </view>
+</view>
+<view class="history">
+  <view class="history_title">搜索历史</view>
+  <view class="serch_icon" catchtap="clearList">
+    <image src="/images/serch/detel.png" />
+  </view>
+</view>
+<view class="list">
+  <view class="list_numb" wx:for="{{searchList}}" wx:for-item="searchItem" wx:for-index="searchIndex" catchtap="goToshangpin" data-name="{{searchItem}}">{{searchItem}}</view>
+</view>
+
+<!-- <view class="history">
+  <view class="history_title">搜索发现</view>
+</view>
+<view class="list">
+  <view class="list_numb">Shirt</view>
+  <view class="list_numb">Shirt</view>
+  <view class="list_numb">Cosual pants</view>
+  <view class="list_numb">Shirt</view>
+  <view class="list_numb">Shirt</view>
+  <view class="list_numb">Shirt</view>
+</view> -->
+
+<!-- <view class="history">
+  <view class="history_title">猜你喜欢</view>
+  <view class="serch_icon gengduo">
+    <image src="/images/more-1.png" />
+  </view>
+</view>
+<view class="gg_box">
+  <view class="guanggao">
+    <view class="gg_img">
+      <image src="/images/serch/detel.png" />
+    </view>
+    <view class="gg_title">全球限量3百款的明星跑鞋球限量3百款的</view>
+    <view class="gg_jiage">
+      <view class="gg_left">RMB 2086</view>
+      <view class="gg_right">￥2999</view>
+    </view>
+  </view>
+  <view class="guanggao">
+    <view class="gg_img">
+      <image src="/images/serch/detel.png" />
+    </view>
+    <view class="gg_title">全球限量3百款的明星跑鞋球限量3百款的</view>
+    <view class="gg_jiage">
+      <view class="gg_left">RMB 2086</view>
+      <view class="gg_right">￥2999</view>
+    </view>
+  </view>
+</view> -->

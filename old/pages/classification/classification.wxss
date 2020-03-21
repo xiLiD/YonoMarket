@@ -1,0 +1,136 @@
+.box {
+  /* display: flex; */
+}
+
+/*左边*/
+page {
+  /* border-top : 1rpx solid #ddd; */
+  box-shadow:  0 0 10rpx -9rpx #ddd;
+}
+/* .header {
+  background-color: #dfdfdf;
+} */
+.tab_list {
+  width: 220rpx;
+  padding-top:10rpx;
+  /* height: 1198rpx; */
+  /* position: fixed;
+  left: 0;
+  top: 0; */
+}
+
+.tab {
+  /* margin: 25rpx 40rpx; */
+  padding : 25rpx 40rpx;
+}
+.tab_active {
+  /* background: #fff; */
+  box-shadow:  0 0 10rpx -9rpx #ddd;
+}
+.tab_name {
+  font-size: 26rpx;
+  color: #222;
+}
+
+.tab_name2 {
+  font-size: 20rpx;
+  color: #555;
+  margin-top:10rpx;
+}
+
+.active .tab_name,
+.active .tab_name2 {
+  color: #a5937f;
+  font-weight: 600;
+}
+/* .active {
+  color: #a5937f;
+  font-weight: 600;
+} */
+.changesize {
+  animation:  changeSize .5s ease;
+}
+
+@keyframes changeSize {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/*右边*/
+
+.header {
+  position: fixed;
+  top: 10rpx;
+  right: 0;
+  width: 530rpx;
+}
+
+.miaosha {
+  margin: 36rpx 35rpx;
+  height: 200rpx;
+  background-color: #eee;
+}
+
+.miaosha image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.class_tab {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 30rpx;
+  padding-bottom: 40rpx;
+}
+.class_tab:nth-child(1) {
+  padding-top: 20rpx;
+}
+
+.class_box {
+  width: 220rpx;
+  margin-bottom:20rpx;
+}
+
+.class_img {
+  width: 220rpx;
+  height: 220rpx;
+  border-radius: 10rpx;
+  box-shadow: 0 0 20rpx -5rpx #ddd;
+  overflow: hidden;
+}
+
+.class_img image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.class_title {
+  margin-top: 20rpx;
+  width: 220rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #555;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+.class_tab .class_seckill{
+  width: 475rpx;
+}
+.class_seckill .class_img {
+  width: 100%;
+  height : auto;
+}

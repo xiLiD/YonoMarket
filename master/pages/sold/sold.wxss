@@ -1,0 +1,251 @@
+page{
+  background-color: #F6F7F8;
+  padding-bottom: 30rpx;
+}
+.header {
+  font-size: 26rpx;
+  color: #222;
+  display: flex;
+  justify-content: space-around;
+  font-weight: bold;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+}
+
+.header_one {
+  padding: 32rpx 0;
+}
+
+.active {
+  border-bottom: 5rpx solid #a5937f;
+  color: #A5937F;
+}
+/*订单列表*/
+.big_box{
+  margin-top: 120rpx;
+}
+.list{
+  margin:20rpx 28rpx 0 28rpx;
+  background-color: #fff;
+  border-radius: 4rpx;
+  padding: 30rpx;
+}
+
+.list_top{
+  display: flex;
+  justify-content: space-between;
+}
+
+.list_img{
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+.list_img image{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+.list_name{
+  font-size: 26rpx;
+  color: #999999;
+  margin-top: 16rpx;
+}
+.list_center{
+  margin-left: 0rpx;
+}
+.name{
+  font-size: 28rpx;
+  color: #555555;
+  font-weight: bold;
+  padding-top: 14rpx;
+  width: 265rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+.guige{
+  font-size: 24rpx;
+  color: #AAAAAA;
+  margin-top: 6rpx;
+}
+.price{
+  font-size: 28rpx;
+  color: #555555;
+  margin-top: 50rpx;
+}
+
+.zhuangtai{
+  font-size: 26rpx;
+  color: #A5937F;
+  padding-top: 16rpx;
+}
+.numb{
+  font-size: 28rpx;
+  color: #555555;
+  margin-top: 96rpx;
+  padding-left: 100rpx;
+}
+.mail{
+  font-size: 26rpx;
+  color: #999999;
+  padding-left: 80rpx;
+  margin-top: 24rpx;
+}
+
+.heji{
+  font-size: 26rpx;
+  color: #555555;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10rpx;
+}
+.btn{
+  font-size: 26rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 30rpx;
+}
+.money{
+  font-size: 30rpx;
+  color: #A5937F;
+}
+.wuliu{
+  width: 165rpx;
+  height: 58rpx;
+  text-align: center;
+  line-height: 58rpx;
+  border: 1rpx solid #AAAAAA;
+  color: #555555;
+  margin-right: 22rpx;
+}
+.queren{
+  width: 165rpx;
+  height: 58rpx;
+  text-align: center;
+  line-height: 58rpx;
+  border: 2rpx solid #A5937F;
+  color: #A5937F;
+}
+
+.no_active{
+  border-color :#ccc;
+  color : #ccc;
+}
+
+.list_each {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.list_each:nth-child(2n) {
+  margin: 35rpx 0;
+}
+.list_right {
+  width: 425rpx;
+  position: relative;
+}
+.yunfeix {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.list_each_right_top_t {
+  display: flex;
+  justify-content: space-between;
+}
+.list_each_right_bottom {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.list_top {
+  display: flex;
+  flex-direction: column;
+}
+.yunfeix {
+  margin-top: 25rpx;
+  font-size: 28rpx;
+}
+/* .activeOne{
+  border: 2rpx solid #A5937F;
+  color: #A5937F;
+} */
+
+
+
+.header_top {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  padding : 20rpx 30rpx; 
+}
+.big_box  {
+  margin-top : 0;
+}
+/* 切换动画*/
+.animation_box_center {
+  position: relative;
+  /* margin-top: 120rpx; */
+}
+.animation_box {
+  width: 100%;
+  position: absolute;
+}
+.aleft_n1 {
+  transform: translateX(-100%);
+}
+.aleft_n2 {
+  transform: translateX(100%);
+}
+.aleft {
+  z-index : 999;
+  transform: translateX(0);
+  transition: 0.2s linear;
+}
+
+/* 导航底部动画*/
+.tab{
+  font-size: 26rpx;
+  color: #222222;
+  font-weight: bold;
+  /* margin: 30rpx 47rpx; */
+  /* padding-bottom: 10rpx; */
+  position: relative;
+  border: none;
+  /* margin-top: 28rpx; */
+}
+.tab .line_bottom{
+  position: absolute;
+  bottom : 0;
+  height : 4rpx;
+  width: 0;
+  background: #A5937F;
+}
+.tab.animate_active .line_bottom{
+  width: 100%;
+  transition: 0.2s linear;
+}
+.animate_active{
+  color: #A5937F;
+}
+.details {
+  color : #999;
+  font-size : 26rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+}
